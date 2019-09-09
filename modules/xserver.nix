@@ -26,9 +26,12 @@
   };
 
   # Font
-  fonts.fonts = [
+  fonts.fonts = with pkgs; [
     # Add Wenquanyi Microsoft Ya Hei, a nice-looking Chinese font.
-    pkgs.wqy_microhei
+    wqy_microhei
+    # Fira code is a good font for coding
+    fira-code
+    fira-code-symbols
   ];
 
   # International Support
