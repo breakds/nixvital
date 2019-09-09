@@ -36,6 +36,7 @@
   environment.systemPackages = with pkgs; [
     wget vim emacs firefox google-chrome git
     tig # The CLI git interface
+    dmenu
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
