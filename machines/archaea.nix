@@ -4,6 +4,7 @@
   imports = [
     ./base.nix
     ../modules/xserver.nix
+    ../modules/dev/ros.nix
   ];
 
   # Machine-specific networking configuration.

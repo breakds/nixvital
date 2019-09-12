@@ -3,3 +3,10 @@
 3. [P1] Setting Emacs
 4. [P1] Add nix configuration module to Emacs
 5. [P0] Learn build system and build ROS
+   5.1 Python support
+   5.2 Figure out installation to specified path (/opt)
+   5.3 How to download source with SHA verification
+   5.4 How to make sure dependencies are installed? (gcc?)
+6. [P2] Learn hydra
+7. [P1] Personal directory setup like .ssh and org
+8. [P1] Bazel
