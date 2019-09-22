@@ -22,6 +22,13 @@
       # Default desktop manager: gnome3.
       desktopManager.gnome3.enable = true;
       displayManager.gdm.enable = true;
+
+      # Extra window manager: i3
+      windowManager.i3 = {
+        enable = true;
+        configFile = ./dotfiles/i3.config;
+        extraPackages = with pkgs; [ dmenu i3status i3lock termite ];
+      };
     };
   };
 
