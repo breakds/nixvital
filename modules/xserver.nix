@@ -5,7 +5,14 @@
 
 { config, lib, pkgs, ... }:
 
-{
+let termite = pkgs.callPackage ./dev/termite.nix {
+      config = {
+        font-face = "Monospace";
+        font-size = 10;
+        scrollback = 25000;
+      };
+    };
+in {
   services = {
     # X11
     xserver = {
