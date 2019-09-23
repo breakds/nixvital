@@ -9,6 +9,7 @@ let defaultConfig = {
       browser = "google-chrome";
       # "off", "left" or "right"
       scrollbar = "off";
+      alpha = 0.9;
     };
 
     cfg = lib.recursiveUpdate defaultConfig config;
@@ -32,7 +33,7 @@ let defaultConfig = {
         scrollbar = ${cfg.scrollbar}
 
         [colors]
-        background = rgba(83, 83, 83, 0.6)
+        background = rgba(83, 83, 83, ${ toString cfg.alpha })
 
         # If unset, will reverse foreground and background
         highlight = #2f2f2f
