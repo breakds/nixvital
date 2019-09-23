@@ -5,6 +5,7 @@
     ./base.nix
     ../modules/xserver.nix
     ../modules/desktop.nix
+    ../modules/web.nix
   ];
 
   # Machine-specific networking configuration.
