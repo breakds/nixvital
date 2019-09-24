@@ -1,4 +1,8 @@
 # Prepare a python tools environment to build ROS.
+#
+# For testing and development, build this package alone with
+#
+# nix-build -E 'with import <nixpkgs> {}; callPackage ./default.nix {}'
 
 { lib, pkgs, stdenv, ... } :
 
