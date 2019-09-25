@@ -15,6 +15,10 @@ with pkgs; with python2Packages;
         catkin-pkg = catkin-pkg;
         rospkg = rospkg;
       };
+      rosdep = callPackage ./rosdep.nix {
+        rospkg = rospkg;
+        rosdistro = rosdistro;
+      };
       rosinstall-generator = callPackage ./rosinstall-generator.nix {
         rosdistro = rosdistro;
       };
@@ -34,5 +38,6 @@ with pkgs; with python2Packages;
         rosinstall-generator
         wstool
         rosinstall
+        rosdep
       ];
   in python2.withPackages ros-python-packages

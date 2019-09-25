@@ -1,4 +1,5 @@
-{ lib, buildPythonPackage, fetchPypi, ... }:
+{ lib, buildPythonPackage, fetchPypi, pytest,
+  rospkg, rosdistro, nose, ... }:
 
 buildPythonPackage rec {
   pname = "rosdep";
@@ -8,6 +9,8 @@ buildPythonPackage rec {
     inherit pname version;
     sha256 = "641887cc3c349286b72b2f1357d67d91c3aa54882d7a8ca612ecc3bc684f32d5";
   };
+
+  propagatedBuildInputs = [ rospkg rosdistro ];
 
   doCheck = false;
   
