@@ -32,6 +32,8 @@ with pkgs; with python2Packages;
         wstool = wstool;
         rosdistro = rosdistro;
       };
+      empy = callPackage ./empy.nix {};
+      # The Main Package
       ros-python-packages = python-packages: with python-packages; [
         catkin-pkg
         rospkg
@@ -39,5 +41,6 @@ with pkgs; with python2Packages;
         wstool
         rosinstall
         rosdep
+        empy
       ];
   in python2.withPackages ros-python-packages
