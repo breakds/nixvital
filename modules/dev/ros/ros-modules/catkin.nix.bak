@@ -1,0 +1,25 @@
+{ lib, buildPythonPackage, fetchFromGitHub, ... }:
+
+buildPythonPackage rec {
+  pname = "catkin";
+  version = "0.7.18";
+  subversion =  "1";
+  rosdistro = "kinetic";
+
+  src = fetchFromGitHub {
+    owner = "ros-gdp";
+    repo = "{pname}-release";
+    rev = "release/${rosdistro}/${pname}/${version}-${subversion}";
+    sha256 = "77cc3e8";
+  };
+
+  propagatedBuildInputs = [];
+  
+  doCheck = false;
+
+  meta = {
+    homepage = "http://wiki.ros.org/catkin";
+    description = "A CMake-based build system that is used to build all packages in ROS";
+    license = lib.licenses.bsd3;
+  };
+}
