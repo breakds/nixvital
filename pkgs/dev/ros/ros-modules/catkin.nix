@@ -12,7 +12,7 @@ let
 in stdenv.mkDerivation {
   name = "${pname}-${version}";
 
-  NIX_DEBUG = 2;
+  # NIX_DEBUG = 2;
 
   # src = fetchFromGitHub {
   #   owner = "ros-gbp";
@@ -25,7 +25,7 @@ in stdenv.mkDerivation {
 
   cmakeFlags = "-DCATKIN_ENABLE_TESTING=OFF -DSETUPTOOLS_DEB_LAYOUT=OFF";  
 
-  propagatedBuildInputs = [ python-tools pkgs.cmake ];
+  propagatedBuildInputs = [ python-tools pkgs.pkgconfig pkgs.cmake ];
 
   patchPhase = ''
     sed -i 's/PYTHON_EXECUTABLE/SHELL/' ./cmake/catkin_package_xml.cmake
