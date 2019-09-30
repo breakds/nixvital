@@ -5,7 +5,8 @@
     ./base.nix
     ../modules/xserver.nix
     ../modules/desktop.nix
-    ../modules/web.nix
+    # Enable when nextcloud is ready.
+    # ../modules/web.nix
   ];
 
   # Machine-specific networking configuration.
