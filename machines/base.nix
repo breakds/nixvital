@@ -35,6 +35,7 @@
   # Basic softwares that should definitely exist.
   environment.systemPackages = with pkgs; [
     wget vim emacs firefox google-chrome git
+    gnupg pass
     tig # The CLI git interface
     dmenu
   ];
