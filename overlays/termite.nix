@@ -1,6 +1,6 @@
 # Adapted from https://github.com/thumphries/nix-config/blob/master/termite/default.nix
 
-{ stdenv, lib, termite, symlinkJoin, writeTextFile, makeWrapper, config ? {} }:
+{ stdenv, lib, termiteBasePackage, symlinkJoin, writeTextFile, makeWrapper, config ? {} }:
 
 let defaultConfig = {
       font-face = "Monospace";
@@ -63,8 +63,8 @@ let defaultConfig = {
     };
 in symlinkJoin {
   name = "termite-bds";
-  paths = [ config-file termite ];
-  buildInputs = [ termite makeWrapper ];
+  paths = [ config-file termiteBasePackage ];
+  buildInputs = [ termiteBasePackage makeWrapper ];
   postBuild = ''
     echo $out
     echo $config-file

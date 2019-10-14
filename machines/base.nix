@@ -9,16 +9,11 @@
     [ 
       ../modules/user.nix
       ../modules/security.nix
-      # ../modules/xserver.nix
     ];
 
   # Specifies the overlay for all the packages.
   nixpkgs.overlays = [
-    # Package Version Specialization
-    (self: super: {
-      # Use LLVM 7 for LLVM family
-      inherit (super.llvmPackages_7) clang libclang llvm;
-    })
+    (import ../overlays)
   ];
 
   # +------------------------------------------------------------+
