@@ -9,6 +9,7 @@
     [ 
       ../modules/user.nix
       ../modules/security.nix
+      ../modules/docker.nix
     ];
 
   # Specifies the overlay for all the packages.
@@ -56,9 +57,6 @@
   services.openssh.enable = true;
   # Enable CUPS services
   services.printing.enable = true;
-
-  # Enable docker
-  virtualisation.docker.enable = true;
 
   # +------------------------------------------------------------+
   # | Network Settings                                           |

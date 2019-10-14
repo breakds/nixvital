@@ -6,7 +6,8 @@
     ../modules/xserver.nix
     ../modules/desktop.nix
     ../modules/web/nginx.nix
-    ../modules/web/filerun.nix
+    # TODO(breakds): Bring it up
+    # ../modules/web/filerun.nix
   ];
 
   # Machine-specific networking configuration.
