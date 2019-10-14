@@ -5,6 +5,7 @@
     ./base.nix
     ../modules/xserver.nix
     ../modules/desktop.nix
+    ../modules/web/nginx.nix
     # Enable when nextcloud is ready.
     # ../modules/web.nix
   ];
@@ -19,4 +20,7 @@
     videoDrivers = [ "nvidia" ];
     displayManager.gdm.wayland = false;
   };
+
+  # Enable Nginx
+  services.nginx.enable = true;
 }

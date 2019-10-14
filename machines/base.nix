@@ -12,6 +12,15 @@
       # ../modules/xserver.nix
     ];
 
+  # Specifies the overlay for all the packages.
+  nixpkgs.overlays = [
+    # Package Version Specialization
+    (self: super: {
+      # Use LLVM 7 for LLVM family
+      inherit (super.llvmPackages_7) clang libclang llvm;
+    })
+  ];
+
   # +------------------------------------------------------------+
   # | Boot Settings                                              |
   # +------------------------------------------------------------+  
@@ -35,10 +44,11 @@
 
   # Basic softwares that should definitely exist.
   environment.systemPackages = with pkgs; [
-    wget vim emacs firefox google-chrome git
+    wget vim emacs firefox google-chrome
     gnupg pass
-    tig # The CLI git interface
     dmenu
+    # ---------- Development ----------
+    git tig cmake clang
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -69,6 +79,16 @@
     publish.enable = true;
     publish.addresses = true;    
   };
+
+  # +------------------------------------------------------------+
+  # | Garbage Collection                                         |
+  # +------------------------------------------------------------+
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+  };
+  
 
   # +------------------------------------------------------------+
   # | Version Settings                                           |
