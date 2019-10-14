@@ -29,17 +29,13 @@
         isNormalUser = false;
         initialPassword = "filerunpasswd";
         uid = 33;
-        extraGroups = [
-          "filerun"
-        ];
+        extraGroups = [ "filerun" ];
       };
     };
 
     extraGroups = {
-      filerun = {
-        gid = 33;
-        members = [ "breakds" "filerun" ];
-      };
+      filerun = { gid = 33; members = [ "breakds" "filerun" ]; };
+      plugdev = { gid = 501; };
     };
   };
 }
