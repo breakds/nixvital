@@ -5,10 +5,10 @@
     extraUsers = {
       breakds = {
         isNormalUser = true;
-	initialPassword = "breakds";
-	home = "/home/breakds";
+	      initialPassword = "breakds";
+	      home = "/home/breakds";
         uid = 1000;
-	description = "Break Yang";
+	      description = "Break Yang";
         extraGroups = [
 	        "breakds"
 	        "wheel"  # Enable `sudo`
@@ -20,8 +20,25 @@
 	        "lxd"
 	        "docker"
           "nginx"
+          "filerun"
 	      ];
         useDefaultShell = true;
+      };
+
+      filerun = {
+        isNormalUser = false;
+        initialPassword = "filerunpasswd";
+        uid = 33;
+        extraGroups = [
+          "filerun"
+        ];
+      };
+    };
+
+    extraGroups = {
+      filerun = {
+        gid = 33;
+        members = [ "breakds" "filerun" ];
       };
     };
   };
