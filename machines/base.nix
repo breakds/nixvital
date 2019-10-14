@@ -57,6 +57,9 @@
   # Enable CUPS services
   services.printing.enable = true;
 
+  # Enable docker
+  virtualisation.docker.enable = true;
+
   # +------------------------------------------------------------+
   # | Network Settings                                           |
   # +------------------------------------------------------------+
@@ -83,7 +86,6 @@
     automatic = true;
     dates = "weekly";
   };
-  
 
   # +------------------------------------------------------------+
   # | Version Settings                                           |
