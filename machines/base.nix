@@ -53,6 +53,9 @@
   # TODO(breakds): Figure out how to use GPG.
   # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
 
+  # For monitoring and inspecting the system.
+  programs.sysdig.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   # Enable CUPS services
