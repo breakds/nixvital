@@ -8,9 +8,9 @@
   ];
 
   # Machine-specific networking configuration.
-  networking.hostName = "docker";
+  networking.hostName = "hunter";
   # Generated via `head -c 8 /etc/machine-id`
-  networking.hostId = "7a4bd408";
+  networking.hostId = "9e710e9b";
 
   # Enable nvidia driver
   services.xserver = {
