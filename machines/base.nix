@@ -44,7 +44,8 @@
     gnupg pass
     dmenu
     # ---------- Development ----------
-    git tig cmake clang
+    git tig cmake clang silver-searcher
+
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
