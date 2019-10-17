@@ -43,6 +43,7 @@
     wget vim emacs firefox google-chrome
     gnupg pass
     dmenu
+    pciutils
     # ---------- Development ----------
     git tig cmake clang silver-searcher
 
