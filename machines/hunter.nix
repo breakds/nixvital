@@ -3,7 +3,6 @@
 {
   imports = [
     ./base.nix
-    ../modules/xserver.nix
     ../modules/desktop.nix
     ../modules/weride.nix
   ];
@@ -13,27 +12,18 @@
   # Generated via `head -c 8 /etc/machine-id`
   networking.hostId = "9e710e9b";
 
-  # Enable nvidia driver
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    dpi = 150;
-    displayManager.gdm.wayland = false;
+  # +----------+
+  # | Desktop  |
+  # +----------+
+
+  bds.desktop = {
+    enable = true;
+    xserver.displayManager = "gdm";
+    nvidia = {
+      enable = true;
+      usePrime = true;
+    };
   };
-
-  # TODO(breakds): Enable optimus prime mode when it works on thinkpad t470p.
-
-  # Nvidia PRIME The card Nvidia 940MX is non-MXM card. Needs special treatment.
-  # muxless/non-MXM Optimus cards have no display outputs and show as 3D
-  # Controller in lspci output, seen in most modern consumer laptops
-  hardware.nvidia.optimus_prime.enable = true;
-  hardware.nvidia.modesetting.enable = true;
-  hardware.opengl.driSupport32Bit = true;
-  
-  # Bus ID of the NVIDIA GPU. You can find it using lspci
-  hardware.nvidia.optimus_prime.nvidiaBusId = "PCI:2:0:0";
-  
-  # Bus ID of the Intel GPU. You can find it using lspci
-  hardware.nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
 
   # Enable Nginx
   services.nginx.enable = true;

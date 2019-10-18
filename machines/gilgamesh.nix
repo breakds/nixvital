@@ -3,7 +3,6 @@
 {
   imports = [
     ./base.nix
-    ../modules/xserver.nix
     ../modules/desktop.nix
     ../modules/web/nginx.nix
     # TODO(breakds): Bring it up
@@ -15,10 +14,17 @@
   # Generated via `head -c 8 /etc/machine-id`
   networking.hostId = "7a4bd408";
 
-  # Enable nvidia driver
-  services.xserver = {
-    videoDrivers = [ "nvidia" ];
-    displayManager.gdm.wayland = false;
+
+  # +----------+
+  # | Desktop  |
+  # +----------+
+
+  bds.desktop = {
+    enable = true;
+    xserver.displayManager = "gdm";
+    nvidia = {
+      enable = true;
+    };
   };
 
   # Enable Nginx

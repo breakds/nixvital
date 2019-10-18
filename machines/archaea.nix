@@ -3,13 +3,22 @@
 {
   imports = [
     ./base.nix
-    ../modules/xserver.nix
+    ../modules/desktop.nix
   ];
 
   # Machine-specific networking configuration.
   networking.hostName = "archaea";
   # Generated via `head -c 8 /etc/machine-id`
   networking.hostId = "867ce369";
+
+  # +----------+
+  # | Desktop  |
+  # +----------+
+
+  bds.desktop = {
+    enable = true;
+    xserver.displayManager = "gdm";
+  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
