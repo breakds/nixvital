@@ -10,14 +10,31 @@ in {
         type = lib.types.enum [ "gdm" "sddm" ];
         default = "gdm";
         description =  ''
-          To use gdm or sddm for the display manager. 
+          To use gdm or sddm for the display manager.
           Values can be "gdm" or "sddm".
 '       '';
       };
     };
     nvidia = {
       enable = lib.mkEnableOption "Add Nivdia driver.";
-      usePrime =  lib.mkEnableOption "Enable optimus prime mode. This is usually for laptop only";
+      prime = {
+        enable = lib.mkEnableOption "Enable optimus prime mode. This is usually for laptop only.";
+        # TODO(breakds): Make those two "REQUIRED" when prime is enabled.
+        intelBusId = lib.mkOption {
+          type = lib.types.str;
+          default = "PCI:0:2:0";
+          description = ''
+            The bus ID of the intel video card, can be found by "lspci".
+          '';
+        };
+        nvidiaBusId = lib.mkOption {
+          type = lib.types.str;
+          default = "PCI:2:0:0";
+          description = ''
+            The bus ID of the intel video card, can be found by "lspci".
+          '';
+        };
+      };
     };
   };
 
@@ -55,7 +72,7 @@ in {
       };
     };
 
-    hardware = lib.mkIf (cfg.nvidia.enable && cfg.nvidia.usePrime) {
+    hardware = lib.mkIf (cfg.nvidia.enable && cfg.nvidia.prime.enable) {
       # Nvidia PRIME The card Nvidia 940MX is non-MXM card. Needs special treatment.
       # muxless/non-MXM Optimus cards have no display outputs and show as 3D
       # Controller in lspci output, seen in most modern consumer laptops
@@ -64,12 +81,12 @@ in {
       opengl.driSupport32Bit = true;
 
       # TODO(breakds): make those two options
-      
+
       # Bus ID of the NVIDIA GPU. You can find it using lspci
-      nvidia.optimus_prime.nvidiaBusId = "PCI:2:0:0";
-      
+      nvidia.optimus_prime.nvidiaBusId = cfg.nvidia.prime.nvidiaBusId;
+
       # Bus ID of the Intel GPU. You can find it using lspci
-      nvidia.optimus_prime.intelBusId = "PCI:0:2:0";
+      nvidia.optimus_prime.intelBusId = cfg.nvidia.prime.intelBusId;
     };
 
     # Font
