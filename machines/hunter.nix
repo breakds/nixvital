@@ -18,12 +18,14 @@
 
   bds.desktop = {
     enable = true;
-    xserver.displayManager = "gdm";
+    xserver.displayManager = "sddm";
     nvidia = {
       enable = true;
       usePrime = true;
     };
   };
+
+  services.xserver.dpi = 142;
 
   # Enable Nginx
   services.nginx.enable = true;
