@@ -5,6 +5,7 @@
     ./base.nix
     ../modules/xserver.nix
     ../modules/desktop.nix
+    ../modules/weride.nix
   ];
 
   # Machine-specific networking configuration.
