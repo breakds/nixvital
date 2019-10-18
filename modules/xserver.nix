@@ -21,7 +21,7 @@
 
       # Default desktop manager: gnome3.
       desktopManager.gnome3.enable = true;
-      displayManager.gdm.enable = true;
+      displayManager.sddm.enable = true;
 
       # Extra window manager: i3
       windowManager.i3 = {
