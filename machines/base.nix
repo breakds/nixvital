@@ -45,8 +45,7 @@
     dmenu
     pciutils
     # ---------- Development ----------
-    git tig cmake clang silver-searcher
-
+    git tig cmake clang silver-searcher sbcl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

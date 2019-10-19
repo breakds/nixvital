@@ -3,7 +3,7 @@
 {
   imports = [
     ./base.nix
-    ../modules/desktop.nix
+    ../modules/desktop
   ];
 
   # Machine-specific networking configuration.

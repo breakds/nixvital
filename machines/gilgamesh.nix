@@ -3,7 +3,7 @@
 {
   imports = [
     ./base.nix
-    ../modules/desktop.nix
+    ../modules/desktop
     ../modules/web/nginx.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
