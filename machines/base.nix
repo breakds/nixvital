@@ -43,7 +43,8 @@
     wget vim emacs firefox google-chrome
     gnupg pass
     dmenu
-    pciutils
+    # ---------- System Utils ----------
+    pciutils usbutils
     # ---------- Development ----------
     git tig cmake clang clang-tools silver-searcher sbcl
   ];
@@ -61,6 +62,8 @@
   services.openssh.enable = true;
   # Enable CUPS services
   services.printing.enable = true;
+
+  services.udev.packages = [ pkgs.libu2f-host ];
 
   # +------------------------------------------------------------+
   # | Network Settings                                           |
