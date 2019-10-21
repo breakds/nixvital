@@ -48,7 +48,7 @@
       fcgi = { gid = 500; };
       filerun = { gid = 33; members = [ "breakds" "filerun" ]; };
       plugdev = { gid = 501; };
-      delegator = { gid = 600; members = [ "delegator" ]; };
+      delegator = { gid = 600; members = [ "breakds" "delegator" ]; };
     };
   };
 }
