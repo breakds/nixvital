@@ -41,11 +41,17 @@
         uid = 33;
         extraGroups = [ "filerun" ];
       };
+
+      fcgi = {
+        group = "fcgi";
+	      extraGroups = ["delegator"];
+	      uid = 500;
+      };
     };
 
     extraGroups = {
       breakds = { gid = 1000; members = [ "breakds" ]; };
-      fcgi = { gid = 500; };
+      fcgi = { gid = 500; members = [ "fcgi" ]; };
       filerun = { gid = 33; members = [ "breakds" "filerun" ]; };
       plugdev = { gid = 501; };
       delegator = { gid = 600; members = [ "breakds" "delegator" ]; };

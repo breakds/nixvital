@@ -3,6 +3,8 @@
 let cfg = config.bds.web;
 
 in {
+  imports = [ ./cgit.nix ];
+
   options.bds.web = {
     enable = lib.mkEnableOption "Enable Hosted Web Services";
   };
@@ -25,6 +27,9 @@ in {
         };
         "files.breakds.org" = template // {
           locations."/".proxyPass = "http://localhost:5962";
+        };
+        "git.breakds.org" = template // {
+          locations."/".proxyPass = "http://localhost:5963";
         };
       };
     };
