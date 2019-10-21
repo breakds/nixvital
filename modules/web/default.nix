@@ -23,6 +23,9 @@ in {
         "breakds.org" = template // {
           root = "/home/delegator/www/breakds.org";
         };
+        "files.breakds.org" = template // {
+          locations."/".proxyPass = "http://localhost:5962";
+        };
       };
     };
   };
