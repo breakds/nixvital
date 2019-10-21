@@ -21,8 +21,18 @@
 	        "docker"
           "nginx"
           "filerun"
+          "delegator"
 	      ];
         useDefaultShell = true;
+      };
+
+      # The user delegator is used to serve content for web services.
+      delegator = {
+        group = "delegator";
+        createHome = false;
+        uid = 600;
+        home = "/home/delegator";
+        extraGroups = [ "delegator" ];
       };
 
       filerun = {
@@ -34,8 +44,11 @@
     };
 
     extraGroups = {
+      breakds = { gid = 1000; members = [ "breakds" ]; };
+      fcgi = { gid = 500; };
       filerun = { gid = 33; members = [ "breakds" "filerun" ]; };
       plugdev = { gid = 501; };
+      delegator = { gid = 600; members = [ "delegator" ]; };
     };
   };
 }

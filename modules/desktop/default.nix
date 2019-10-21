@@ -7,7 +7,7 @@ let cfg = config.bds.desktop;
     xserverOptions = {
       options = {
         displayManager = lib.mkOption {
-          type = types.enum [ "gdm" "sddm" ];
+          type = types.enum [ "gdm" "sddm" "slim" ];
           default = "gdm";
           description = ''
             To use gdm or sddm for the display manager.
@@ -19,7 +19,7 @@ let cfg = config.bds.desktop;
 
 in {
   imports = [ ./nvidia.nix ];
-  
+
   options.bds.desktop = {
     enable = lib.mkEnableOption "Enable Desktop";
     xserver = lib.mkOption {
@@ -27,21 +27,21 @@ in {
       type = types.submodule xserverOptions;
     };
     nvidia = {
-      enable = lib.mkEnableOption "Add Nivdia driver.";      
+      enable = lib.mkEnableOption "Add Nivdia driver.";
       prime = {
         enable = lib.mkEnableOption ''
           Enable optimus prime mode. This is usually for laptop only.
         '';
-        
+
         # TODO(breakds): Make those two "REQUIRED" when prime is enabled.
         intelBusId = lib.mkOption {
           type = lib.types.str;
           default = "PCI:0:2:0";
           description = ''
             The bus ID of the intel video card, can be found by "lspci".
-          ''; 
+          '';
         };
-        
+
         nvidiaBusId = lib.mkOption {
           type = lib.types.str;
           default = "PCI:2:0:0";
@@ -71,6 +71,7 @@ in {
       desktopManager.gnome3.enable = true;
       displayManager.gdm.enable = cfg.xserver.displayManager == "gdm";
       displayManager.sddm.enable = cfg.xserver.displayManager == "sddm";
+      displayManager.slim.enable = cfg.xserver.displayManager == "slim";
 
       # Extra window manager: i3
       windowManager.i3 = {
