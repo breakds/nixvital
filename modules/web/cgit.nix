@@ -34,13 +34,13 @@ in lib.mkIf cfg.enable {
 
         locations."/git/" = {
           extraConfig = ''
-            rewwrite ^/git/(.*) https://git.breakds.org/$1 permanent;
+            rewrite ^/git/(.*) https://git.breakds.org/$1 permanent;
           '';
         };
 
         locations."@cgit" = {
           extraConfig = ''
-            include "{pkgs.nginx}/conf/fastcgi_params";
+            include "${pkgs.nginx}/conf/fastcgi_params";
             fastcgi_param CGIT_CONFIG "${configFile}";
             fastcgi_param SCRIPT_FILENAME "${pkgs.cgit}/cgit/cgit.cgi";
             fastcgi_param PATH_INFO       $uri;
