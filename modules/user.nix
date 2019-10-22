@@ -47,6 +47,12 @@
 	      extraGroups = ["delegator"];
 	      uid = 500;
       };
+
+      nginx = {
+        group = "nginx";
+        extraGroups = ["delegator"];
+        uid = 60;
+      };
     };
 
     extraGroups = {
@@ -54,7 +60,8 @@
       fcgi = { gid = 500; members = [ "fcgi" ]; };
       filerun = { gid = 33; members = [ "breakds" "filerun" ]; };
       plugdev = { gid = 501; };
-      delegator = { gid = 600; members = [ "breakds" "delegator" ]; };
+      delegator = { gid = 600; members = [ "delegator" "breakds" "nginx" "fcgi" ]; };
+      nginx = { gid = 60; members = [ "nginx" ]; };
     };
   };
 }

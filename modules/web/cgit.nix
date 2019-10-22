@@ -17,29 +17,40 @@ let cfg = config.bds.web;
       cache-root=${cacheDir}
       cache-size=1000
       max-stats=year
-      root-title=KJ repositories
-      root-desc=Repositories hosted at git.orbekk.com.
+      root-title=Break's git Repo
+      root-desc=Repositories hosted at git.breakds.org.
       enable-commit-graph=true
       repository-sort=age
       enable-html-serving=1
     '';
 
-in lib.mkIf cfg.enable {
-  services.nginx = {
-    virtualHosts = {
-      "git-internal" = {
-        root = "${pkgs.cgit}/cgit";
-        listen = [{ addr = "*"; port = gitPort; }];
-        extraConfig = "try_files $uri @cgit;";
+in {
+  config = lib.mkIf cfg.enable {
+    networking.firewall.allowedTCPPorts = [ fcgiPort ];
+    
+    services.fcgiwrap = {
+      enable = true;
+      socketType = "tcp";
+      socketAddress = "0.0.0.0:${toString fcgiPort}";
+      user = "fcgi";
+      group = "fcgi";
+    };
+      
+    services.nginx = {
+      virtualHosts = {
+        "git-internal" = {
+          root = "${pkgs.cgit}/cgit";
+          listen = [{ addr = "*"; port = gitPort; }];
+          extraConfig = "try_files $uri @cgit;";
 
-        locations."/git/" = {
-          extraConfig = ''
+          locations."/git/" = {
+            extraConfig = ''
             rewrite ^/git/(.*) https://git.breakds.org/$1 permanent;
           '';
-        };
+          };
 
-        locations."@cgit" = {
-          extraConfig = ''
+          locations."@cgit" = {
+            extraConfig = ''
             include "${pkgs.nginx}/conf/fastcgi_params";
             fastcgi_param CGIT_CONFIG "${configFile}";
             fastcgi_param SCRIPT_FILENAME "${pkgs.cgit}/cgit/cgit.cgi";
@@ -48,20 +59,21 @@ in lib.mkIf cfg.enable {
             fastcgi_param HTTP_HOST       $server_name;
             fastcgi_pass  127.0.0.1:${toString fcgiPort};
           '';
+          };
         };
       };
     };
-  };
 
-  systemd.services.cgit-init = {
-    description = "init cgit cache";
-    path = [ pkgs.coreutils ];
-    after = [ "networking.target" ];
-    wantedBy = [ "multi-user.target" ];
-    script = ''
+    systemd.services.cgit-init = {
+      description = "init cgit cache";
+      path = [ pkgs.coreutils ];
+      after = [ "networking.target" ];
+      wantedBy = [ "multi-user.target" ];
+      script = ''
       echo "Creating cache directory"
       mkdir -p ${cacheDir}/cache
       chown fcgi:fcgi ${cacheDir}/cache
     '';
+    };
   };
 }
