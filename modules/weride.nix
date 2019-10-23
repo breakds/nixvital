@@ -19,10 +19,17 @@ in {
               The endpoint to connect to the nas device. e.g. //<ip>/<path>
             '';
           };
+          
           fsType = lib.mkOption {
             type = types.enum [ "cifs" ];
             default = "cifs";
             description = "The filesystem type such as cifs (samba)";
+          };
+
+          credentials = lib.mkOption {
+            type = types.str;
+            default = "/home/breakds/.ussmbcredentials";
+            description = "The samba credentials that contains username/password.";
           };
         };
       });
@@ -45,11 +52,6 @@ in {
     ];
 
     # Mount NAS
-    # //10.1.50.20/Public /media/nas cifs credentials=/home/breakds/.smbcredentials,iocharset=utf8,uid=1000 0 0
-    # //10.1.50.20/80t /media/us_nas_80t cifs credentials=/home/breakds/.smbcredentials,iocharset=utf8,uid=1000 0 0
-    # //10.18.50.20/80t /media/gz_nas_80t cifs credentials=/home/breakds/.gzsmbcredentials,iocharset=utf8,uid=1000 0 0
-    # //10.18.50.20/Public /media/gz_nas_50t cifs credentials=/home/breakds/.gzsmbcredentials,iocharset=utf8,uid=1000 0 0
-    #
     fileSystems = lib.mapAttrs (target: deviceCfg: {
       device = deviceCfg.source;
       fsType = deviceCfg.fsType;
@@ -58,7 +60,7 @@ in {
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
         iocharset_opts = "iocharset=utf8";
         uid_opts = "uid=1000,gid=1000";
-      in ["${automount_opts},credentials=/home/breakds/.ussmbcredentials,${iocharset_opts},${uid_opts}"];
+      in ["${automount_opts},credentials=${deviceCfg.credentials},${iocharset_opts},${uid_opts}"];
     }) cfg.nasDevices;
   };
 }
