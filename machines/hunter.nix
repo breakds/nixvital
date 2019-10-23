@@ -31,6 +31,20 @@
 
   services.xserver.dpi = 142;
 
+  # +----------+
+  # | Weride   |
+  # +----------+
+
+  bds.weride = {
+    nasDevices."/media/nas" = {
+      source = "//10.1.50.20/Public";
+    };
+    nasDevices."/media/us_nas_80t" = {
+      source = "//10.1.50.20/80t";
+    };
+  };
+  
+
   # Enable nvidia-docker
   virtualisation.docker.enableNvidia = true;
 
