@@ -34,7 +34,7 @@ in {
         };
       });
 
-      default = [];
+      default = {};
 
       description = "List of specifications for mouting NAS devices.";
 
