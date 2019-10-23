@@ -10,7 +10,7 @@
   # Machine-specific networking configuration.
   networking.hostName = "monster";
   # Generated via `head -c 8 /etc/machine-id`
-  networking.hostId = "9d4ecfbfb";
+  networking.hostId = "dc9749f8";
 
   # +----------+
   # | Desktop  |
@@ -18,7 +18,9 @@
 
   bds.desktop = {
     enable = true;
+    # TODO(breakds): Figure out why without this line build will fail.
     xserver.displayManager = "gdm";
+    nvidia.enable = true;
   };
 
   # +----------+
