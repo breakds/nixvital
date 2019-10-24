@@ -48,7 +48,7 @@ in {
   config = {
     # Add arcanist for phabricator related stuff.
     environment.systemPackages = with pkgs; [
-      arcanist
+      arcanist axel jq
     ];
 
     # Mount NAS
