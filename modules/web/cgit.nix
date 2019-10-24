@@ -1,12 +1,14 @@
 # Thanks to my friend KJ Orbekk who designed the cgit/nginx module for
-# this configuration.
+# this configuration:
+# https://git.orbekk.com/nixos-config.git/tree/config/cgit.nix
+
 
 { config, lib, pkgs, ... }:
 
 let cfg = config.bds.web;
 
     cacheDir = "/var/lib/cgit/cache";
-    gitPath = "/home/breakds/cgits";
+    gitPath = "/home/delegator/cgits";
 
     fcgiPort = 5963;
     gitPort = 5964;
@@ -71,8 +73,8 @@ in {
       wantedBy = [ "multi-user.target" ];
       script = ''
       echo "Creating cache directory"
-      mkdir -p ${cacheDir}/cache
-      chown fcgi:fcgi ${cacheDir}/cache
+      mkdir -p ${cacheDir}
+      chown fcgi:fcgi ${cacheDir}
     '';
     };
   };
