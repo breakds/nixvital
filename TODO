@@ -1,11 +1,12 @@
-1. [P2] A better installation script
-2. [P2] How to take default dotfiles together with the user
-4. [P1] Add nix configuration module to Emacs
-5. [P0] Learn build system and build ROS
-   5.1 Python support
-   5.2 Figure out installation to specified path (/opt)
-   5.3 How to download source with SHA verification
-   5.4 How to make sure dependencies are installed? (gcc?)
-6. [P2] Learn hydra
-7. [P1] Personal directory setup like .ssh and org
-8. [P1] Bazel
+1. [P2] ROS Environment
+2. [P1] Home Manager for org, git and passwd configuration
+   2.1 org
+   2.2 git email/user
+   2.3 pass store and gpg
+   2.4 .ssh
+3. [P0] systemd timers
+   3.1 org files
+   3.2 cgit update
+4. [P2] A better installation script
+5. [P2] Home Manager for emacs configuration
+6. [P1] Setup Hydra
