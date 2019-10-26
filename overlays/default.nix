@@ -13,4 +13,10 @@ self: super:
       scrollback = 25000;
     };
   };
+
+  # Arcanist demand the existence of cpplint.py, so we need to create
+  # a softlink to cpplint to applease it.
+  cpplint = self.callPackage ./cpplint.nix {
+    cpplintBasePackage = super.cpplint;
+  };
 }
