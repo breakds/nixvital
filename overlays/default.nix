@@ -19,4 +19,8 @@ self: super:
   cpplint = self.callPackage ./cpplint.nix {
     cpplintBasePackage = super.cpplint;
   };
+
+  patchedNettools = self.callPackage ./nettools {
+    inherit (super) nettools;
+  };
 }
