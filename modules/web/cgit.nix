@@ -16,6 +16,7 @@ let webCfg = config.bds.web;
       max-stats=year
       root-title=${cfg.title}
       root-desc=Repositories hosted at ${cfg.servedUrl}.
+      source-filter=${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py
       enable-commit-graph=true
       repository-sort=age
       enable-html-serving=1
@@ -102,16 +103,35 @@ in {
       };
     };
 
-    systemd.services.cgit-init = {
-      description = "init cgit cache";
-      path = [ pkgs.coreutils ];
-      after = [ "networking.target" ];
-      wantedBy = [ "multi-user.target" ];
-      script = ''
-      echo "Creating cache directory"
-      mkdir -p ${cfg.cacheDir}
-      chown fcgi:fcgi ${cfg.cacheDir}
-    '';
+    systemd = {
+      services.cgit-init = {
+        description = "init cgit cache";
+        path = [ pkgs.coreutils ];
+        after = [ "networking.target" ];
+        wantedBy = [ "multi-user.target" ];
+        script = ''
+          echo "Creating cache directory"
+          mkdir -p ${cfg.cacheDir}
+          chown fcgi:fcgi ${cfg.cacheDir}
+        '';
+      };
+
+      # TODO(breakds): Not working yet, needs to figure the ssh key issue.
+      timers.sync-cgit-repo = {
+        wantedBy = [ "timers.target" ];
+        partOf = [ "sync-cgit-repo.service" ];
+        # Sync every 10 minutes
+        timerConfig.OnCalendar = "*:0/10";
+      };
+      services.sync-cgit-repo = {
+        serviceConfig.Type = "oneshot";
+        script = ''
+          for repo in $(ls -d ${cfg.repoPath}/*/); do
+            cd $repo;
+            ${pkgs.git}/bin/git fetch origin master:master;
+          done;
+        '';
+      };
     };
   };
 }
