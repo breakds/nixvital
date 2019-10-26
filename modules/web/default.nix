@@ -29,9 +29,11 @@ in {
         "files.breakds.org" = template // {
           locations."/".proxyPass = "http://localhost:5962";
         };
-        "git.breakds.org" = template // {
-          locations."/".proxyPass = "http://localhost:5964";
-        };
+        "${cfg.cgit.servedUrl}" = lib.mkIf cfg.cgit.enable (
+          template // {
+            locations."/".proxyPass = "http://localhost:5964";
+          }
+        );
       };
     };
   };

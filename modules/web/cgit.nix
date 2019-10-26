@@ -5,35 +5,71 @@
 
 { config, lib, pkgs, ... }:
 
-let cfg = config.bds.web;
-
-    cacheDir = "/var/lib/cgit/cache";
-    gitPath = "/home/delegator/cgits";
-
-    fcgiPort = 5963;
-    gitPort = 5964;
+let webCfg = config.bds.web;
+    cfg = config.bds.web.cgit;
 
     configFile = pkgs.writeText "cgitrc" ''
       virtual-root=/
-      scan-path=${gitPath}
-      cache-root=${cacheDir}
+      scan-path=${cfg.repoPath}
+      cache-root=${cfg.cacheDir}
       cache-size=1000
       max-stats=year
-      root-title=Break's git Repo
-      root-desc=Repositories hosted at git.breakds.org.
+      root-title=${cfg.title}
+      root-desc=Repositories hosted at ${cfg.servedUrl}.
       enable-commit-graph=true
       repository-sort=age
       enable-html-serving=1
     '';
 
 in {
-  config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ fcgiPort ];
+  options.bds.web.cgit = with lib; {
+    enable = mkEnableOption "Enable the cgit service.";
+    fcgiPort = mkOption {
+      type = types.port;
+      description = "Port to run the fastcgi endpoint.";
+      default = 5963;
+    };
+    gitPort = mkOption {
+      type = types.port;
+      description = "Port on nginx for the cgit web ui.";
+      default = 5964;
+    };
+    cacheDir = mkOption {
+      type = types.str;
+      description = '' 
+        Path to the directory that holds the cgit cache while serving.
+      '';
+      default = "/var/lib/cgit/cache";
+    };
+    repoPath = mkOption {
+      type = types.str;
+      description = ''
+        Path to the directory that will be scanned for git repositories.
+        Discovered repos will be served via cgit.
+      '';
+      default = "";
+      example = "/home/delegator/cgits";
+    };
+    title = mkOption {
+      type = types.str;
+      description = "The title of the cgit web UI.";
+      default = "";
+    };
+    servedUrl = mkOption {
+      type = types.str;
+      description = "The url at which cgit is served.";
+      default = "";
+      example = "git.breakds.org";
+    };
+  };
+  
+  config = lib.mkIf (webCfg.enable && cfg.enable) {
+    networking.firewall.allowedTCPPorts = [ cfg.fcgiPort ];
     
     services.fcgiwrap = {
       enable = true;
       socketType = "tcp";
-      socketAddress = "0.0.0.0:${toString fcgiPort}";
+      socketAddress = "0.0.0.0:${toString cfg.fcgiPort}";
       user = "fcgi";
       group = "fcgi";
     };
@@ -42,12 +78,12 @@ in {
       virtualHosts = {
         "git-internal" = {
           root = "${pkgs.cgit}/cgit";
-          listen = [{ addr = "*"; port = gitPort; }];
+          listen = [{ addr = "*"; port = cfg.gitPort; }];
           extraConfig = "try_files $uri @cgit;";
 
           locations."/git/" = {
             extraConfig = ''
-            rewrite ^/git/(.*) https://git.breakds.org/$1 permanent;
+            rewrite ^/git/(.*) https://${cfg.servedUrl}/$1 permanent;
           '';
           };
 
@@ -59,7 +95,7 @@ in {
             fastcgi_param PATH_INFO       $uri;
             fastcgi_param QUERY_STRING    $args;
             fastcgi_param HTTP_HOST       $server_name;
-            fastcgi_pass  127.0.0.1:${toString fcgiPort};
+            fastcgi_pass  127.0.0.1:${toString cfg.fcgiPort};
           '';
           };
         };
@@ -73,8 +109,8 @@ in {
       wantedBy = [ "multi-user.target" ];
       script = ''
       echo "Creating cache directory"
-      mkdir -p ${cacheDir}
-      chown fcgi:fcgi ${cacheDir}
+      mkdir -p ${cfg.cacheDir}
+      chown fcgi:fcgi ${cfg.cacheDir}
     '';
     };
   };

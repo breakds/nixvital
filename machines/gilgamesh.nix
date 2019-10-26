@@ -32,4 +32,10 @@
   # +------------+
 
   bds.web.enable = true;
+  bds.web.cgit = {
+    enable = true;
+    title = "Break's Repos.";
+    servedUrl = "git.breakds.org";
+    repoPath = "/home/delegator/cgits";
+  };
 }
