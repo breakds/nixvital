@@ -6,6 +6,7 @@
 #include <err.h>
 #include <errno.h>
 #include <ifaddrs.h>
+#include <net/if.h>
 #include <netdb.h>
 #include <string>
 
@@ -21,6 +22,10 @@ int PrintAllIPs() noexcept {
 
   for (ifaddrs *item = addresses; !!item; item = item->ifa_next) {
     if (!item->ifa_addr || item->ifa_addr->sa_family != AF_INET) {
+      continue;
+    }
+
+    if (item->ifa_flags & IFF_LOOPBACK) {
       continue;
     }
 
