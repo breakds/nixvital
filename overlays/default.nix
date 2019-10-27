@@ -20,7 +20,7 @@ self: super:
     cpplintBasePackage = super.cpplint;
   };
 
-  patchedNettools = self.callPackage ./nettools {
+  patchedHostname = self.callPackage ./hostname {
     inherit (super) nettools;
   };
 }
