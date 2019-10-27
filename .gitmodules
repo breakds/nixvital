@@ -1,0 +1,3 @@
+[submodule "nix-home"]
+	path = nix-home
+	url = git@github.com:breakds/nix-home.git
