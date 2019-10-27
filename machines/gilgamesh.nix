@@ -38,5 +38,6 @@
     title = "Break's Repos.";
     servedUrl = "git.breakds.org";
     repoPath = "/home/delegator/cgits";
+    syncRepo.enable = true;
   };
 }

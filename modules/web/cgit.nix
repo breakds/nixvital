@@ -51,6 +51,16 @@ in {
       default = "";
       example = "/home/delegator/cgits";
     };
+    syncRepo = {
+      enable = mkEnableOption "Spawn a timer to sync with upstream.";
+      minutes = mkOption {
+        type = types.int;
+        description = ''
+          The frequency of sync as represented in minutes.
+        '';
+        default = 10;
+      };
+    };
     title = mkOption {
       type = types.str;
       description = "The title of the cgit web UI.";
@@ -115,20 +125,19 @@ in {
           chown fcgi:fcgi ${cfg.cacheDir}
         '';
       };
-
-      # TODO(breakds): Not working yet, needs to figure the ssh key issue.
-      timers.sync-cgit-repo = {
+      timers.sync-cgit-repo = lib.mkIf cfg.syncRepo.enable {
         wantedBy = [ "timers.target" ];
         partOf = [ "sync-cgit-repo.service" ];
         # Sync every 10 minutes
-        timerConfig.OnCalendar = "*:0/10";
+        timerConfig.OnCalendar = "*:0/${toString cfg.syncRepo.minutes}";
       };
-      services.sync-cgit-repo = {
+      services.sync-cgit-repo = lib.mkIf cfg.syncRepo.enable {
         serviceConfig.Type = "oneshot";
         script = ''
           for repo in $(ls -d ${cfg.repoPath}/*/); do
             cd $repo;
-            ${pkgs.git}/bin/git fetch origin master:master;
+            GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -i /home/breakds/.ssh/breakds_samaritan' \
+                ${pkgs.git}/bin/git fetch origin master:master;
           done;
         '';
       };

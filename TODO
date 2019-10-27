@@ -1,7 +1,7 @@
 1. [P2] ROS Environment
 2. [P1] Home Manager for org, git and passwd configuration
    2.1 org
-   2.2 git email/user
+   2.2 [x] git email/user
    2.3 pass store and gpg
    2.4 .ssh
 3. [P0] systemd timers
