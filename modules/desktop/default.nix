@@ -77,8 +77,13 @@ in {
       windowManager.i3 = {
         enable = true;
         configFile = ./i3.config;
-        extraPackages = with pkgs; [ dmenu i3status i3lock termite i3lock-fancy ];
+        extraPackages = with pkgs; [ dmenu i3status-rust i3lock termite i3lock-fancy ];
       };
+    };
+
+    # i3 Statusbar (rust) configuration.
+    environment.etc."i3/statusbar.toml" = {
+      source = ./i3_status_config.toml;
     };
 
     # Font
@@ -88,6 +93,8 @@ in {
       # Fira code is a good font for coding
       fira-code
       fira-code-symbols
+      font-awesome-ttf
+      inconsolata
     ];
 
     # International Support
