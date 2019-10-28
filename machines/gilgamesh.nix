@@ -24,10 +24,12 @@
     xserver.displayManager = "gdm";
     nvidia = {
       # Enable this when it is no longer broken in nixos.
-      enable = false;
+      enable = true;
     };
   };
 
+  services.xserver.dpi = 142;
+  
   # +------------+
   # | Web Server |
   # +------------+

@@ -18,7 +18,10 @@ let cfg = config.bds.desktop;
     };
 
 in {
-  imports = [ ./nvidia.nix ];
+  imports = [
+    ./nvidia.nix
+    ./i3_status.nix
+  ];
 
   options.bds.desktop = {
     enable = lib.mkEnableOption "Enable Desktop";
@@ -79,11 +82,6 @@ in {
         configFile = ./i3.config;
         extraPackages = with pkgs; [ dmenu i3status-rust i3lock termite i3lock-fancy ];
       };
-    };
-
-    # i3 Statusbar (rust) configuration.
-    environment.etc."i3/statusbar.toml" = {
-      source = ./i3_status_config.toml;
     };
 
     # Font
