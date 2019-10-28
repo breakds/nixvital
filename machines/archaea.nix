@@ -3,6 +3,7 @@
 {
   imports = [
     ./base.nix
+    ../nix-home
     ../modules/desktop
   ];
 
