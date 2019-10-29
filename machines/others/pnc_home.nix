@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 let cfg = config.others.pnc;
   
@@ -28,6 +28,11 @@ in {
       enable = true;
       highlightBaseName = true;
       treeView = true;
+    };
+
+    programs.git = {
+      package = pkgs.gitAndTools.gitFull;
+      enable = true;
     };
   };
 }

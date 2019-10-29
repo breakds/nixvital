@@ -32,7 +32,7 @@ in {
 
     environment.systemPackages = with pkgs; [
       arcanist axel cpplint patchedHostname
-      htop neofetch vim
+      htop neofetch vim terminator
     ];
 
     programs.bash.shellInit = ''
