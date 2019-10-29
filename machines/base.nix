@@ -7,7 +7,6 @@
 {
   imports =
     [ 
-      ../modules/user.nix
       ../modules/security.nix
       ../modules/docker.nix
     ];

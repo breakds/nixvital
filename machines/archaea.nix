@@ -4,6 +4,7 @@
   imports = [
     ./base.nix
     ../nix-home
+    ../modules/user.nix
     ../modules/desktop
   ];
 
