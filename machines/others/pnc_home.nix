@@ -14,7 +14,6 @@ in {
 
   home-manager.users."${cfg.user}" = { pkgs, ... }: {
     home.file = {
-      ".bashrc".source = ./pnc_dotfiles/bashrc;
       ".inputrc".source = ./pnc_dotfiles/inputrc;
     };
     
