@@ -1,6 +1,13 @@
-{ lib, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
+let battery = if config.bds.desktop.xserver.i3_show_battery then ''
+      [[block]]
+      block = "battery"
+      interval = 10
+      format = "{percentage}% {time}"
+    '' else "";
+
+in {
   environment.etc."i3/statusbar.toml" = {
     text = ''
       theme = "slick"
@@ -25,7 +32,9 @@
       [[block]]
       block = "cpu"
       interval = 1
-      
+
+      ${battery}
+
       [[block]]
       block = "sound"
           

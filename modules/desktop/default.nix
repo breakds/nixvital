@@ -14,6 +14,13 @@ let cfg = config.bds.desktop;
             Values can be "gdm" or "sddm".
 '         '';
         };
+        i3_show_battery = lib.mkOption {
+          type = types.bool;
+          default = false;
+          description = ''
+            Whether to show battery on i3 status bar.
+          '';
+        };
       };
     };
 

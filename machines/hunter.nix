@@ -3,6 +3,7 @@
 {
   imports = [
     ./base.nix
+    ../nix-home
     ../modules/desktop
     ../modules/weride.nix
   ];
@@ -19,6 +20,7 @@
   bds.desktop = {
     enable = true;
     xserver.displayManager = "sddm";
+    xserver.i3_show_battery = true;
     nvidia = {
       enable = true;
       prime = {
