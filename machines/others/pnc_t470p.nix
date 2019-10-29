@@ -5,7 +5,6 @@ let cfg = config.others.pnc;
 in {
   imports = [
     ../base.nix
-    ./pnc_home.nix
     ../../modules/desktop
     ../../modules/weride.nix
   ];
