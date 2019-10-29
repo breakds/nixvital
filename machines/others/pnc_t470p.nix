@@ -5,6 +5,7 @@ let cfg = config.others.pnc;
 in {
   imports = [
     ../base.nix
+    ./pnc_home.nix
     ../../modules/desktop
     ../../modules/weride.nix
   ];
@@ -30,7 +31,7 @@ in {
     networking.hostId = cfg.hostId;
 
     environment.systemPackages = with pkgs; [
-      arcanist axel cpplint patchedHostname jq
+      arcanist axel cpplint patchedHostname
       htop neofetch vim
     ];
 
@@ -89,7 +90,7 @@ in {
 
     users = {
       extraUsers = {
-        breakds = {
+        "${cfg.user}" = {
           isNormalUser = true;
 	        initialPassword = cfg.user;
 	        home = "/home/${cfg.user}";
