@@ -4,9 +4,9 @@ let cfg = config.others.pnc;
 
 in {
   imports = [
-    ./base.nix
-    ../modules/desktop
-    ../modules/weride.nix
+    ../base.nix
+    ../../modules/desktop
+    ../../modules/weride.nix
   ];
 
   options.others.pnc = with lib; {
