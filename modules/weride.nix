@@ -48,7 +48,7 @@ in {
   config = {
     # Add arcanist for phabricator related stuff.
     environment.systemPackages = with pkgs; [
-      arcanist axel cpplint patchedHostname
+      arcanist axel cpplint patchedHostname openconnect
     ];
 
     # Mount NAS
