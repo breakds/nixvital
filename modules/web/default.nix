@@ -18,6 +18,9 @@ in {
       recommendedGzipSettings = true;
       recommendedProxySettings = true;
 
+      # TODO(breakds): Make this per virtual host.
+      clientMaxBodySize = "100m";
+
       virtualHosts = let template = {
         enableACME = true;
         forceSSL = true;
