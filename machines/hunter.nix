@@ -20,8 +20,11 @@
 
   bds.desktop = {
     enable = true;
-    xserver.displayManager = "sddm";
-    xserver.i3_show_battery = true;
+    xserver = {
+      displayManager = "sddm";
+      i3_show_battery = true;
+      dpi = 142;
+    };
     nvidia = {
       enable = true;
       prime = {

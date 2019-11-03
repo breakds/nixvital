@@ -20,6 +20,7 @@
   bds.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
+    xserver.i3_show_battery = true;
   };
 
   # This value determines the NixOS release with which your system is to be

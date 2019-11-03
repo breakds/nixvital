@@ -24,13 +24,12 @@
   bds.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
+    xserver.dpi = 100;
     nvidia = {
       # Enable this when it is no longer broken in nixos.
       enable = true;
     };
   };
-
-  services.xserver.dpi = 142;
   
   # +------------+
   # | Web Server |

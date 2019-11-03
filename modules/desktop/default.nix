@@ -21,6 +21,11 @@ let cfg = config.bds.desktop;
             Whether to show battery on i3 status bar.
           '';
         };
+        dpi = lib.mkOption {
+          type = types.nullOr types.ints.positive;
+          default = null;
+          description = "DPI resolution to use for x server.";
+        };
       };
     };
 
@@ -73,6 +78,9 @@ in {
       enable = true;
       layout = "us";
       xkbOptions = "eurosign:e";
+
+      # DPI
+      dpi = cfg.xserver.dpi;
 
       # Enable touchpad support
       libinput.enable = true;
