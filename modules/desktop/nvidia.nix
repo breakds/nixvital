@@ -21,4 +21,8 @@ in lib.mkIf cfg.enable {
     # Bus ID of the Intel GPU. You can find it using lspci
     nvidia.optimus_prime.intelBusId = cfg.prime.intelBusId;
   };
+
+  environment.systemPackages = with pkgs; [
+    cudatoolkit_10
+  ];
 }
