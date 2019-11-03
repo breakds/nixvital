@@ -17,6 +17,7 @@ let extraPackages = with pkgs.python37Packages; rec {
     };
 
     python = pkgs.python37.withPackages (python-packages: with python-packages; [
+      # Base
       pip
       numpy
 
@@ -24,6 +25,9 @@ let extraPackages = with pkgs.python37Packages; rec {
       lightgbm
       # pytorchWithCuda
       extraPackages.dash
+
+      # Tools
+      jupyterlab
     ]);
 
 in pkgs.mkShell rec {
