@@ -7,6 +7,7 @@
     ../modules/user.nix    
     ../modules/desktop
     ../modules/web
+    ../modules/deluge.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
   ];
@@ -43,4 +44,6 @@
     repoPath = "/home/delegator/cgits";
     syncRepo.enable = true;
   };
+
+  bds.bittorrent.enable = true;
 }
