@@ -23,4 +23,6 @@ self: super:
   patchedHostname = self.callPackage ./hostname {
     inherit (super) nettools;
   };
+
+  cudatoolkit = super.cudatoolkit_10;
 }
