@@ -1,4 +1,9 @@
-{ pkgs ? import <nixpkgs> {} }:
+{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
+
+# Ucomment to get packages from unstable
+# let unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {
+#       config.allowUnfree = true;
+#     };
 
 let python = pkgs.python37.withPackages (python-packages: with python-packages; [
       pip
@@ -6,7 +11,7 @@ let python = pkgs.python37.withPackages (python-packages: with python-packages; 
 
       # Frameworks
       lightgbm
-      pytorch
+      pytorchWithCuda
     ]);
 
 in pkgs.mkShell rec {
