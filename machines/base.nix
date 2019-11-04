@@ -45,6 +45,7 @@
     # ---------- Development ----------
     git tig cmake clang clang-tools silver-searcher sbcl
     gcc
+    nixvital-shell-accessors
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

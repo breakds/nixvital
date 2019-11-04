@@ -25,4 +25,6 @@ self: super:
   };
 
   cudatoolkit = super.cudatoolkit_10;
+
+  nixvital-shell-accessors = self.callPackage ./nixvital-shell-accessors {};
 }

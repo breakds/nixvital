@@ -31,7 +31,7 @@ let extraPackages = with pkgs.python37Packages; rec {
     ]);
 
 in pkgs.mkShell rec {
-  name = "py-ml-shell";
+  name = "pyd";
   buildInputs = [ python ];
   shellHook = ''
     export PS1="$(echo -e '\uf3e2') {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"
