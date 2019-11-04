@@ -32,6 +32,8 @@
         };
       };
 
+      dkimKeyDirectory = "/var/dkim/dkim";
+
       # Extra virtual aliases. These are email addresses that are forwarded to
       # loginAccounts addresses.
       extraVirtualAliases = {};

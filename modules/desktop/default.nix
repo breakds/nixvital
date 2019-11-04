@@ -71,7 +71,7 @@ in {
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
       # Multimedia
-      audacious audacity zoom-us
+      audacious audacity zoom-us thunderbird
     ];
 
     services.xserver = {
