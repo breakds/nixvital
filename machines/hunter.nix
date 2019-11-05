@@ -23,7 +23,7 @@
     xserver = {
       displayManager = "sddm";
       i3_show_battery = true;
-      dpi = 142;
+      dpi = 108;
     };
     nvidia = {
       enable = true;
@@ -34,8 +34,6 @@
       };
     };
   };
-
-  services.xserver.dpi = 142;
 
   # +----------+
   # | Weride   |
