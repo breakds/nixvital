@@ -20,6 +20,7 @@ let extraPackages = with pkgs.python37Packages; rec {
       # Base
       pip
       numpy
+      matplotlib
 
       # Frameworks
       lightgbm
