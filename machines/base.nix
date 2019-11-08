@@ -39,7 +39,7 @@
 
   # Basic softwares that should definitely exist.
   environment.systemPackages = with pkgs; [
-    wget vim emacs firefox google-chrome dmenu
+    wget vim emacs firefox google-chrome dmenu scrot
     # ---------- System Utils ----------
     pciutils usbutils
     # ---------- Development ----------
