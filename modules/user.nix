@@ -44,14 +44,23 @@
 
       fcgi = {
         group = "fcgi";
-	      extraGroups = ["delegator"];
+	      extraGroups = [ "delegator" "fcgi" ];
 	      uid = 500;
       };
 
       nginx = {
         group = "nginx";
-        extraGroups = ["delegator"];
+        extraGroups = [ "delegator" "nginx" ];
         uid = 60;
+      };
+
+      git = {
+        isNormalUser = true;
+        group = "git";
+        extraGroups = [ "git" "delegator" "fcgi" ];
+        uid = 510;
+        home = "/home/git";
+        description = "User for git server.";
       };
     };
 
@@ -62,6 +71,7 @@
       plugdev = { gid = 501; };
       delegator = { gid = 600; members = [ "delegator" "breakds" "nginx" "fcgi" ]; };
       nginx = { gid = 60; members = [ "nginx" ]; };
+      git = { gid = 510; members = [ "breakds" "git" ]; };
     };
   };
 }
