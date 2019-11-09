@@ -9,7 +9,7 @@
   ];
 
   config = {
-    networking.firewall.allowedTCPPorts = [ 25 ];
+    networking.firewall.allowedTCPPorts = [ 25 143 587 ];
     mailserver = {
       enable = true;
       fqdn = "mail.breakds.org";
