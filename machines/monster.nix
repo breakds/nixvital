@@ -4,9 +4,10 @@
   imports = [
     ./base.nix
     ../nix-home
-    ../modules/user.nix    
+    ../modules/user.nix
     ../modules/desktop
     ../modules/weride.nix
+    ../modules/web
   ];
 
   # Machine-specific networking configuration.
@@ -50,4 +51,19 @@
 
   # Enable nvidia-docker
   virtualisation.docker.enableNvidia = true;
+
+  # +------------+
+  # | Web Server |
+  # +------------+
+
+  bds.web = {
+    enable = true;
+    cgit = {
+      enable = true;
+      title = "PnC's Misc Git Server.";
+      servedUrl = "monster";
+      repoPath = "/home/git";
+      syncRepo.enable = true;
+    };
+  };
 }

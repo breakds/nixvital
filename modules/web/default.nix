@@ -7,6 +7,8 @@ in {
 
   options.bds.web = {
     enable = lib.mkEnableOption "Enable Hosted Web Services";
+    serveHomePage = lib.mkEnableOption "Whether host web page.";
+    serveFilerun = lib.mkEnableOption "Whether to host the filerun server.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -26,12 +28,12 @@ in {
         forceSSL = true;
       }; in {
         # The home page
-        "breakds.org" = template // {
+        "breakds.org" = lib.mkIf cfg.serveHomePage (template // {
           root = "/home/delegator/www/breakds.org";
-        };
-        "files.breakds.org" = template // {
+        });
+        "files.breakds.org" = lib.mkIf cfg.serveFilerun (template // {
           locations."/".proxyPass = "http://localhost:5962";
-        };
+        });
         "${cfg.cgit.servedUrl}" = lib.mkIf cfg.cgit.enable (
           template // {
             locations."/".proxyPass = "http://localhost:5964";

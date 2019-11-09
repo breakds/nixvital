@@ -36,13 +36,17 @@
   # | Web Server |
   # +------------+
 
-  bds.web.enable = true;
-  bds.web.cgit = {
+  bds.web = {
     enable = true;
-    title = "Break's Repos.";
-    servedUrl = "git.breakds.org";
-    repoPath = "/home/delegator/cgits";
-    syncRepo.enable = true;
+    serveHomePage = true;
+    serveFilerun = true;
+    cgit = {
+      enable = true;
+      title = "Break's Repos.";
+      servedUrl = "git.breakds.org";
+      repoPath = "/home/delegator/cgits";
+      syncRepo.enable = true;
+    };
   };
 
   bds.bittorrent.enable = true;

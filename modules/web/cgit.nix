@@ -37,7 +37,7 @@ in {
     };
     cacheDir = mkOption {
       type = types.str;
-      description = '' 
+      description = ''
         Path to the directory that holds the cgit cache while serving.
       '';
       default = "/var/lib/cgit/cache";
@@ -73,10 +73,10 @@ in {
       example = "git.breakds.org";
     };
   };
-  
+
   config = lib.mkIf (webCfg.enable && cfg.enable) {
     networking.firewall.allowedTCPPorts = [ cfg.fcgiPort ];
-    
+
     services.fcgiwrap = {
       enable = true;
       socketType = "tcp";
@@ -84,7 +84,7 @@ in {
       user = "fcgi";
       group = "fcgi";
     };
-      
+
     services.nginx = {
       virtualHosts = {
         "git-internal" = {

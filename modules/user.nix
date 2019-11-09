@@ -44,7 +44,7 @@
 
       fcgi = {
         group = "fcgi";
-	      extraGroups = [ "delegator" "fcgi" ];
+	      extraGroups = [ "delegator" "fcgi" "git" ];
 	      uid = 500;
       };
 
@@ -71,7 +71,7 @@
       plugdev = { gid = 501; };
       delegator = { gid = 600; members = [ "delegator" "breakds" "nginx" "fcgi" ]; };
       nginx = { gid = 60; members = [ "nginx" ]; };
-      git = { gid = 510; members = [ "breakds" "git" ]; };
+      git = { gid = 510; members = [ "breakds" "git" "fcgi" ]; };
     };
   };
 }
