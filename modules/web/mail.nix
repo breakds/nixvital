@@ -33,7 +33,7 @@
         };
       };
 
-      dkimKeyDirectory = "/var/dkim/dkim";
+      dkimKeyDirectory = "/var/dkim";
 
       # Extra virtual aliases. These are email addresses that are forwarded to
       # loginAccounts addresses.
@@ -55,6 +55,21 @@
       # whether to scan inbound emails for viruses (note that this requires at least
       # 1 Gb RAM for the server. Without virus scanning 256 MB RAM should be plenty)
       virusScanning = false;
+    };
+
+    # openDKIM won't setup its directory correctly so let's help ...
+    systemd = {
+      services.dkim-init = {
+        description = "Init DKIM key directory.";
+        path = [ pkgs.coreutils ];
+        after = [ "networking.target" ];
+        wantedBy = [ "multi-user.target" ];
+        script = ''
+          echo "Creating DKIM key directory ..."
+          mkdir -p /var/dkim
+          chown opendkim:opendkim /var/dkim
+        '';
+      };
     };
   };
 }

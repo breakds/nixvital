@@ -7,7 +7,6 @@
     ../modules/user.nix    
     ../modules/desktop
     ../modules/web
-    ../modules/web/mail.nix
     ../modules/deluge.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
