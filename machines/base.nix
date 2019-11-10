@@ -41,7 +41,7 @@
   environment.systemPackages = with pkgs; [
     wget vim emacs firefox google-chrome dmenu scrot
     # ---------- System Utils ----------
-    pciutils usbutils
+    pciutils usbutils nixops
     # ---------- Development ----------
     git tig cmake clang clang-tools silver-searcher sbcl
     gcc
