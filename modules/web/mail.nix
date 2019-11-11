@@ -31,6 +31,15 @@
             "breakds.org"
           ];
         };
+        "shan@breakds.org" = {
+          hashedPassword = "$6$CV2NMvym3j8Lj$oZyUq2DR85vFwmswBNBVf4GySgf3/ipOWTzzaeOXfSOAyIL.DMrBT8WoYOV6RgZNhQtfRJUW2UvDXo.4oGqbx0";
+
+          # Make this user the catchAll address for domains example.com and
+          # example2.com
+          catchAll = [
+            "breakds.org"
+          ];
+        };
       };
 
       dkimKeyDirectory = "/var/dkim";
