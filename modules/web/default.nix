@@ -28,7 +28,7 @@ in {
         forceSSL = true;
       }; in {
         # The home page
-        "breakds.org" = lib.mkIf cfg.serveHomePage (template // {
+        "www.breakds.org" = lib.mkIf cfg.serveHomePage (template // {
           root = "/home/delegator/www/breakds.org";
         });
         "files.breakds.org" = lib.mkIf cfg.serveFilerun (template // {
