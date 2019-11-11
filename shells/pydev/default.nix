@@ -14,6 +14,8 @@ let extraPackages = with pkgs.python37Packages; rec {
       dash = callPackage ./dash.nix {
         inherit dash-html-components dash-renderer dash-table dash-core-components percy;
       };
+      ipympl = callPackage ./ipympl.nix {};
+      python-nodejs = callPackage ./python-nodejs.nix {};
     };
 
     python = pkgs.python37.withPackages (python-packages: with python-packages; [
@@ -21,6 +23,8 @@ let extraPackages = with pkgs.python37Packages; rec {
       pip
       numpy
       matplotlib
+      extraPackages.ipympl
+      extraPackages.python-nodejs
 
       # Frameworks
       lightgbm
