@@ -87,6 +87,10 @@ in {
 
       # Default desktop manager: gnome3.
       desktopManager.gnome3.enable = true;
+      desktopManager.gnome3.extraGSettingsOverrides = ''
+        [org.gnome.desktop.peripherals.touchpad]
+        click-method='default'
+      '';
       displayManager.gdm.enable = cfg.xserver.displayManager == "gdm";
       displayManager.sddm.enable = cfg.xserver.displayManager == "sddm";
       displayManager.slim.enable = cfg.xserver.displayManager == "slim";
