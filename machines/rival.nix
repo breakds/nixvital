@@ -22,4 +22,6 @@
     xserver.displayManager = "gdm";
     xserver.i3_show_battery = true;
   };
+
+  bds.security.enableFingerprint = true;
 }
