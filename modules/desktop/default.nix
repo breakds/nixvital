@@ -26,6 +26,10 @@ let cfg = config.bds.desktop;
           default = null;
           description = "DPI resolution to use for x server.";
         };
+        useCapsAsCtrl = lib.mkEnableOption ''
+          If enabled, caps lock will be used as an extral Ctrl key.
+          Most useful for laptops.
+        '';
       };
     };
 
@@ -77,7 +81,7 @@ in {
     services.xserver = {
       enable = true;
       layout = "us";
-      xkbOptions = "eurosign:e";
+      xkbOptions = "eurosign:e" + (if cfg.xserver.useCapsAsCtrl then ", ctrl:nocaps" else "");
 
       # DPI
       dpi = cfg.xserver.dpi;

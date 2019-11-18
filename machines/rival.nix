@@ -21,6 +21,7 @@
     enable = true;
     xserver.displayManager = "gdm";
     xserver.i3_show_battery = true;
+    xserver.useCapsAsCtrl = true;
   };
 
   bds.security.enableFingerprint = true;
