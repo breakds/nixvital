@@ -22,13 +22,13 @@ let extraPackages = with pkgs.python38Packages; rec {
       numpy
       matplotlib
       plotly
+      extraPackages.dash
       # extraPackages.ipympl
       # extraPackages.python-nodejs
 
       # ---------- Frameworks ----------
       lightgbm
       # pytorchWithCuda
-      # extraPackages.dash
 
       # ---------- Tools ----------
       jupyterlab
