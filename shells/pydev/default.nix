@@ -1,11 +1,9 @@
-{ pkgs ? import <nixpkgs> { config.allowUnfree = true; } }:
+{ pkgs ? import <nixpkgs> {
+  config.allowUnfree = true;
+  overlays = [ (import ./overlays.nix) ];
+} }:
 
-# Ucomment to get packages from unstable
-# let unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {
-#       config.allowUnfree = true;
-#     };
-
-let extraPackages = with pkgs.python37Packages; rec {
+let extraPackages = with pkgs.python38Packages; rec {
       dash-html-components = callPackage ./dash-html-components.nix {};
       dash-core-components = callPackage ./dash-core-components.nix {};
       dash-renderer = callPackage ./dash-renderer.nix {};
@@ -18,20 +16,21 @@ let extraPackages = with pkgs.python37Packages; rec {
       python-nodejs = callPackage ./python-nodejs.nix {};
     };
 
-    python = pkgs.python37.withPackages (python-packages: with python-packages; [
+    python = pkgs.python38.withPackages (python-packages: with python-packages; [
       # Base
       pip
       numpy
       matplotlib
-      extraPackages.ipympl
-      extraPackages.python-nodejs
+      plotly
+      # extraPackages.ipympl
+      # extraPackages.python-nodejs
 
-      # Frameworks
+      # ---------- Frameworks ----------
       lightgbm
       # pytorchWithCuda
-      extraPackages.dash
+      # extraPackages.dash
 
-      # Tools
+      # ---------- Tools ----------
       jupyterlab
     ]);
 
