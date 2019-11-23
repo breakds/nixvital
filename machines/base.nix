@@ -41,7 +41,7 @@
   environment.systemPackages = with pkgs; [
     wget vim emacs firefox google-chrome dmenu scrot
     # ---------- System Utils ----------
-    pciutils usbutils mkpasswd nixops
+    pciutils usbutils mkpasswd nixops remmina
     # ---------- Development ----------
     git tig cmake clang clang-tools silver-searcher sbcl
     gcc
@@ -58,7 +58,12 @@
   programs.sysdig.enable = true;
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    # Enable X11 Fowarding, can be connected with ssh -Y.
+    forwardX11 = true;
+  };
+    
   # Enable CUPS services
   services.printing.enable = true;
 

@@ -37,6 +37,7 @@ in {
   imports = [
     ./nvidia.nix
     ./i3_status.nix
+    ./remote-desktop.nix
   ];
 
   options.bds.desktop = {

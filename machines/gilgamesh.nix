@@ -29,6 +29,7 @@
       # Enable this when it is no longer broken in nixos.
       enable = true;
     };
+    remote-desktop.enable = true;
   };
   
   # +------------+
