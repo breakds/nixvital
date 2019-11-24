@@ -49,5 +49,13 @@
     };
   };
 
+  # +------------+
+  # | WakeOnLan  |
+  # +------------+
+
+  services.wakeonlan.interfaces = [{
+    interface = "eno1";
+  }];
+  
   bds.bittorrent.enable = true;
 }

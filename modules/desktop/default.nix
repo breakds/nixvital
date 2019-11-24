@@ -97,6 +97,9 @@ in {
         click-method='default'
       '';
       displayManager.gdm.enable = cfg.xserver.displayManager == "gdm";
+      # When using gdm, do not automatically suspend since we want to
+      # keep the server running.
+      displayManager.gdm.autoSuspend = false;
       displayManager.sddm.enable = cfg.xserver.displayManager == "sddm";
       displayManager.slim.enable = cfg.xserver.displayManager == "slim";
 
