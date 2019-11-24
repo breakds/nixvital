@@ -6,6 +6,7 @@
     ../nix-home
     ../modules/user.nix
     ../modules/desktop
+    ../modules/laptop.nix
   ];
 
   # Machine-specific networking configuration.
