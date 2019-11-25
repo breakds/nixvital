@@ -25,7 +25,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   # Filesystem Support
-  boot.supportedFilesystems = [ "zfs" ];
+  boot.supportedFilesystems = [ "zfs" "ntfs" ];
 
   # +------------------------------------------------------------+
   # | Default Settings                                           |
