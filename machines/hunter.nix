@@ -24,6 +24,7 @@
       displayManager = "sddm";
       i3_show_battery = true;
       dpi = 108;
+      useCapsAsCtrl = true;
     };
     nvidia = {
       enable = true;
