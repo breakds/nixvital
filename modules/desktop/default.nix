@@ -4,6 +4,35 @@ let cfg = config.bds.desktop;
 
     types = lib.types;
 
+    i3StatusOptions = {
+      options = {
+        # TODO(breakds): Make this default for laptop.nix
+        show_battery = lib.mkOption {
+          type = types.bool;
+          default = false;
+          description = ''
+            Whether to show battery on i3 status bar.
+          '';
+        };
+
+        disk_path = lib.mkOption {
+          type = types.str;
+          default = "/home";
+          description = ''
+            On i3 status bar, show the remaining space of this directory.
+          '';
+        };
+
+        disk_name = lib.mkOption {
+          type = types.str;
+          default = "Home";
+          description = ''
+            On i3 status bar, show this as the name to the disk space section.
+          '';
+        };
+      };
+    };
+
     xserverOptions = {
       options = {
         displayManager = lib.mkOption {
@@ -12,14 +41,11 @@ let cfg = config.bds.desktop;
           description = ''
             To use gdm or sddm for the display manager.
             Values can be "gdm" or "sddm".
-'         '';
-        };
-        i3_show_battery = lib.mkOption {
-          type = types.bool;
-          default = false;
-          description = ''
-            Whether to show battery on i3 status bar.
           '';
+        };
+        i3_status = lib.mkOption {
+          description = "Fine tune the i3 status bar.";
+          type = types.submodule i3StatusOptions;
         };
         dpi = lib.mkOption {
           type = types.nullOr types.ints.positive;
