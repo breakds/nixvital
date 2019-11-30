@@ -27,7 +27,6 @@
     nvidia = {
       enable = true;
     };
-    remote-desktop.enable = true;
   };
   
   # +------------+

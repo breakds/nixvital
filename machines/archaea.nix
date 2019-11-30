@@ -8,6 +8,8 @@
     ../modules/desktop
   ];
 
+  bds.machineType = "laptop";
+
   # Machine-specific networking configuration.
   networking.hostName = "archaea";
   # Generated via `head -c 8 /etc/machine-id`

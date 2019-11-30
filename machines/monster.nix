@@ -10,6 +10,8 @@
     ../modules/web
   ];
 
+  bds.machineType = "desktop";
+
   # Machine-specific networking configuration.
   networking.hostName = "monster";
   # Generated via `head -c 8 /etc/machine-id`

@@ -9,6 +9,8 @@
     ../modules/weride.nix
   ];
 
+  bds.machineType = "laptop";
+
   # Machine-specific networking configuration.
   networking.hostName = "hunter";
   # Generated via `head -c 8 /etc/machine-id`

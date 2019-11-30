@@ -9,6 +9,8 @@
     ../modules/laptop.nix
   ];
 
+  bds.machineType = "laptop";
+
   # Machine-specific networking configuration.
   networking.hostName = "rival";
   # Generated via `head -c 8 /etc/machine-id`
@@ -21,8 +23,6 @@
   bds.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
-    xserver.i3_show_battery = true;
-    xserver.useCapsAsCtrl = true;
   };
 
   bds.security.enableFingerprint = true;

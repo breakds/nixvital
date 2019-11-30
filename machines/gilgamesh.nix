@@ -4,13 +4,15 @@
   imports = [
     ./base.nix
     ../nix-home
-    ../modules/user.nix    
+    ../modules/user.nix
     ../modules/desktop
     ../modules/web
     ../modules/deluge.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
   ];
+
+  bds.machineType = "server";
 
   # Machine-specific networking configuration.
   networking.hostName = "gilgamesh";
@@ -29,9 +31,8 @@
       # Enable this when it is no longer broken in nixos.
       enable = true;
     };
-    remote-desktop.enable = true;
   };
-  
+
   # +------------+
   # | Web Server |
   # +------------+
@@ -56,6 +57,6 @@
   services.wakeonlan.interfaces = [{
     interface = "eno1";
   }];
-  
+
   bds.bittorrent.enable = true;
 }
