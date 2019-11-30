@@ -23,8 +23,6 @@ let extraPackages = with pkgs.python38Packages; rec {
       matplotlib
       plotly
       extraPackages.dash
-      # extraPackages.ipympl
-      # extraPackages.python-nodejs
 
       # ---------- Frameworks ----------
       lightgbm
