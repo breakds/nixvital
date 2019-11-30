@@ -14,15 +14,6 @@ self: super:
     };
   };
 
-  # alacritty the terminal emulator, customized version
-  alacritty = self.callPackage ./alacritty.nix {
-    basePackage = super.alacritty;
-    customize = {
-      font-size = 7.0;
-      font-face = "Fira Code";
-    };
-  };
-
   # Arcanist demand the existence of cpplint.py, so we need to create
   # a softlink to cpplint to applease it.
   cpplint = self.callPackage ./cpplint.nix {

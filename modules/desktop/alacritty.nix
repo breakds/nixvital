@@ -1,14 +1,12 @@
-{ stdenv, lib, basePackage, writeTextFile, makeWrapper, symlinkJoin, customize ? {} } :
+{ stdenv, lib, pkgs, ...  } :
 
-let defaultConfig = {
+let cfg = {
       font-size = 10.0;
       font-face = "Monospace";
       history = 10000;
     };
 
-    cfg = lib.recursiveUpdate defaultConfig customize;
-
-    config-file = writeTextFile {
+    config-file = pkgs.writeTextFile {
       name = "alacritty-config-file";
       executable = false;
       # Relative to the derivation created by writeTextFile.
@@ -61,12 +59,17 @@ let defaultConfig = {
             white:   '0xf2f2f2'
       '';
     };
-in symlinkJoin {
-  name = "alacritty-bds";
-  paths = [ config-file basePackage ];
-  buildInputs = [ basePackage makeWrapper ];
-  postBuild = ''
-    wrapProgram $out/bin/alacritty \
-      --add-flags --config-file=${config-file}/etc/alacritty.yaml
-  '';
+    customizedAlacritty = pkgs.symlinkJoin {
+      name = "alacritty-bds";
+      paths = [ config-file pkgs.alacritty ];
+      buildInputs = [ pkgs.alacritty pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/alacritty \
+          --add-flags --config-file=${config-file}/etc/alacritty.yaml
+      '';
+    };
+
+in {
+  environment.systemPackages = [ customizedAlacritty ];
 }
+

@@ -12,7 +12,7 @@ let cfg = config.bds.desktop;
           description = ''
             To use gdm or sddm for the display manager.
             Values can be "gdm" or "sddm".
-'         '';
+          '';
         };
         i3_show_battery = lib.mkOption {
           type = types.bool;
@@ -38,6 +38,7 @@ in {
     ./nvidia.nix
     ./i3_status.nix
     ./remote-desktop.nix
+    ./alacritty.nix
   ];
 
   options.bds.desktop = {
@@ -107,7 +108,7 @@ in {
       windowManager.i3 = {
         enable = true;
         configFile = ./i3.config;
-        extraPackages = with pkgs; [ dmenu i3status-rust i3lock alacritty i3lock-fancy ];
+        extraPackages = with pkgs; [ dmenu i3status-rust i3lock i3lock-fancy ];
       };
     };
 
