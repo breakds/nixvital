@@ -107,7 +107,7 @@ in {
       windowManager.i3 = {
         enable = true;
         configFile = ./i3.config;
-        extraPackages = with pkgs; [ dmenu i3status-rust i3lock termite i3lock-fancy ];
+        extraPackages = with pkgs; [ dmenu i3status-rust i3lock alacritty i3lock-fancy ];
       };
     };
 
