@@ -1,4 +1,4 @@
-{ stdenv, lib, pkgs, ...  } :
+{ config, lib, pkgs, ...  } :
 
 let cfg = {
       window.decorations = "full";
@@ -8,7 +8,7 @@ let cfg = {
         normal.family = "Fira Code";
         bold.family = "Fira Code";
         italic.family = "Fira Code";
-        text = 10.0;
+        size = if config.bds.machineType == "laptop" then 8.0 else 10.0;
         offset = { x = 0; y = 0; };
       };
       draw_bold_text_with_bright_colors = true;
@@ -38,7 +38,7 @@ let cfg = {
       # NOTE: YAML has been a strict superset of JSON since 1.2.
       text = lib.replaceStrings ["\\\\"] ["\\"] (builtins.toJSON cfg);
     };
-    
+
     customizedAlacritty = pkgs.symlinkJoin {
       name = "alacritty-bds";
       paths = [ config-file pkgs.alacritty ];
@@ -52,4 +52,3 @@ let cfg = {
 in {
   environment.systemPackages = [ customizedAlacritty ];
 }
-

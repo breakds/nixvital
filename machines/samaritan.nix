@@ -9,6 +9,8 @@
     ../modules/web
   ];
 
+  bds.machineType = "desktop";
+
   # Machine-specific networking configuration.
   networking.hostName = "samaritan";
   # Generated via `head -c 8 /etc/machine-id`
