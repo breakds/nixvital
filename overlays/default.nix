@@ -18,7 +18,7 @@ self: super:
   alacritty = self.callPackage ./alacritty.nix {
     basePackage = super.alacritty;
     customize = {
-      font-size = 8.0;
+      font-size = 7.0;
       font-face = "Fira Code";
     };
   };
