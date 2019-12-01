@@ -12,7 +12,8 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    networking.firewall.allowedTCPPorts = [ 80 443 ];
+    # Note that 8888 is allowed for Jupyter Lab
+    networking.firewall.allowedTCPPorts = [ 80 443 8888 ];
     services.nginx = {
       enable = true;
       package = pkgs.nginxMainline;
