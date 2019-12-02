@@ -3,7 +3,7 @@
   overlays = [ (import ./overlays.nix) ];
 } }:
 
-let extraPackages = with pkgs.python38Packages; rec {
+let extraPackages = with pkgs.python37Packages; rec {
       dash-html-components = callPackage ./dash-html-components.nix {};
       dash-core-components = callPackage ./dash-core-components.nix {};
       dash-renderer = callPackage ./dash-renderer.nix {};
@@ -16,10 +16,11 @@ let extraPackages = with pkgs.python38Packages; rec {
       python-nodejs = callPackage ./python-nodejs.nix {};
     };
 
-    python = pkgs.python38.withPackages (python-packages: with python-packages; [
+    python = pkgs.python37.withPackages (python-packages: with python-packages; [
       # Base
       pip
       numpy
+      pandas
       matplotlib
       plotly
       extraPackages.dash
