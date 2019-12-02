@@ -68,4 +68,12 @@
       syncRepo.enable = true;
     };
   };
+
+  # +------------+
+  # | WakeOnLan  |
+  # +------------+
+
+  services.wakeonlan.interfaces = [{
+    interface = "enp0s25";
+  }];
 }
