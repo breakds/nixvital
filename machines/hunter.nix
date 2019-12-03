@@ -36,6 +36,7 @@
         nvidiaBusId = "PCI:2:0:0";
       };
     };
+    remote-desktop.enable = true;
   };
 
   # +----------+
