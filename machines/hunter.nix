@@ -60,6 +60,10 @@
       source = "//10.18.50.20/80t";
       credentials = "/home/breakds/.gzsmbcredentials";
     };
+    nasDevices."/media//hdfs" = {
+      source = "//10.18.51.1/hdfs";
+      credentials = "/home/breakds/.gzhdfscredentials";
+    };
   };
 
   # Enable nvidia-docker
