@@ -44,6 +44,7 @@
     # ---------- System Utils ----------
     rsync pciutils usbutils mkpasswd nixops remmina
     pciutils usbutils mkpasswd nixops remmina p7zip
+    arandr
     # ---------- Development ----------
     git tig cmake clang clang-tools silver-searcher sbcl
     gcc nixvital-shell-accessors
