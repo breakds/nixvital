@@ -10,6 +10,7 @@
   ];
 
   bds.machineType = "laptop";
+  bds.machineTags = [ "weride" ];  
 
   # Machine-specific networking configuration.
   networking.hostName = "hunter";

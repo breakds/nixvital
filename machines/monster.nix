@@ -11,6 +11,7 @@
   ];
 
   bds.machineType = "desktop";
+  bds.machineTags = [ "weride" ];
 
   # Machine-specific networking configuration.
   networking.hostName = "monster";

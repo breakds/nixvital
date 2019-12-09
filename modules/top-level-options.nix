@@ -12,6 +12,15 @@ in {
         Based on the value, default settings can adjust automatically.
       '';
     };
+
+    machineTags = mkOption {
+      type = types.listOf (types.enum [ "weride" ]);
+      default = [];
+      description = ''
+        The set of tags for the machine. 
+        Specific packages and configs may be set based on this.
+      '';
+    };
   };
 
   config = {
