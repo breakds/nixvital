@@ -24,6 +24,8 @@ self: super:
     inherit (super) nettools;
   };
 
+  gperftools = self.callPackage ./gperftools.nix {};
+
   cudatoolkit = super.cudatoolkit_10;
 
   nixvital-shell-accessors = self.callPackage ./nixvital-shell-accessors {};
