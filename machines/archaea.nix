@@ -6,6 +6,7 @@
     ../nix-home
     ../modules/user.nix
     ../modules/desktop
+    ../modules/monitor-camera.nix
   ];
 
   bds.machineType = "laptop";
@@ -23,6 +24,16 @@
     enable = true;
     xserver.displayManager = "gdm";
     xserver.i3_show_battery = true;
+  };
+
+  # +----------------+
+  # | Camera/Monitor |
+  # +----------------+
+
+  bds.monitor-camera = {
+    enable = true;
+    clipDir = "/home/breakds/.motionclips";
+    remoteDir = "breakds@gilgamesh:~/filerun/user-files/Monitor";
   };
 
   # This value determines the NixOS release with which your system is to be
