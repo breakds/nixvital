@@ -24,6 +24,7 @@
           "delegator"
 	      ];
         useDefaultShell = true;
+        openssh.authorizedKeys.keyFiles = [ ./keys/breakds_samaritan.pub ];
       };
 
       # The user delegator is used to serve content for web services.
