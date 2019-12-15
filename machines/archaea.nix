@@ -7,6 +7,7 @@
     ../modules/user.nix
     ../modules/desktop
     ../modules/monitor-camera.nix
+    ../modules/laptop.nix
   ];
 
   bds.machineType = "laptop";
