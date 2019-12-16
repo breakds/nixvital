@@ -76,6 +76,8 @@ in {
               webcam_port 5752
               movie_filename %Y.%m.%d.%H.%M.%S
               framerate ${toString cfg.fps}
+              width 1080
+              height 1920
             '';
           };
 
