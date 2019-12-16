@@ -6,8 +6,8 @@
     ../nix-home
     ../modules/user.nix
     ../modules/desktop
-    ../modules/monitor-camera.nix
     ../modules/laptop.nix
+    ../modules/IoT/monitor-camera.nix
   ];
 
   bds.machineType = "laptop";
@@ -33,8 +33,11 @@
 
   bds.monitor-camera = {
     enable = true;
+    device = "/dev/video0";
+    fps = 15;
     clipDir = "/home/breakds/.motionclips";
-    remoteDir = "breakds@gilgamesh:~/filerun/user-files/Monitor";
+    remoteDir = "/home/breakds/filerun/user-files/Monitor";
+    remoteHost = "breakds@gilgamesh";
   };
 
   # This value determines the NixOS release with which your system is to be
