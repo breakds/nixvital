@@ -8,6 +8,7 @@
     ../modules/desktop
     ../modules/web
     ../modules/deluge.nix
+    ../modules/web/samba.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
   ];

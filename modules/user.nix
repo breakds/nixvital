@@ -22,6 +22,7 @@
           "nginx"
           "filerun"
           "delegator"
+          "samba"
 	      ];
         useDefaultShell = true;
         openssh.authorizedKeys.keyFiles = [ ./keys/breakds_samaritan.pub ];
