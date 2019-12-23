@@ -1,12 +1,23 @@
+# See https://discourse.nixos.org/t/how-to-add-custom-python-package/536/3
+# And https://github.com/NixOS/nixpkgs/pull/54266#issuecomment-455592425
+
 { pkgs ? import <nixpkgs> {
   config.allowUnfree = true;
 } }:
 
-with pkgs; with python27Packages;
-  let empy = callPackage ./py/empy.nix {};
-      python = pkgs.python27.withPackages (python-packages: with python-packages; [
-        empy
-      ]);
+let extraPackages = with pkgs.python27Packages; rec {
+      empy = callPackage ./py/empy.nix {};
+      catkin-pkg = callPackage ./py/catkin-pkg.nix {};
+      rospkg = callPackage ./py/rospkg.nix {
+        inherit catkin-pkg;
+      };
+    };
+    
+    python = pkgs.python27.withPackages (python-packages: with python-packages; [
+      extraPackages.empy
+      extraPackages.rospkg
+      extraPackages.catkin-pkg
+    ]);
 
   in pkgs.mkShell rec {
     name = "ROS-D";
