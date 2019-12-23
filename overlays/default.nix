@@ -1,6 +1,11 @@
 self: super:
 
-{
+let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
+      url = https://github.com/NixOS/nixpkgs/tarball/1b3c024157748cbab30a6200aa6b1496cefa787b;
+      sha256 = "0ry2rzx9126lmifmdv12p2n3a5p0crf28g7p1iv1gqxd7n6b2rga";
+    }) { config.allowUnfree = true; };
+
+in {
   # LLVM series
   inherit (super.llvmPackages_8) clang libclang llvm;
 
@@ -29,4 +34,7 @@ self: super:
   cudatoolkit = super.cudatoolkit_10;
 
   nixvital-shell-accessors = self.callPackage ./nixvital-shell-accessors {};
+
+  # Override the jetbrains with an older version, where clion supports bazel.
+  jetbrains = old-jetbrains-nixpkgs.jetbrains;
 }
