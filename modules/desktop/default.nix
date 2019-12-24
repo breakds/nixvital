@@ -80,6 +80,10 @@ in {
       audacious audacity zoom-us thunderbird
     ];
 
+    # Disable the gnome shell as it is not currently used, and will appear
+    # in the dmenu so that hinder how chrome is being launched.
+    services.gnome3.chrome-gnome-shell.enable = false;
+
     services.xserver = {
       enable = true;
       layout = "us";
