@@ -9,6 +9,8 @@ let python = pkgs.python3.withPackages (pythonPackages: with pythonPackages; [
       click
       cement
       tabulate
+      GitPython
+      prompt_toolkit
     ]);
 
 in stdenv.mkDerivation {
