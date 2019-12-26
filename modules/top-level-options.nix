@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... } :
 
-let cfg = config.bds;
+let cfg = config.vital;
 
 in {
-  options.bds = with lib; {
+  options.vital = with lib; {
     machineType = mkOption {
       type = types.enum [ "laptop" "desktop" "server" ];
       default = "desktop";
@@ -24,7 +24,7 @@ in {
   };
 
   config = {
-    bds.desktop = {
+    vital.desktop = {
       remote-desktop.enable = lib.mkDefault (builtins.getAttr cfg.machineType {
         desktop = true;
         server = true;

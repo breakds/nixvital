@@ -9,7 +9,7 @@
     ../modules/laptop.nix
   ];
 
-  bds.machineType = "laptop";
+  vital.machineType = "laptop";
 
   # Machine-specific networking configuration.
   networking.hostName = "rival";
@@ -20,10 +20,10 @@
   # | Desktop  |
   # +----------+
 
-  bds.desktop = {
+  vital.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
   };
 
-  bds.security.enableFingerprint = true;
+  vital.security.enableFingerprint = true;
 }

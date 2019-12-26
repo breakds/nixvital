@@ -10,8 +10,8 @@
     ../modules/web
   ];
 
-  bds.machineType = "desktop";
-  bds.machineTags = [ "weride" ];
+  vital.machineType = "desktop";
+  vital.machineTags = [ "weride" ];
 
   # Machine-specific networking configuration.
   networking.hostName = "monster";
@@ -22,7 +22,7 @@
   # | Desktop  |
   # +----------+
 
-  bds.desktop = {
+  vital.desktop = {
     enable = true;
     # TODO(breakds): Figure out why without this line build will fail.
     xserver.displayManager = "gdm";
@@ -33,7 +33,7 @@
   # | Weride   |
   # +----------+
 
-  bds.weride = {
+  vital.weride = {
     nasDevices."/media/nas" = {
       source = "//10.1.50.20/Public";
       credentials = "/home/breakds/.ussmbcredentials";
@@ -59,7 +59,7 @@
   # | Web Server |
   # +------------+
 
-  bds.web = {
+  vital.web = {
     enable = true;
     cgit = {
       enable = true;

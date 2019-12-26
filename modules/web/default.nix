@@ -1,11 +1,11 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.bds.web;
+let cfg = config.vital.web;
 
 in {
   imports = [ ./cgit.nix ];
 
-  options.bds.web = {
+  options.vital.web = {
     enable = lib.mkEnableOption "Enable Hosted Web Services";
     serveHomePage = lib.mkEnableOption "Whether host web page.";
     serveFilerun = lib.mkEnableOption "Whether to host the filerun server.";

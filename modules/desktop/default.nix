@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.bds.desktop;
+let cfg = config.vital.desktop;
 
     types = lib.types;
 
@@ -41,7 +41,7 @@ in {
     ./alacritty.nix
   ];
 
-  options.bds.desktop = {
+  options.vital.desktop = {
     enable = lib.mkEnableOption "Enable Desktop";
     xserver = lib.mkOption {
       description = "Wrapper of xserver related configuration.";

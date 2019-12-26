@@ -2,10 +2,10 @@
 
 { config, lib, pkgs, ... } :
 
-let cfg = config.bds.monitor-camera;
+let cfg = config.vital.monitor-camera;
 
 in {
-  options.bds.monitor-camera = with lib; {
+  options.vital.monitor-camera = with lib; {
     enable = mkEnableOption "Enable the motion monitoring camera";
 
     # TODO(breakds): Add a rule to create this directory, maybe just in the upload script?

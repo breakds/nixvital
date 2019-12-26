@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.bds.security;
+let cfg = config.vital.security;
 
 in {
-  options.bds.security = {
+  options.vital.security = {
     enableFingerprint = lib.mkEnableOption "Enable fingerprint reader";
   };
 

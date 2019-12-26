@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... } :
 
-let cfg = config.bds.desktop.remote-desktop;
+let cfg = config.vital.desktop.remote-desktop;
 
 in {
 
-  options.bds.desktop.remote-desktop = with lib; {
+  options.vital.desktop.remote-desktop = with lib; {
     enable = mkEnableOption "Whether to enable the XRDP server";
     port = mkOption {
       type = types.port;
@@ -14,7 +14,7 @@ in {
   };
 
 
-  config = lib.mkIf (config.bds.desktop.enable && cfg.enable) {
+  config = lib.mkIf (config.vital.desktop.enable && cfg.enable) {
     # Use mate for the remote desktop.
     services.xserver.desktopManager.mate.enable = true;
     

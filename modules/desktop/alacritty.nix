@@ -42,7 +42,7 @@ let draculaColorTheme = {
         normal.family = "Fira Code";
         bold.family = "Fira Code";
         italic.family = "Fira Code";
-        size = if config.bds.machineType == "laptop" then 7.0 else 10.0;
+        size = if config.vital.machineType == "laptop" then 7.0 else 10.0;
         offset = { x = 0; y = 0; };
       };
       draw_bold_text_with_bright_colors = true;

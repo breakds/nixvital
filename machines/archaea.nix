@@ -10,7 +10,7 @@
     ../modules/IoT/monitor-camera.nix
   ];
 
-  bds.machineType = "laptop";
+  vital.machineType = "laptop";
 
   # Machine-specific networking configuration.
   networking.hostName = "archaea";
@@ -21,7 +21,7 @@
   # | Desktop  |
   # +----------+
 
-  bds.desktop = {
+  vital.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
     xserver.i3_show_battery = true;
@@ -31,7 +31,7 @@
   # | Camera/Monitor |
   # +----------------+
 
-  bds.monitor-camera = {
+  vital.monitor-camera = {
     enable = true;
     device = "/dev/video0";
     fps = 15;

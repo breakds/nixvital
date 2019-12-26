@@ -64,7 +64,7 @@
     enable = true;
     # Enable X11 Fowarding, can be connected with ssh -Y.
     forwardX11 = true;
-    allowSFTP = config.bds.machineType == "server";
+    allowSFTP = config.vital.machineType == "server";
   };
     
   # Enable CUPS services

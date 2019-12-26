@@ -9,8 +9,8 @@
     ../modules/weride.nix
   ];
 
-  bds.machineType = "laptop";
-  bds.machineTags = [ "weride" ];  
+  vital.machineType = "laptop";
+  vital.machineTags = [ "weride" ];  
 
   # Machine-specific networking configuration.
   networking.hostName = "hunter";
@@ -21,7 +21,7 @@
   # | Desktop  |
   # +----------+
 
-  bds.desktop = {
+  vital.desktop = {
     enable = true;
     xserver = {
       displayManager = "sddm";
@@ -44,7 +44,7 @@
   # | Weride   |
   # +----------+
 
-  bds.weride = {
+  vital.weride = {
     nasDevices."/media/nas" = {
       source = "//10.1.50.20/Public";
       credentials = "/home/breakds/.ussmbcredentials";

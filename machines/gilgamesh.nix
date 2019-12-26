@@ -13,7 +13,7 @@
     # ../modules/web/filerun.nix
   ];
 
-  bds.machineType = "server";
+  vital.machineType = "server";
 
   # Machine-specific networking configuration.
   networking.hostName = "gilgamesh";
@@ -24,7 +24,7 @@
   # | Desktop  |
   # +----------+
 
-  bds.desktop = {
+  vital.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
     xserver.dpi = 100;
@@ -38,7 +38,7 @@
   # | Web Server |
   # +------------+
 
-  bds.web = {
+  vital.web = {
     enable = true;
     serveHomePage = true;
     serveFilerun = true;
@@ -59,5 +59,5 @@
     interface = "eno1";
   }];
 
-  bds.bittorrent.enable = true;
+  vital.bittorrent.enable = true;
 }

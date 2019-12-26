@@ -9,7 +9,7 @@
     ../modules/web
   ];
 
-  bds.machineType = "desktop";
+  vital.machineType = "desktop";
 
   # Machine-specific networking configuration.
   networking.hostName = "samaritan";
@@ -20,7 +20,7 @@
   # | Desktop  |
   # +----------+
 
-  bds.desktop = {
+  vital.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
     xserver.dpi = 100;

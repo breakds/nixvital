@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let battery = if config.bds.desktop.xserver.i3_show_battery then ''
+let battery = if config.vital.desktop.xserver.i3_show_battery then ''
       [[block]]
       block = "battery"
       interval = 10

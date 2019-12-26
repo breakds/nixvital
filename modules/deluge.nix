@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 
 let
-  cfg = config.bds.bittorrent;
+  cfg = config.vital.bittorrent;
 in {
-  options.bds.bittorrent = {
+  options.vital.bittorrent = {
     enable = lib.mkEnableOption "Deluge BitTorrent client";
   };
 

@@ -1,12 +1,12 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.bds.weride;
+let cfg = config.vital.weride;
 
     types = lib.types;
 
 in {
 
-  options.bds.weride = {
+  options.vital.weride = {
     # For nas devices
     nasDevices = lib.mkOption {
       type = types.attrsOf (types.submodule {

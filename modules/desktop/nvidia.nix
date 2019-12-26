@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.bds.desktop.nvidia;
+let cfg = config.vital.desktop.nvidia;
 
 in lib.mkIf cfg.enable {
   services.xserver.videoDrivers = [ "nvidia" ];

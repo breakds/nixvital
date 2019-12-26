@@ -5,8 +5,8 @@
 
 { config, lib, pkgs, ... }:
 
-let webCfg = config.bds.web;
-    cfg = config.bds.web.cgit;
+let webCfg = config.vital.web;
+    cfg = config.vital.web.cgit;
 
     configFile = pkgs.writeText "cgitrc" ''
       virtual-root=/
@@ -23,7 +23,7 @@ let webCfg = config.bds.web;
     '';
 
 in {
-  options.bds.web.cgit = with lib; {
+  options.vital.web.cgit = with lib; {
     enable = mkEnableOption "Enable the cgit service.";
     fcgiPort = mkOption {
       type = types.port;
