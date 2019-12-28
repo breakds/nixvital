@@ -20,8 +20,17 @@
     xserver.dpi = 100;
     nvidia = {
       enable = true;
+      withCuda = false;
     };
   };
+
+  # +----------+
+  # | Extras   |
+  # +----------+
+
+  environment.systemPackages = [
+    gimp
+  ];
 
   # +------------+
   # | WakeOnLan  |
