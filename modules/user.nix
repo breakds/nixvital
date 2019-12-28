@@ -81,7 +81,7 @@ in {
       };
 
       extraGroups = {
-        breakds = { gid = 1000; members = [ "${cfg.mainUser}" ]; };
+        "${cfg.mainUser}" = { gid = 1000; members = [ "${cfg.mainUser}" ]; };
         fcgi = { gid = 500; members = [ "fcgi" ]; };
         filerun = { gid = 33; members = [ "${cfg.mainUser}" "filerun" ]; };
         plugdev = { gid = 501; };
