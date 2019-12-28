@@ -49,6 +49,15 @@ in {
     };
     nvidia = {
       enable = lib.mkEnableOption "Add Nivdia driver.";
+
+      withCuda = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = ''
+          When set to true, if nvidia is enabled, cuda will be installed too.
+        '';
+      };
+
       prime = {
         enable = lib.mkEnableOption ''
           Enable optimus prime mode. This is usually for laptop only.

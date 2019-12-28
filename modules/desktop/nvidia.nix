@@ -22,7 +22,7 @@ in lib.mkIf cfg.enable {
     nvidia.optimus_prime.intelBusId = cfg.prime.intelBusId;
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = lib.mkIf cfg.withCuda (with pkgs; [
     cudatoolkit
-  ];
+  ]);
 }
