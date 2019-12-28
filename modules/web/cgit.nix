@@ -131,13 +131,19 @@ in {
         # Sync every 10 minutes
         timerConfig.OnCalendar = "*:0/${toString cfg.syncRepo.minutes}";
       };
+      # If you want to fetch these on a regular basis, you should consider:
+      #    git config remote.origin.fetch +refs/heads/*:refs/heads/*
+      #
+      # which will allow you to type git fetch to sync your branches
+      # with the remote. Note that this make sense only in a bare
+      # repository where local branches are not supposed to be edited.
       services.sync-cgit-repo = lib.mkIf cfg.syncRepo.enable {
         serviceConfig.Type = "oneshot";
         script = ''
           for repo in $(ls -d ${cfg.repoPath}/*/); do
             cd $repo;
             GIT_SSH_COMMAND='${pkgs.openssh}/bin/ssh -i /home/breakds/.ssh/breakds_samaritan' \
-                ${pkgs.git}/bin/git fetch origin master:master;
+                ${pkgs.git}/bin/git fetch origin +refs/heads/*:refs/heads/*
           done;
         '';
       };
