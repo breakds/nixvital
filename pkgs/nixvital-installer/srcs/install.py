@@ -96,7 +96,7 @@ def RewriteConfiguration(install_root, username, machine, hostname):
         out.write('{\n')
         out.write('  imports = [\n')
         out.write('    ./hardware-configuration.nix\n')
-        out.write('    ./nixvital/{}\n'.format(machine))
+        out.write('    ./nixvital/machines/{}\n'.format(machine))
         out.write('  ];\n\n')
         out.write('  vital.mainUser = "{}";\n'.format(username))
         out.write('  networking.hostName = "{}";\n'.format(hostname))
@@ -113,7 +113,7 @@ def main():
     # 1. Installation root (default to /mnt)
     install_root = PromptFor('installation root',
                              'Specifies where to install the system.',
-                             default='/home/breakds/Downloads/mnt')
+                             default='/mnt')
 
     # 2. Clone the nixvital git repo
     vital_dir = CloneNixvital(install_root)
