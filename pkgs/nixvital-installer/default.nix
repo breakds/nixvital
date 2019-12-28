@@ -26,11 +26,5 @@ in stdenv.mkDerivation {
     mkdir -p $out/bin
     cp $srcs/install.py $out/bin/nixvital_install
     chmod +x $out/bin/nixvital_install
-
-    cp $srcs/calculator.py $out/bin/calculator
-    chmod +x $out/bin/calculator
-
-    cp $srcs/sample_list.py $out/bin/sample_list
-    chmod +x $out/bin/sample_list
   '';
 }
