@@ -28,7 +28,7 @@
   # | Extras   |
   # +----------+
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
     gimp
   ];
 
