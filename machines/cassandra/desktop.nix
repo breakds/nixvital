@@ -29,7 +29,7 @@
   # +----------+
 
   environment.systemPackages = with pkgs; [
-    gimp peek
+    gimp peek gnupg pass
   ];
 
   # +------------+
