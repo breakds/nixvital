@@ -17,10 +17,10 @@ let
       sha256 = "1hp6gjh4xp2m1xlm1jsdzxw9d8frkiidhph6nvl24d0h8z34w49g";
     }
     {
-      name = "file-icons";
-      publisher = "file-icons";
-      version = "1.0.20";
-      sha256 = "19pkh36jxg9x42r1d9pv97iyzx5n2gky6adhp5a2lkwhabaggbhk";
+      name = "vscode-icons";
+      publisher = "vscode-icons-team";
+      version = "9.7.0";
+      sha256 = "0332i23wdxpjppawprs1z0fv73nlrh04v71jqkwlc7p38zb5xpqh";
     }
     {
       name = "gitlens";
