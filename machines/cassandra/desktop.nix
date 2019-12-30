@@ -6,6 +6,7 @@
     ../../modules/user.nix
     ../../modules/desktop
     ../../modules/web
+    ../../modules/dev/vscode.nix
   ];
 
   vital.machineType = "desktop";
