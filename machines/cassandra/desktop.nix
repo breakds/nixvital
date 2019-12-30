@@ -29,7 +29,7 @@
   # +----------+
 
   environment.systemPackages = with pkgs; [
-    gimp peek gnupg pass
+    gimp peek gnupg pass libreoffice
   ];
 
   # +------------+
