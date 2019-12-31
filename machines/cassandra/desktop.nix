@@ -3,6 +3,7 @@
 {
   imports = [
     ../base.nix
+    ../../nix-home/cassandra
     ../../modules/user.nix
     ../../modules/desktop
     ../../modules/web
