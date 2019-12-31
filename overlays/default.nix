@@ -35,6 +35,8 @@ in {
 
   nixvital-shell-accessors = self.callPackage ./nixvital-shell-accessors {};
 
+  web-dev-tools = self.callPackage ../pkgs/web-dev-tools {};
+
   # Override the jetbrains with an older version, where clion supports bazel.
   jetbrains = old-jetbrains-nixpkgs.jetbrains;
 }
