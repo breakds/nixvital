@@ -19,7 +19,7 @@ in stdenv.mkDerivation {
   
   installPhase = ''
     mkdir -p $out/bin
-    cp $srcs/web_dev_init.py $out/bin/web_dev_init
-    chmod +x $out/bin/web_dev_init
+    cp $srcs/nvm_lorri.py $out/bin/nvm_lorri
+    chmod +x $out/bin/nvm_lorri
   '';
 }
