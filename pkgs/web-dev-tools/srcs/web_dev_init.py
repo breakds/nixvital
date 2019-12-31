@@ -31,9 +31,9 @@ def main():
             out.write('    buildInputs = with pkgs; [\n')
             out.write('        nodejs-12_x yarn\n')
             out.write('    ];\n')
-            out.write('    shellHook = ''\n')
+            out.write('    shellHook = \'\'\n')
             out.write('      export PATH="${toString ./node_modules/.bin}:$PATH"\n')
-            out.write('    '';\n')
+            out.write('    \'\';\n')
             out.write('  }\n')
         Logger.Ok('shell.nix generated.')
 
