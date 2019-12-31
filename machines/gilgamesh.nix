@@ -2,8 +2,8 @@
 
 {
   imports = [
-    ./base.nix
-    ../nix-home
+    ./base.nix/breakds
+    ../nix-home/breakds
     ../modules/user.nix
     ../modules/desktop
     ../modules/web

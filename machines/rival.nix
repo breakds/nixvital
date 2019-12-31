@@ -3,7 +3,7 @@
 {
   imports = [
     ./base.nix
-    ../nix-home
+    ../nix-home/breakds
     ../modules/user.nix
     ../modules/desktop
     ../modules/laptop.nix
