@@ -2,6 +2,7 @@
 
 import os
 import pathlib
+import subprocess
 from prompt_toolkit import print_formatted_text, HTML
 
 class Logger(object):
@@ -41,8 +42,12 @@ def main():
         Logger.Warn('<u>.envrc</u> exists, leaving it untouched.')
     else:
         with open(envrc, 'w') as out:
-            out.write('eval "$(lorri direnv)\n')
+            out.write('eval "$(lorri direnv)"\n')
         Logger.Ok('.envrc generated.')
+
+    subprocess.run(['direnv', 'allow'])
+
+    
 
 if __name__ == '__main__':
     main()
