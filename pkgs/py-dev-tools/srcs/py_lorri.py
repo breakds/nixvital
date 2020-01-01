@@ -21,15 +21,33 @@ class Logger(object):
         print_formatted_text(HTML('[<orange>WARN</orange>] {}'.format(message)))
 
 
-def GenerateShellNix(shell_library, target_dir):
-    permission = (stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP |
-                  stat.S_IWGRP | stat.S_IROTH)
+def CopyDirectory(source, target, permission):
+    # Remove the target directory if it exists
+    if target.exists() and target.is_dir():
+        shutil.rmtree(target)
+    
+    shutil.copytree(source, target)
 
-    # shell.nix and friends
+    # Set the right permission
+    for node, children, files in os.walk(target):
+        os.chmod(node, permission | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH)
+        for f in files:
+            os.chmod(pathlib.Path(node, f), permission)
+
+def GenerateShellNix(shell_library, target_dir):
+    permission = (stat.S_IRUSR | stat.S_IWUSR | stat.S_IRGRP | stat.S_IROTH)
+
+    # shell.nix
     source_shell_nix = pathlib.Path(shell_library, 'shell.nix')
     target_shell_nix = pathlib.Path(target_dir, 'shell.nix')
     shutil.copy(str(source_shell_nix), str(target_shell_nix))
     os.chmod(target_shell_nix, permission)
+
+    # Copy shell.d
+    source_shell_d = pathlib.Path(shell_library, 'shell.d')
+    target_shell_d = pathlib.Path(target_dir, '.shell.d')
+    CopyDirectory(source_shell_d, target_shell_d, permission)    
+    
     
 def GenerateLorriFiles(shell_library):
     target_dir = os.getcwd()

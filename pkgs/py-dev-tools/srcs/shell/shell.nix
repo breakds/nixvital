@@ -5,18 +5,16 @@
 
 let pkgs = import <nixpkgs> {};
 
-    # extraPackages = with pkgs.python3Packages; rec {
-    #   dash-html-components = callPackage ./dash-html-components.nix {};
-    #   dash-core-components = callPackage ./dash-core-components.nix {};
-    #   dash-renderer = callPackage ./dash-renderer.nix {};
-    #   dash-table = callPackage ./dash-table.nix {};
-    #   percy = callPackage ./percy.nix {};
-    #   dash = callPackage ./dash.nix {
-    #     inherit dash-html-components dash-renderer dash-table dash-core-components percy;
-    #   };
-    #   ipympl = callPackage ./ipympl.nix {};
-    #   python-nodejs = callPackage ./python-nodejs.nix {};
-    # };
+    extraPackages = with pkgs.python3Packages; rec {
+      dash-html-components = callPackage ./.shell.d/dash-html-components.nix {};
+      dash-core-components = callPackage ./.shell.d/dash-core-components.nix {};
+      dash-renderer = callPackage ./.shell.d/dash-renderer.nix {};
+      dash-table = callPackage ./.shell.d/dash-table.nix {};
+      percy = callPackage ./.shell.d/percy.nix {};
+      dash = callPackage ./.shell.d/dash.nix {
+        inherit dash-html-components dash-renderer dash-table dash-core-components percy;
+      };
+    };
 
     python = pkgs.python3.withPackages (python-packages: with python-packages; [
       # Base
@@ -27,7 +25,7 @@ let pkgs = import <nixpkgs> {};
       # extraPackages.dash
 
       # ---------- Frameworks ----------
-      # lightgbm
+      lightgbm
       # pytorchWithCuda
 
       # ---------- Tools ----------
