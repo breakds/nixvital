@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./base.nix/breakds
+    ./base.nix
     ../nix-home/breakds
     ../modules/user.nix
     ../modules/desktop
