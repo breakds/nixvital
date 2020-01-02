@@ -31,7 +31,7 @@ in {
         laptop = false;
       });
       xserver.i3_show_battery = cfg.machineType == "laptop";
-      xserver.useCapsAsCtrl = cfg.machineType == "laptop";
+      xserver.useCapsAsCtrl = lib.mkDefault (cfg.machineType == "laptop");
     };
   };
 }

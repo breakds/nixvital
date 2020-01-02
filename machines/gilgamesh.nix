@@ -27,6 +27,8 @@
   vital.desktop = {
     enable = true;
     xserver.displayManager = "gdm";
+    # Since it will be connected with remote desktop often.
+    xserver.useCapsAsCtrl = true;
     xserver.dpi = 100;
     nvidia = {
       # Enable this when it is no longer broken in nixos.
