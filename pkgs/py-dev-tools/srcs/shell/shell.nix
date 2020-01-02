@@ -3,7 +3,9 @@
 #   overlays = [ (import ./overlays.nix) ];
 # } }:
 
-let pkgs = import <nixpkgs> {};
+let pkgs = import <nixpkgs> {
+      config.allowUnfree = true;
+    };
 
     extraPackages = with pkgs.python3Packages; rec {
       dash-html-components = callPackage ./.shell.d/dash-html-components.nix {};
@@ -26,7 +28,7 @@ let pkgs = import <nixpkgs> {};
 
       # ---------- Frameworks ----------
       lightgbm
-      # pytorchWithCuda
+      pytorchWithCuda
 
       # ---------- Tools ----------
       jupyterlab
