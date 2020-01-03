@@ -1,8 +1,7 @@
 self: super:
 
 let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
-      url = https://github.com/NixOS/nixpkgs/tarball/1b3c024157748cbab30a6200aa6b1496cefa787b;
-      sha256 = "0ry2rzx9126lmifmdv12p2n3a5p0crf28g7p1iv1gqxd7n6b2rga";
+      url = https://github.com/NixOS/nixpkgs/tarball/83c627b8b0e40d14aed0b02ecb3c303444152a8b;
     }) { config.allowUnfree = true; };
 
 in {
@@ -37,5 +36,5 @@ in {
   py-dev-tools = self.callPackage ../pkgs/py-dev-tools {};
 
   # Override the jetbrains with an older version, where clion supports bazel.
-  jetbrains = old-jetbrains-nixpkgs.jetbrains;
+  old-jetbrains = old-jetbrains-nixpkgs.jetbrains;
 }

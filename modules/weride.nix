@@ -49,7 +49,7 @@ in {
     # Add arcanist for phabricator related stuff.
     environment.systemPackages = with pkgs; [
       arcanist axel cpplint patchedHostname openconnect
-      bazel jetbrains.clion
+      bazel old-jetbrains.clion
     ];
 
     # Mount NAS
