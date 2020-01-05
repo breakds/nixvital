@@ -1,3 +1,5 @@
+# nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=[this-nix-file]
+
 {config, pkgs, ...}:
 
 {
