@@ -9,12 +9,14 @@ let pname = "catkin";
 in stdenv.mkDerivation {
   name = "${pname}-${version}";
 
-  src = fetchFromGitHub {
-    owner = "ros-gbp";
-    repo = "${pname}-release";
-    rev = "release/${rosdistro}/${pname}/${version}-${subversion}";
-    sha256 = "15yq3q9y3yf126qli6w7q0lywaj9gjrckqckfx8fak9j4g5hp3ac";
-  };
+  # src = fetchFromGitHub {
+  #   owner = "ros-gbp";
+  #   repo = "${pname}-release";
+  #   rev = "release/${rosdistro}/${pname}/${version}-${subversion}";
+  #   sha256 = "15yq3q9y3yf126qli6w7q0lywaj9gjrckqckfx8fak9j4g5hp3ac";
+  # };
+
+  src = ./source;
 
   cmakeFlags = "-DCATKIN_ENABLE_TESTING=OFF -DSETUPTOOLS_DEB_LAYOUT=OFF";
   
@@ -23,11 +25,15 @@ in stdenv.mkDerivation {
   ];
 
   patchPhase = ''
-    sed -i 's/PYTHON_EXECUTABLE/SHELL/' ./cmake/catkin_package_xml.cmake
-    sed -i 's|#!/usr/bin/env bash|#!${stdenv.shell}|' ./cmake/templates/setup.bash.in
-    sed -i 's|#!/usr/bin/env sh|#!${stdenv.shell}|' ./cmake/templates/setup.sh.in
-    sed -i 's|#!/usr/bin/env python|#!${python2.interpreter}|' ./cmake/parse_package_xml.py
+    sed -i "s/check_output(\[/check_output(\['sh', /" ./python/catkin/environment_cache.py
   '';
+
+  # patchPhase = ''
+  #   sed -i 's/PYTHON_EXECUTABLE/SHELL/' ./cmake/catkin_package_xml.cmake
+  #   sed -i 's|#!/usr/bin/env bash|#!${stdenv.shell}|' ./cmake/templates/setup.bash.in
+  #   sed -i 's|#!/usr/bin/env sh|#!${stdenv.shell}|' ./cmake/templates/setup.sh.in
+  #   sed -i 's|#!/usr/bin/env python|#!${python2.interpreter}|' ./cmake/parse_package_xml.py
+  # '';
 
   meta = {
     description = "A CMake-based build system that is used to build all packages in ROS.";
