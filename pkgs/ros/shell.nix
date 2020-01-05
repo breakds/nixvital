@@ -5,14 +5,12 @@
   config.allowUnfree = true;
 } }:
 
-let extraPackages = with pkgs.python27Packages; rec {
-      empy = callPackage ./py/empy.nix {};
-      catkin-pkg = callPackage ./py/catkin-pkg.nix {};
-      rospkg = callPackage ./py/rospkg.nix {
-        inherit catkin-pkg;
-      };
+let extraPackages = with pkgs.python2Packages; rec {
+      empy = callPackage ./py/empy {};
+      catkin-pkg = callPackage ./py/catkin_pkg {};
+      rospkg = callPackage ./py/rospkg { inherit catkin-pkg; };
     };
-    
+
     python = pkgs.python27.withPackages (python-packages: with python-packages; [
       extraPackages.empy
       extraPackages.rospkg
@@ -23,6 +21,6 @@ let extraPackages = with pkgs.python27Packages; rec {
     name = "ROS-D";
     buildInputs = [ python ];
     shellHook = ''
-      export PS1="$(echo -e '\uf544') {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"
+      export PS1="$(echo -e '\uf544')  {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"
   '';
   }

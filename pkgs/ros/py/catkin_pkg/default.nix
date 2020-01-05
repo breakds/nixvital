@@ -1,4 +1,5 @@
-{ lib, buildPythonApplication, fetchPypi } :
+{ lib, buildPythonPackage, fetchPypi,
+  docutils, pyparsing, dateutil } :
 
 let pname = "catkin_pkg";
     version = "0.4.13";
@@ -8,9 +9,13 @@ let pname = "catkin_pkg";
     description = "Library for retrieving information about catkin packages.";
     license = lib.licenses.bsd3;
 
-in buildPythonApplication rec {
-  inherit pname version;
+    propagatedBuildInputs = [ docutils pyparsing dateutil ];
+
+in buildPythonPackage rec {
+  inherit pname version propagatedBuildInputs;
+  
   src = fetchPypi { inherit pname version sha256; };
+
   meta = with lib; {
     inherit homepage description license;
   };
