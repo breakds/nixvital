@@ -43,7 +43,6 @@ let extraPackages = with pkgs.python2Packages; rec {
     };
 
 in {
-  inherit (extraPackages) catkin-pkg rospkg;
   inherit ros-python catkin;
     
   all = pkgs.symlinkJoin rec {

@@ -1,14 +1,12 @@
 # Modified from https://github.com/airalab/airapkgs
 
-{ stdenv, cmake, ros-python,
-  catkin-pkg, rospkg, catkin }:
+{ stdenv, cmake, ros-python, catkin }:
 
 attrs:
 
 stdenv.mkDerivation(attrs // rec {
   propagatedBuildInputs = [
-    cmake
-    ros-python catkin-pkg rospkg catkin] ++ (attrs.propagatedBuildInputs or []);
+    cmake ros-python catkin] ++ (attrs.propagatedBuildInputs or []);
 
   doCheck = attrs.doCheck or false;
 

@@ -8,7 +8,7 @@
 let ros-base = pkgs.callPackage ./base {};
 
     buildRosPackage = pkgs.callPackage ./build.nix {
-      inherit (ros-base) ros-python catkin-pkg rospkg catkin;
+      inherit (ros-base) ros-python catkin;
     };
 
     genmsg = pkgs.callPackage ./genmsg {
@@ -28,6 +28,7 @@ in pkgs.mkShell rec {
   # This is already done in shellHook
   shellHook = ''
       export ROSDEP_SOURCE_PATH=$HOME/Downloads/ros_root
+      mkdir -p $HOME/Downloads/ros_root
       export PS1="$(echo -e '\uf544')  {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} (${name}) \\$ \[$(tput sgr0)\]"
   '';
 }
