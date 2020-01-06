@@ -26,7 +26,7 @@
     local-name: bond_core/smclib
     uri: https://github.com/ros-gbp/bond_core-release/archive/release/kinetic/smclib/1.8.3-0.tar.gz
     version: bond_core-release-release-kinetic-smclib-1.8.3-0
-+ tar:
+- tar:
     local-name: catkin
     uri: https://github.com/ros-gbp/catkin-release/archive/release/kinetic/catkin/0.7.20-1.tar.gz
     version: catkin-release-release-kinetic-catkin-0.7.20-1
@@ -162,7 +162,7 @@
     local-name: filters
     uri: https://github.com/ros-gbp/filters-release/archive/release/kinetic/filters/1.7.5-0.tar.gz
     version: filters-release-release-kinetic-filters-1.7.5-0
-+ tar:
+- tar:
     local-name: gencpp
     uri: https://github.com/ros-gbp/gencpp-release/archive/release/kinetic/gencpp/0.6.0-0.tar.gz
     version: gencpp-release-release-kinetic-gencpp-0.6.0-0
@@ -170,11 +170,11 @@
     local-name: geneus
     uri: https://github.com/tork-a/geneus-release/archive/release/kinetic/geneus/2.2.6-0.tar.gz
     version: geneus-release-release-kinetic-geneus-2.2.6-0
-x tar:
+- tar:
     local-name: genlisp
     uri: https://github.com/ros-gbp/genlisp-release/archive/release/kinetic/genlisp/0.4.16-0.tar.gz
     version: genlisp-release-release-kinetic-genlisp-0.4.16-0
-+ tar:
+- tar:
     local-name: genmsg
     uri: https://github.com/ros-gbp/genmsg-release/archive/release/kinetic/genmsg/0.5.11-0.tar.gz
     version: genmsg-release-release-kinetic-genmsg-0.5.11-0
@@ -182,7 +182,7 @@ x tar:
     local-name: gennodejs
     uri: https://github.com/RethinkRobotics-release/gennodejs-release/archive/release/kinetic/gennodejs/2.0.1-0.tar.gz
     version: gennodejs-release-release-kinetic-gennodejs-2.0.1-0
-+ tar:
+- tar:
     local-name: genpy
     uri: https://github.com/ros-gbp/genpy-release/archive/release/kinetic/genpy/0.6.7-0.tar.gz
     version: genpy-release-release-kinetic-genpy-0.6.7-0
