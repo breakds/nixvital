@@ -7,6 +7,8 @@
 
 let ros-base = pkgs.callPackage ./base {};
 
+    ros2nix = pkgs.callPackage ./tools/ros2nix {};
+
     buildRosPackage = pkgs.callPackage ./build.nix {
       inherit (ros-base) ros-python catkin;
     };
@@ -30,7 +32,7 @@ let ros-base = pkgs.callPackage ./base {};
 in pkgs.mkShell rec {
   name = "ROS-D";
   
-  buildInputs = [ ros-base.all
+  buildInputs = [ ros-base.all ros2nix
                   genmsg gencpp genpy ];
   
   # To use rosdep without sudo, environment variable needs to be
