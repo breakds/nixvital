@@ -45,7 +45,7 @@ let extraPackages = with pkgs.python2Packages; rec {
 in {
   inherit ros-python catkin;
     
-  all = pkgs.symlinkJoin rec {
+  all = pkgs.buildEnv rec {
     name = "ros-base";
     paths = [ ros-python rosdep rosinstall-generator catkin ];
   };
