@@ -1,5 +1,5 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
-  boost }:
+  boost, console_bridge }:
 
 let pname = "cpp_common";
     version = "0.6.11";
@@ -9,7 +9,7 @@ let pname = "cpp_common";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ boost ];
+  propagatedBuildInputs  = [ boost console_bridge ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";
