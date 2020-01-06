@@ -50,6 +50,7 @@
     gcc 
     web-dev-tools
     py-dev-tools
+    ros2nix
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

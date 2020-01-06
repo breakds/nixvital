@@ -12,8 +12,8 @@ in stdenv.mkDerivation {
   name = "ros2nix";
   srcs = ./srcs;
 
-  buildInputs = [ python makeWrapper ];
-  propagatedBuildInputs = [ nix ];
+  buildInputs = [ makeWrapper ];
+  propagatedBuildInputs = [ nix python ];
 
   unpackPhase = ":";
   buildPhase = ":";

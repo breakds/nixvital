@@ -28,6 +28,8 @@ in {
     inherit (super) nettools;
   };
 
+  ros2nix = self.callPackage ../pkgs/ros/tools/ros2nix {};
+
   gperftools = self.callPackage ./gperftools.nix {};
 
   cudatoolkit = super.cudatoolkit_10;
