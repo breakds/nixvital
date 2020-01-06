@@ -19,10 +19,15 @@ let ros-base = pkgs.callPackage ./base {};
       inherit buildRosPackage;
     };
 
+    gencpp = pkgs.callPackage ./gencpp {
+      inherit buildRosPackage genmsg;
+    };
+
 in pkgs.mkShell rec {
   name = "ROS-D";
   
-  buildInputs = [ ros-base.all genmsg ];
+  buildInputs = [ ros-base.all
+                  genmsg gencpp ];
   
   # To use rosdep without sudo, environment variable needs to be
   # set. For example
