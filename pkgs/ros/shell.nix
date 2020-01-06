@@ -11,6 +11,10 @@ let ros-base = pkgs.callPackage ./base {};
       inherit (ros-base) ros-python catkin;
     };
 
+    # +------------------------------------------------------------+
+    # | Official ROS modules                                       |
+    # +------------------------------------------------------------+    
+
     genmsg = pkgs.callPackage ./genmsg {
       inherit buildRosPackage;
     };
