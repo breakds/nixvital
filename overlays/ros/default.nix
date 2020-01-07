@@ -13,4 +13,8 @@ self: super:
   rosclean = self.callPackage ../../pkgs/ros/rosclean {};
   console_bridge = self.callPackage ../../pkgs/ros/console_bridge {};
   cpp_common = self.callPackage ../../pkgs/ros/cpp_common {};
+  rostime = self.callPackage ../../pkgs/ros/rostime {};
+  rosunit = self.callPackage ../../pkgs/ros/rosunit {};
+  rosconsole = self.callPackage ../../pkgs/ros/rosconsole {};
+  rosconsole_bridge = self.callPackage ../../pkgs/ros/rosconsole_bridge {};
 }
