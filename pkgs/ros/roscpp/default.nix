@@ -1,6 +1,5 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
-  cpp_common, message_generation, gencpp, geneus,
-  gennodejs, genlisp, genpy, rosconsole, roscpp_serialization }:
+ rosconsole, pkg-config, roscpp_traits, roslang, message_generation, rostime, roscpp_serialization, message_runtime, rosgraph_msgs, std_msgs, cpp_common, xmlrpcpp }:
 
 let pname = "roscpp";
     version = "1.12.14";
@@ -10,11 +9,7 @@ let pname = "roscpp";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [
-    cpp_common message_generation rosconsole
-    gencpp geneus gennodejs genlisp genpy
-    roscpp_serialization
-  ];
+  propagatedBuildInputs  = [ rosconsole pkg-config roscpp_traits roslang message_generation rostime roscpp_serialization message_runtime rosgraph_msgs std_msgs cpp_common xmlrpcpp ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";
