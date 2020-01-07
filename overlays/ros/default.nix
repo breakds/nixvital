@@ -31,4 +31,5 @@ self: super:
   xmlrpcpp = self.callPackage ../../pkgs/ros/xmlrpcpp {};
   rosgraph_msgs = self.callPackage ../../pkgs/ros/rosgraph_msgs {};
   roscpp = self.callPackage ../../pkgs/ros/roscpp {};
+  roscpp_tutorials = self.callPackage ../../pkgs/ros/roscpp_tutorials {};
 }
