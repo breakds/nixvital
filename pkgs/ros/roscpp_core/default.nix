@@ -1,4 +1,5 @@
-{ stdenv, buildRosPackage, fetchFromGitHub }:
+{ stdenv, buildRosPackage, fetchFromGitHub,
+ roscpp_traits, rostime, cpp_common, roscpp_serialization }:
 
 let pname = "roscpp_core";
     version = "0.6.11";
@@ -8,7 +9,7 @@ let pname = "roscpp_core";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [];
+  propagatedBuildInputs  = [ roscpp_traits rostime cpp_common roscpp_serialization ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";
