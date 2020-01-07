@@ -30,6 +30,9 @@ self: super:
   std_msgs = self.callPackage ../../pkgs/ros/std_msgs {};
   geometry_msgs = self.callPackage ../../pkgs/ros/geometry_msgs {};
   sensor_msgs = self.callPackage ../../pkgs/ros/sensor_msgs {};
+  actionlib_msgs = self.callPackage ../../pkgs/ros/actionlib_msgs {};
+  nav_msgs = self.callPackage ../../pkgs/ros/nav_msgs {};
+  map_msgs = self.callPackage ../../pkgs/ros/map_msgs {};
   xmlrpcpp = self.callPackage ../../pkgs/ros/xmlrpcpp {};
   rosgraph_msgs = self.callPackage ../../pkgs/ros/rosgraph_msgs {};
   roscpp = self.callPackage ../../pkgs/ros/roscpp {};

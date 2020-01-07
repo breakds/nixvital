@@ -13,7 +13,8 @@ in pkgs.mkShell rec {
                              roscpp_core roscpp_traits roscpp_serialization
                              message_generation message_runtime
                              roslang xmlrpcpp
-                             std_msgs rosgraph_msgs geometry_msgs sensor_msgs
+                             std_msgs rosgraph_msgs geometry_msgs sensor_msgs actionlib_msgs
+                             nav_msgs map_msgs
                              roscpp roscpp_tutorials
                              ros_environment
                            ];
