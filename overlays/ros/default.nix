@@ -17,4 +17,5 @@ self: super:
   rosunit = self.callPackage ../../pkgs/ros/rosunit {};
   rosconsole = self.callPackage ../../pkgs/ros/rosconsole {};
   rosconsole_bridge = self.callPackage ../../pkgs/ros/rosconsole_bridge {};
+  rosmsg = self.callPackage ../../pkgs/ros/rosmsg {};
 }
