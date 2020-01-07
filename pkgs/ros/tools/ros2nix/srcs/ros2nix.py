@@ -6,6 +6,7 @@ import yaml
 import re
 import subprocess
 import pathlib
+import xml.etree.ElementTree as ET
 
 from prompt_toolkit import prompt, print_formatted_text, HTML
 from prompt_toolkit.validation import Validator, ValidationError
@@ -18,6 +19,8 @@ APP_STYLE = Style.from_dict({
     'ok': 'lightgreen',
     'info': 'skyblue',
     'fail': 'red',
+    'installed': 'green',
+    'uninstalled': '#ff5733 bold',
 })
 
 
@@ -82,19 +85,39 @@ def PromptForPackageName(all_modules):
 
     return prompt(
         [
-            ('class:prompt_text', 'Please specify ROS module/package: '),
+            ('class:prompt_text', 'Please specify ROS module/package'),
             ('', ': ')
         ],
         style=APP_STYLE, completer=completer, validator=validator)
 
 
-def GenerateNixFile(directory, package, sha256):
+def PromptForYesOrNo(message):
+    completer = WordCompleter(['yes', 'no'])
+    validator = CandidateValidator(['yes', 'no'])
+    answer = prompt(
+        [
+            ('class:prompt_text', message),
+            ('', '[yes/NO] ')
+        ],
+        style=APP_STYLE, default='no',
+        completer=completer, validator=validator)
+
+    return answer == 'yes'
+
+
+def GenerateNixFile(directory, package, sha256, build_depends):
     package_dir = pathlib.Path(directory, package.pname)
     package_dir.mkdir(parents=True, exist_ok=True)
     config_path = pathlib.Path(package_dir, 'default.nix')
 
     with open(config_path, 'w') as out:
-        out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
+        if len(build_depends) == 0:
+            out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
+        else:
+            out.write('{ stdenv, buildRosPackage, fetchFromGitHub,\n')
+            # TODO(breakds): Make it better formatted
+            out.write(' {} '.format(', '.join(build_depends)))
+            out.write('}:\n')
         out.write('\n')
         out.write('let pname = "{}";\n'.format(package.pname))
         out.write('    version = "{}";\n'.format(package.version))
@@ -104,7 +127,11 @@ def GenerateNixFile(directory, package, sha256):
         out.write('in buildRosPackage {\n')
         out.write('  name = "${pname}-${version}";\n')
         out.write('\n')
-        out.write('  propagatedBuildInputs  = [];\n')
+        if len(build_depends) == 0:        
+            out.write('  propagatedBuildInputs  = [];\n')
+        else:
+            # TODO(breakds): Make it better formatted            
+            out.write('  propagatedBuildInputs  = [ {} ];\n'.format(' '.join(build_depends)))
         out.write('\n')
         out.write('  src = fetchFromGitHub {\n')
         out.write('    owner = "{}";\n'.format(package.owner))
@@ -119,6 +146,35 @@ def GenerateNixFile(directory, package, sha256):
         out.write('    license = stdenv.lib.licenses.bsd3;\n')
         out.write('  };\n')
         out.write('}\n')
+
+
+def GetRosDependency(path):
+    package_xml = pathlib.Path(path, 'package.xml')
+
+    if not package_xml.exists():
+        return [], []
+
+    root = ET.parse(package_xml).getroot()
+
+    build_depends = []
+    for dep in root.findall('build_depend'):
+        build_depends.append(dep.text)
+
+    run_depends = []
+    for dep in root.findall('run_depend'):
+        run_depends.append(dep.text)
+
+    return build_depends, run_depends
+
+
+def GetInstalledPackages(parent_dir):
+    result = []
+    for item in os.listdir(parent_dir):
+        path = pathlib.Path(parent_dir, item)
+        if path.is_dir():
+            result.append(item)
+
+    return result
 
 
 @click.command()
@@ -141,17 +197,33 @@ def main(package_list):
     package = all_modules[package_name]
     print(package)
 
-    ret = subprocess.run(['nix-prefetch-url', '--unpack', package.uri], capture_output=True)
+    ret = subprocess.run(['nix-prefetch-url', '--unpack',
+                          '--print-path', package.uri], capture_output=True)
 
     if ret.returncode is not 0:
         Logger.Fail('Failed to get the sha256 of {}'.format(package_name))
         return
 
-    sha256 = ret.stdout.decode('ascii').strip()
+    sha256, unpacked_path = ret.stdout.decode('ascii').strip().split('\n')
 
-    GenerateNixFile(os.getcwd(), package, sha256)
+    # Handle dependencies
+    build_deps, run_deps = GetRosDependency(unpacked_path)
+    installed = GetInstalledPackages(os.getcwd())
 
-    Logger.Ok('{}/default.nix generated.'.format(package_name))
+    print_formatted_text('Build Dependencies:')
+    for dep in build_deps:
+        if dep in installed:
+            print_formatted_text(HTML('  <installed>{}</installed>'.format(dep)),
+                                 style=APP_STYLE)
+        else:
+            print_formatted_text(HTML('  <uninstalled>{}</uninstalled>'.format(dep)),
+                                 style=APP_STYLE)
+
+    if PromptForYesOrNo('Do you want to generate for package {}'.format(package_name)):
+        GenerateNixFile(os.getcwd(), package, sha256, build_deps)
+        Logger.Ok('{}/default.nix generated.'.format(package_name))
+    else:
+        Logger.Ok('Aborted')
     
 
 
