@@ -43,8 +43,8 @@ let extraPackages = with pkgs.python2Packages; rec {
     };
 
 in {
-  inherit ros-python catkin;
-  inherit (extraPackages) rospkg catkin-pkg rosdep;
+  inherit ros-python catkin rosdep;
+  inherit (extraPackages) rospkg catkin-pkg;
     
   all = pkgs.buildEnv rec {
     name = "ros-base";

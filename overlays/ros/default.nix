@@ -8,7 +8,12 @@ self: super:
   };
 
   python-rospkg = self.ros-base.rospkg;
-  python-netifaces = super.python2Packages.netifaces;
+  python-rosdep = self.ros-base.rosdep;
+  python-catkin-pkg = self.ros-base.catkin-pkg;
+  python-netifaces = self.python2Packages.netifaces;
+  python-numpy = self.python2Packages.numpy;
+  python-yaml = self.python2Packages.pyyaml;
+  python-defusedxml = self.python2Packages.defusedxml;
 
   genmsg = self.callPackage ../../pkgs/ros/genmsg {};
   gencpp = self.callPackage ../../pkgs/ros/gencpp {};
@@ -44,4 +49,6 @@ self: super:
   ros_environment = self.callPackage ../../pkgs/ros/ros_environment {};
   roslz4 = self.callPackage ../../pkgs/ros/roslz4 {};
   std_srvs = self.callPackage ../../pkgs/ros/std_srvs {};
+  cmake_modules = self.callPackage ../../pkgs/ros/cmake_modules {};
+  rosmaster = self.callPackage ../../pkgs/ros/rosmaster {};
 }
