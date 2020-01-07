@@ -97,7 +97,7 @@ def PromptForYesOrNo(message):
     answer = prompt(
         [
             ('class:prompt_text', message),
-            ('', '[yes/NO] ')
+            ('', ' [yes/NO] ')
         ],
         style=APP_STYLE, default='no',
         completer=completer, validator=validator)
@@ -105,18 +105,18 @@ def PromptForYesOrNo(message):
     return answer == 'yes'
 
 
-def GenerateNixFile(directory, package, sha256, build_depends):
+def GenerateNixFile(directory, package, sha256, deps):
     package_dir = pathlib.Path(directory, package.pname)
     package_dir.mkdir(parents=True, exist_ok=True)
     config_path = pathlib.Path(package_dir, 'default.nix')
 
     with open(config_path, 'w') as out:
-        if len(build_depends) == 0:
+        if len(deps) == 0:
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
         else:
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub,\n')
             # TODO(breakds): Make it better formatted
-            out.write(' {} '.format(', '.join(build_depends)))
+            out.write(' {} '.format(', '.join(deps)))
             out.write('}:\n')
         out.write('\n')
         out.write('let pname = "{}";\n'.format(package.pname))
@@ -127,11 +127,11 @@ def GenerateNixFile(directory, package, sha256, build_depends):
         out.write('in buildRosPackage {\n')
         out.write('  name = "${pname}-${version}";\n')
         out.write('\n')
-        if len(build_depends) == 0:        
+        if len(deps) == 0:        
             out.write('  propagatedBuildInputs  = [];\n')
         else:
             # TODO(breakds): Make it better formatted            
-            out.write('  propagatedBuildInputs  = [ {} ];\n'.format(' '.join(build_depends)))
+            out.write('  propagatedBuildInputs  = [ {} ];\n'.format(' '.join(deps)))
         out.write('\n')
         out.write('  src = fetchFromGitHub {\n')
         out.write('    owner = "{}";\n'.format(package.owner))
@@ -210,7 +210,7 @@ def main(package_list):
     build_deps, run_deps = GetRosDependency(unpacked_path)
     installed = GetInstalledPackages(os.getcwd())
 
-    print_formatted_text('Build Dependencies:')
+    print_formatted_text(HTML('<skyblue>Build Dependencies:</skyblue>'))
     for dep in build_deps:
         if dep in installed:
             print_formatted_text(HTML('  <installed>{}</installed>'.format(dep)),
@@ -219,8 +219,18 @@ def main(package_list):
             print_formatted_text(HTML('  <uninstalled>{}</uninstalled>'.format(dep)),
                                  style=APP_STYLE)
 
-    if PromptForYesOrNo('Do you want to generate for package {}'.format(package_name)):
-        GenerateNixFile(os.getcwd(), package, sha256, build_deps)
+    print_formatted_text(HTML('<skyblue>Run Dependencies:</skyblue>'))
+    for dep in run_deps:
+        if dep in installed:
+            print_formatted_text(HTML('  <installed>{}</installed>'.format(dep)),
+                                 style=APP_STYLE)
+        else:
+            print_formatted_text(HTML('  <uninstalled>{}</uninstalled>'.format(dep)),
+                                 style=APP_STYLE)
+
+    if PromptForYesOrNo('Do you want to generate for package {}?'.format(package_name)):
+        GenerateNixFile(os.getcwd(), package, sha256,
+                        list(set().union(build_deps, run_deps)))
         Logger.Ok('{}/default.nix generated.'.format(package_name))
     else:
         Logger.Ok('Aborted')
