@@ -10,6 +10,9 @@ self: super:
   genmsg = self.callPackage ../../pkgs/ros/genmsg {};
   gencpp = self.callPackage ../../pkgs/ros/gencpp {};
   genpy = self.callPackage ../../pkgs/ros/genpy {};
+  geneus = self.callPackage ../../pkgs/ros/geneus {};
+  genlisp = self.callPackage ../../pkgs/ros/genlisp {};
+  gennodejs = self.callPackage ../../pkgs/ros/gennodejs {};
   rosclean = self.callPackage ../../pkgs/ros/rosclean {};
   console_bridge = self.callPackage ../../pkgs/ros/console_bridge {};
   cpp_common = self.callPackage ../../pkgs/ros/cpp_common {};
