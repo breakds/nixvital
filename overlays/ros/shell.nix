@@ -11,7 +11,7 @@ in pkgs.mkShell rec {
                              rostime rosunit rosconsole
                              rosconsole_bridge rosmsg
                              roscpp_core roscpp_traits roscpp_serialization
-                             message_generation
+                             message_generation message_runtime
                            ];
 
   # To use rosdep without sudo, environment variable needs to be

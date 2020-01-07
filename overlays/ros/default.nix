@@ -25,5 +25,6 @@ self: super:
   roscpp_traits = self.callPackage ../../pkgs/ros/roscpp_traits {};
   roscpp_serialization = self.callPackage ../../pkgs/ros/roscpp_serialization {};
   message_generation = self.callPackage ../../pkgs/ros/message_generation {};
+  message_runtime = self.callPackage ../../pkgs/ros/message_runtime {};
   roscpp = self.callPackage ../../pkgs/ros/roscpp {}; # Not finished yet.
 }
