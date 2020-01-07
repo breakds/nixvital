@@ -1,4 +1,5 @@
-{ stdenv, buildRosPackage, fetchFromGitHub }:
+{ stdenv, buildRosPackage, fetchFromGitHub,
+ genpy, geneus, gencpp, genmsg, gennodejs, genlisp }:
 
 let pname = "message_generation";
     version = "0.4.0";
@@ -8,7 +9,7 @@ let pname = "message_generation";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [];
+  propagatedBuildInputs  = [ genpy geneus gencpp genmsg gennodejs genlisp ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";
