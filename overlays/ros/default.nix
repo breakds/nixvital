@@ -19,6 +19,8 @@ self: super:
   rosconsole_bridge = self.callPackage ../../pkgs/ros/rosconsole_bridge {};
   rosmsg = self.callPackage ../../pkgs/ros/rosmsg {};
   roscpp_core = self.callPackage ../../pkgs/ros/roscpp_core {};
+  roscpp_traits = self.callPackage ../../pkgs/ros/roscpp_traits {};
+  roscpp_serialization = self.callPackage ../../pkgs/ros/roscpp_serialization {};
   message_generation = self.callPackage ../../pkgs/ros/message_generation {};
   roscpp = self.callPackage ../../pkgs/ros/roscpp {}; # Not finished yet.
 }
