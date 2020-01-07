@@ -42,4 +42,6 @@ self: super:
   roscpp = self.callPackage ../../pkgs/ros/roscpp {};
   roscpp_tutorials = self.callPackage ../../pkgs/ros/roscpp_tutorials {};
   ros_environment = self.callPackage ../../pkgs/ros/ros_environment {};
+  roslz4 = self.callPackage ../../pkgs/ros/roslz4 {};
+  std_srvs = self.callPackage ../../pkgs/ros/std_srvs {};
 }
