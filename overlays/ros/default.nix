@@ -29,5 +29,6 @@ self: super:
   roslang = self.callPackage ../../pkgs/ros/roslang {};
   std_msgs = self.callPackage ../../pkgs/ros/std_msgs {};
   xmlrpcpp = self.callPackage ../../pkgs/ros/xmlrpcpp {};
+  rosgraph_msgs = self.callPackage ../../pkgs/ros/rosgraph_msgs {};
   roscpp = self.callPackage ../../pkgs/ros/roscpp {}; # Not finished yet.
 }
