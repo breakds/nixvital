@@ -168,7 +168,8 @@ def GetRosDependency(path):
 
 
 def GetInstalledPackages(parent_dir):
-    result = []
+    result = ['python-rospkg', 'python-netifaces',
+              'boost']
     for item in os.listdir(parent_dir):
         path = pathlib.Path(parent_dir, item)
         if path.is_dir():

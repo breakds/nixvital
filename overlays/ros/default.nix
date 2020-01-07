@@ -7,6 +7,9 @@ self: super:
     inherit (self.ros-base) ros-python catkin;
   };
 
+  python-rospkg = self.ros-base.rospkg;
+  python-netifaces = super.python2Packages.netifaces;
+
   genmsg = self.callPackage ../../pkgs/ros/genmsg {};
   gencpp = self.callPackage ../../pkgs/ros/gencpp {};
   genpy = self.callPackage ../../pkgs/ros/genpy {};
@@ -35,6 +38,7 @@ self: super:
   map_msgs = self.callPackage ../../pkgs/ros/map_msgs {};
   xmlrpcpp = self.callPackage ../../pkgs/ros/xmlrpcpp {};
   rosgraph_msgs = self.callPackage ../../pkgs/ros/rosgraph_msgs {};
+  rosgraph = self.callPackage ../../pkgs/ros/rosgraph {};
   roscpp = self.callPackage ../../pkgs/ros/roscpp {};
   roscpp_tutorials = self.callPackage ../../pkgs/ros/roscpp_tutorials {};
   ros_environment = self.callPackage ../../pkgs/ros/ros_environment {};
