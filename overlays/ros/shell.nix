@@ -13,8 +13,9 @@ in pkgs.mkShell rec {
                              roscpp_core roscpp_traits roscpp_serialization
                              message_generation message_runtime
                              roslang xmlrpcpp
-                             std_msgs rosgraph_msgs
+                             std_msgs rosgraph_msgs geometry_msgs sensor_msgs
                              roscpp roscpp_tutorials
+                             ros_environment
                            ];
 
   # To use rosdep without sudo, environment variable needs to be
