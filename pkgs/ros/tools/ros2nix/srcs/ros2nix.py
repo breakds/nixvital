@@ -158,11 +158,17 @@ def GetRosDependency(path):
 
     build_depends = []
     for dep in root.findall('build_depend'):
-        build_depends.append(dep.text)
+        item = dep.text
+        if item == 'boost':
+            item = 'boost162'
+        build_depends.append(item)
 
     run_depends = []
     for dep in root.findall('run_depend'):
-        run_depends.append(dep.text)
+        item = dep.text
+        if item == 'boost':
+            item = 'boost162'
+        run_depends.append(item)
 
     return build_depends, run_depends
 
@@ -170,7 +176,7 @@ def GetRosDependency(path):
 def GetInstalledPackages(parent_dir):
     result = ['python-rospkg', 'python-netifaces', 'python-catkin-pkg',
               'python-numpy', 'python-yaml', 'python-rosdep',
-              'boost', 'lz4', 'bzip2', 'pkg-config',
+              'boost162', 'lz4', 'bzip2', 'pkg-config',
               'gtest', 'tinyxml', 'python-defusedxml']
     for item in os.listdir(parent_dir):
         path = pathlib.Path(parent_dir, item)
