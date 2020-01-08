@@ -89,4 +89,6 @@ self: super:
   tf2_py = self.callPackage ../../pkgs/ros/tf2_py {};
   tf2_ros = self.callPackage ../../pkgs/ros/tf2_ros {};
   tf = self.callPackage ../../pkgs/ros/tf {};
+  image_transport = self.callPackage ../../pkgs/ros/image_transport {};
+  resource_retriever = self.callPackage ../../pkgs/ros/resource_retriever {};
 }
