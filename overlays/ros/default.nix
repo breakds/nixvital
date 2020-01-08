@@ -62,4 +62,6 @@ self: super:
   roslaunch = self.callPackage ../../pkgs/ros/roslaunch {};
   rostest = self.callPackage ../../pkgs/ros/rostest {};
   topic_tools = self.callPackage ../../pkgs/ros/topic_tools {};
+  rosbag_storage = self.callPackage ../../pkgs/ros/rosbag_storage {};
+  rosbag = self.callPackage ../../pkgs/ros/rosbag {};
 }

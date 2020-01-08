@@ -19,7 +19,7 @@ in pkgs.mkShell rec {
                              ros_environment roslz4 rosgraph
                              std_srvs cmake_modules rospack rosbash roslib
                              rospy rosmaster rosparam rosout roslaunch rostest
-                             topic_tools
+                             topic_tools rosbag_storage rosbag
                            ];
 
   # To use rosdep without sudo, environment variable needs to be
