@@ -64,4 +64,9 @@ self: super:
   topic_tools = self.callPackage ../../pkgs/ros/topic_tools {};
   rosbag_storage = self.callPackage ../../pkgs/ros/rosbag_storage {};
   rosbag = self.callPackage ../../pkgs/ros/rosbag {};
+  actionlib = self.callPackage ../../pkgs/ros/actionlib {};
+  ros_core = self.callPackage ../../pkgs/ros/ros_core {};
+  ros_base = self.callPackage ../../pkgs/ros/ros_base {};
+  class_loader = self.callPackage ../../pkgs/ros/class_loader {};
+  pluginlib = self.callPackage ../../pkgs/ros/pluginlib {};
 }
