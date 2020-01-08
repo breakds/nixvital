@@ -23,6 +23,7 @@ in pkgs.mkShell rec {
                              actionlib ros_core ros_base class_loader pluginlib
                              rosbag_migration_rule trajectory_msgs control_msgs
                              diagnostic_msgs shape_msgs stereo_msgs visualization_msgs common_msgs
+                             rostopic rosnode rosservice rosbuild roswtf
                            ];
 
   # To use rosdep without sudo, environment variable needs to be

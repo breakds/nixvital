@@ -77,4 +77,9 @@ self: super:
   stereo_msgs = self.callPackage ../../pkgs/ros/stereo_msgs {};
   visualization_msgs = self.callPackage ../../pkgs/ros/visualization_msgs {};
   common_msgs = self.callPackage ../../pkgs/ros/common_msgs {};
+  rostopic = self.callPackage ../../pkgs/ros/rostopic {};
+  rosnode = self.callPackage ../../pkgs/ros/rosnode {};
+  rosservice = self.callPackage ../../pkgs/ros/rosservice {};
+  rosbuild = self.callPackage ../../pkgs/ros/rosbuild {};
+  roswtf = self.callPackage ../../pkgs/ros/roswtf {};
 }
