@@ -15,6 +15,7 @@ self: super:
   python-yaml = self.python2Packages.pyyaml;
   python-defusedxml = self.python2Packages.defusedxml;
   python-paramiko = self.python2Packages.paramiko;
+  python-imaging = self.python2Packages.pillow;
 
   genmsg = self.callPackage ../../pkgs/ros/genmsg {};
   gencpp = self.callPackage ../../pkgs/ros/gencpp {};
