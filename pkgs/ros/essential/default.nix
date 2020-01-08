@@ -1,7 +1,7 @@
 # See https://discourse.nixos.org/t/how-to-add-custom-python-package/536/3
 # And https://github.com/NixOS/nixpkgs/pull/54266#issuecomment-455592425
 
-# The package ros-base is a combination of
+# The package ros-essential is a combination of
 #
 # 1. A python environment with required ROS packages.
 # 2. catkin, the CMake based ROS build system
@@ -47,7 +47,7 @@ in {
   inherit (extraPackages) rospkg catkin-pkg;
     
   all = pkgs.buildEnv rec {
-    name = "ros-base";
+    name = "ros-essential";
     paths = [ ros-python rosdep rosinstall-generator catkin ];
   };
 }

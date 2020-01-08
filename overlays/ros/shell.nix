@@ -6,7 +6,7 @@ let pkgs = import <nixpkgs> {
 in pkgs.mkShell rec {
   name = "ROS-D";
   
-  buildInputs = with pkgs; [ ros-base.all genmsg gencpp genpy geneus gennodejs genlisp
+  buildInputs = with pkgs; [ ros-essential.all genmsg gencpp genpy geneus gennodejs genlisp
                              rosclean console_bridge cpp_common
                              rostime rosunit rosconsole
                              rosconsole_bridge rosmsg

@@ -1,15 +1,15 @@
 self: super:
 
 {
-  ros-base = self.callPackage ../../pkgs/ros/base/default.nix {};
+  ros-essential = self.callPackage ../../pkgs/ros/essential/default.nix {};
   
   buildRosPackage = self.callPackage ../../pkgs/ros/build.nix {
-    inherit (self.ros-base) ros-python catkin;
+    inherit (self.ros-essential) ros-python catkin;
   };
 
-  python-rospkg = self.ros-base.rospkg;
-  python-rosdep = self.ros-base.rosdep;
-  python-catkin-pkg = self.ros-base.catkin-pkg;
+  python-rospkg = self.ros-essential.rospkg;
+  python-rosdep = self.ros-essential.rosdep;
+  python-catkin-pkg = self.ros-essential.catkin-pkg;
   python-netifaces = self.python2Packages.netifaces;
   python-numpy = self.python2Packages.numpy;
   python-yaml = self.python2Packages.pyyaml;
