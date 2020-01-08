@@ -69,4 +69,12 @@ self: super:
   ros_base = self.callPackage ../../pkgs/ros/ros_base {};
   class_loader = self.callPackage ../../pkgs/ros/class_loader {};
   pluginlib = self.callPackage ../../pkgs/ros/pluginlib {};
+  rosbag_migration_rule = self.callPackage ../../pkgs/ros/rosbag_migration_rule {};
+  trajectory_msgs = self.callPackage ../../pkgs/ros/trajectory_msgs {};
+  control_msgs = self.callPackage ../../pkgs/ros/control_msgs {};
+  diagnostic_msgs = self.callPackage ../../pkgs/ros/diagnostic_msgs {};
+  shape_msgs = self.callPackage ../../pkgs/ros/shape_msgs {};
+  stereo_msgs = self.callPackage ../../pkgs/ros/stereo_msgs {};
+  visualization_msgs = self.callPackage ../../pkgs/ros/visualization_msgs {};
+  common_msgs = self.callPackage ../../pkgs/ros/common_msgs {};
 }
