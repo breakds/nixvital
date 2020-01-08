@@ -55,4 +55,6 @@ self: super:
   roslib = self.callPackage ../../pkgs/ros/roslib {};  
   rosmaster = self.callPackage ../../pkgs/ros/rosmaster {};
   rospy = self.callPackage ../../pkgs/ros/rospy {};
+  rosparam = self.callPackage ../../pkgs/ros/rosparam {};
+  rosout = self.callPackage ../../pkgs/ros/rosout {};
 }
