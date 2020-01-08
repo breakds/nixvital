@@ -86,4 +86,7 @@ self: super:
   message_filters = self.callPackage ../../pkgs/ros/message_filters {};
   angles = self.callPackage ../../pkgs/ros/angles {};
   tf2 = self.callPackage ../../pkgs/ros/tf2 {};
+  tf2_py = self.callPackage ../../pkgs/ros/tf2_py {};
+  tf2_ros = self.callPackage ../../pkgs/ros/tf2_ros {};
+  tf = self.callPackage ../../pkgs/ros/tf {};
 }
