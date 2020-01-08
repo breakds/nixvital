@@ -110,6 +110,9 @@ def GenerateNixFile(directory, package, sha256, deps):
     package_dir.mkdir(parents=True, exist_ok=True)
     config_path = pathlib.Path(package_dir, 'default.nix')
 
+    if 'catkin' in deps:
+        deps.remove('catkin')
+
     with open(config_path, 'w') as out:
         if len(deps) == 0:
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
@@ -175,7 +178,7 @@ def GetRosDependency(path):
 
 def GetInstalledPackages(parent_dir):
     result = ['python-rospkg', 'python-netifaces', 'python-catkin-pkg',
-              'python-numpy', 'python-yaml', 'python-rosdep',
+              'python-numpy', 'python-yaml', 'python-rosdep', 'python-paramiko',
               'boost162', 'lz4', 'bzip2', 'pkg-config',
               'gtest', 'tinyxml', 'python-defusedxml']
     for item in os.listdir(parent_dir):

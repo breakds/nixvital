@@ -14,6 +14,7 @@ self: super:
   python-numpy = self.python2Packages.numpy;
   python-yaml = self.python2Packages.pyyaml;
   python-defusedxml = self.python2Packages.defusedxml;
+  python-paramiko = self.python2Packages.paramiko;
 
   genmsg = self.callPackage ../../pkgs/ros/genmsg {};
   gencpp = self.callPackage ../../pkgs/ros/gencpp {};
@@ -57,4 +58,6 @@ self: super:
   rospy = self.callPackage ../../pkgs/ros/rospy {};
   rosparam = self.callPackage ../../pkgs/ros/rosparam {};
   rosout = self.callPackage ../../pkgs/ros/rosout {};
+  roslaunch = self.callPackage ../../pkgs/ros/roslaunch {};
+  rostest = self.callPackage ../../pkgs/ros/rostest {};
 }
