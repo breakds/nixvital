@@ -60,4 +60,5 @@ self: super:
   rosout = self.callPackage ../../pkgs/ros/rosout {};
   roslaunch = self.callPackage ../../pkgs/ros/roslaunch {};
   rostest = self.callPackage ../../pkgs/ros/rostest {};
+  topic_tools = self.callPackage ../../pkgs/ros/topic_tools {};
 }
