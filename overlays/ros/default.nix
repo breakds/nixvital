@@ -52,6 +52,7 @@ self: super:
   cmake_modules = self.callPackage ../../pkgs/ros/cmake_modules {};
   rospack = self.callPackage ../../pkgs/ros/rospack {};
   rosbash = self.callPackage ../../pkgs/ros/rosbash {};
-  roslib = self.callPackage ../../pkgs/ros/roslib {};
+  roslib = self.callPackage ../../pkgs/ros/roslib {};  
   rosmaster = self.callPackage ../../pkgs/ros/rosmaster {};
+  rospy = self.callPackage ../../pkgs/ros/rospy {};
 }
