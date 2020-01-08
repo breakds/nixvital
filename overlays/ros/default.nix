@@ -82,4 +82,7 @@ self: super:
   rosservice = self.callPackage ../../pkgs/ros/rosservice {};
   rosbuild = self.callPackage ../../pkgs/ros/rosbuild {};
   roswtf = self.callPackage ../../pkgs/ros/roswtf {};
+  tf2_msgs = self.callPackage ../../pkgs/ros/tf2_msgs {};
+  message_filters = self.callPackage ../../pkgs/ros/message_filters {};
+  angles = self.callPackage ../../pkgs/ros/angles {};
 }
