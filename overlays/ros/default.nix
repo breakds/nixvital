@@ -50,5 +50,6 @@ self: super:
   roslz4 = self.callPackage ../../pkgs/ros/roslz4 {};
   std_srvs = self.callPackage ../../pkgs/ros/std_srvs {};
   cmake_modules = self.callPackage ../../pkgs/ros/cmake_modules {};
+  rospack = self.callPackage ../../pkgs/ros/rospack {};
   rosmaster = self.callPackage ../../pkgs/ros/rosmaster {};
 }
