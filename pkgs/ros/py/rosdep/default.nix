@@ -1,5 +1,5 @@
 { lib, buildPythonApplication, fetchPypi,
-  rospkg, rosdistro,
+  rospkg, rosdistro, setuptools,
   nose, mock, flake8 }:
 
 
@@ -11,7 +11,7 @@ let pname = "rosdep";
     description = "Command-line tool for installing system dependencies on a variety of platforms.";
     license = lib.licenses.bsd3;
 
-    propagatedBuildInputs = [ rospkg rosdistro ];
+    propagatedBuildInputs = [ rospkg rosdistro setuptools ];
 
 in buildPythonApplication rec {
   inherit pname version propagatedBuildInputs;

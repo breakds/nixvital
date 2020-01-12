@@ -3,29 +3,39 @@ let pkgs = import <nixpkgs> {
       overlays = [ (import ./default.nix) ];
     };
 
+    python-env = pkgs.python2.withPackages (ps: [
+      ps.rosdistro
+    ]);
+
 in pkgs.mkShell rec {
   name = "ROS-D";
+
+  buildInputs = with pkgs; [
+    python-env
+    python2Packages.rosdep
+    python2Packages.rosinstall-generator
+  ];
   
-  buildInputs = with pkgs; [ ros-essential.all genmsg gencpp genpy geneus gennodejs genlisp
-                             rosclean console_bridge cpp_common
-                             rostime rosunit rosconsole
-                             rosconsole_bridge rosmsg
-                             roscpp_core roscpp_traits roscpp_serialization
-                             message_generation message_runtime
-                             roslang xmlrpcpp
-                             std_msgs rosgraph_msgs geometry_msgs sensor_msgs actionlib_msgs
-                             nav_msgs map_msgs
-                             roscpp roscpp_tutorials
-                             ros_environment roslz4 rosgraph
-                             std_srvs cmake_modules rospack rosbash roslib
-                             rospy rosmaster rosparam rosout roslaunch rostest
-                             topic_tools rosbag_storage rosbag
-                             actionlib ros_core ros_base class_loader pluginlib
-                             rosbag_migration_rule trajectory_msgs control_msgs
-                             diagnostic_msgs shape_msgs stereo_msgs visualization_msgs common_msgs
-                             rostopic rosnode rosservice rosbuild roswtf tf2_msgs message_filters
-                             angles tf2 tf2_py tf2_ros tf image_transport resource_retriever
-                           ];
+  # buildInputs = with pkgs; [ ros-essential.all genmsg gencpp genpy geneus gennodejs genlisp
+  #                            rosclean console_bridge cpp_common
+  #                            rostime rosunit rosconsole
+  #                            rosconsole_bridge rosmsg
+  #                            roscpp_core roscpp_traits roscpp_serialization
+  #                            message_generation message_runtime
+  #                            roslang xmlrpcpp
+  #                            std_msgs rosgraph_msgs geometry_msgs sensor_msgs actionlib_msgs
+  #                            nav_msgs map_msgs
+  #                            roscpp roscpp_tutorials
+  #                            ros_environment roslz4 rosgraph
+  #                            std_srvs cmake_modules rospack rosbash roslib
+  #                            rospy rosmaster rosparam rosout roslaunch rostest
+  #                            topic_tools rosbag_storage rosbag
+  #                            actionlib ros_core ros_base class_loader pluginlib
+  #                            rosbag_migration_rule trajectory_msgs control_msgs
+  #                            diagnostic_msgs shape_msgs stereo_msgs visualization_msgs common_msgs
+  #                            rostopic rosnode rosservice rosbuild roswtf tf2_msgs message_filters
+  #                            angles tf2 tf2_py tf2_ros tf image_transport resource_retriever
+  #                          ];
 
   # To use rosdep without sudo, environment variable needs to be
   # set. For example
