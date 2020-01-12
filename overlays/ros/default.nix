@@ -16,9 +16,13 @@ in {
   python36 = super.python36.override rosPythonEssential;
   python37 = super.python37.override rosPythonEssential;
 
-  # buildRosPackage = self.callPackage ../../pkgs/ros/build.nix {
-  #   inherit (self.ros-essential) ros-python catkin;
-  # };
+  # This determines which python version to use.
+  rosPythonPackages = self.python27.pkgs;
+
+  catkin = self.callPackage ../../pkgs/ros/catkin {};
+
+  buildRosPackage = self.callPackage ../../pkgs/ros/build.nix {};
+
 
   # python-rospkg = self.ros-essential.rospkg;
   # python-rosdep = self.ros-essential.rosdep;
@@ -30,12 +34,13 @@ in {
   # python-paramiko = self.python2Packages.paramiko;
   # python-imaging = self.python2Packages.pillow;
 
-  # genmsg = self.callPackage ../../pkgs/ros/genmsg {};
-  # gencpp = self.callPackage ../../pkgs/ros/gencpp {};
-  # genpy = self.callPackage ../../pkgs/ros/genpy {};
-  # geneus = self.callPackage ../../pkgs/ros/geneus {};
-  # genlisp = self.callPackage ../../pkgs/ros/genlisp {};
-  # gennodejs = self.callPackage ../../pkgs/ros/gennodejs {};
+  genmsg = self.callPackage ../../pkgs/ros/genmsg {};
+  gencpp = self.callPackage ../../pkgs/ros/gencpp {};
+  genpy = self.callPackage ../../pkgs/ros/genpy {};
+  geneus = self.callPackage ../../pkgs/ros/geneus {};
+  genlisp = self.callPackage ../../pkgs/ros/genlisp {};
+  gennodejs = self.callPackage ../../pkgs/ros/gennodejs {};
+  
   # rosclean = self.callPackage ../../pkgs/ros/rosclean {};
   # console_bridge = self.callPackage ../../pkgs/ros/console_bridge {};
   # cpp_common = self.callPackage ../../pkgs/ros/cpp_common {};

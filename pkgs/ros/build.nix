@@ -1,16 +1,19 @@
 # Modified from https://github.com/airalab/airapkgs
 
-{ stdenv, cmake, ros-python, catkin }:
+{ stdenv, cmake, pythonPackages, catkin }:
 
-attrs:
+{ nativeBuildInputs ? [],
+  doCheck ? true,
+  ... }@attrs:
 
 stdenv.mkDerivation(attrs // rec {
+  # FIXME: In the future do not just use propagatedbuildinputs as the
+  # target arch might be different.
   propagatedBuildInputs = [
-    cmake ros-python catkin] ++ (attrs.propagatedBuildInputs or []);
+    cmake catkin pythonPackages.wrapPython
+  ] ++ (attrs.propagatedBuildInputs or []);
 
   doCheck = attrs.doCheck or false;
-
-  ROS_LANG_DISABLE = "geneus:genlisp:gennodejs";
 
   cmakeFlags = "-DCATKIN_ENABLE_TESTING=${if doCheck then "ON" else "OFF"} -DSETUPTOOLS_DEB_LAYOUT=OFF";
 

@@ -14,6 +14,10 @@ in pkgs.mkShell rec {
     python-env
     python2Packages.rosdep
     python2Packages.rosinstall-generator
+    catkin
+
+    # Message Generation Packages
+    genmsg gencpp genpy geneus genlisp gennodejs
   ];
   
   # buildInputs = with pkgs; [ ros-essential.all genmsg gencpp genpy geneus gennodejs genlisp

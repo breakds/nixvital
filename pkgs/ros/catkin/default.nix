@@ -1,5 +1,5 @@
 { stdenv, fetchFromGitHub,
-  catkin-pkg, rospkg, empy, cmake }:
+  makeSetupHook, rosPythonPackages, cmake }:
 
 let pname = "catkin";
     version = "0.7.20";
@@ -8,6 +8,15 @@ let pname = "catkin";
 
     catkinPythonSetupPatch = ./catkin_python_setup.patch;
     pythonDistutilsInstallPatch = ./python_distutils_install.sh.in.patch;
+
+    # Credit to lopsided98's nix-ros-overlay
+    #
+    # https://github.com/lopsided98/nix-ros-overlay/blob/master/catkin-setup-hook/default.nix
+    #
+    # 1. Remove setup.bash 
+    setupHook = makeSetupHook {
+      name = "catkin-setup-hook";
+    } ./setup-hook.sh;
 
 in stdenv.mkDerivation {
   name = "${pname}-${version}";
@@ -22,8 +31,14 @@ in stdenv.mkDerivation {
   cmakeFlags = "-DCATKIN_ENABLE_TESTING=OFF -DSETUPTOOLS_DEB_LAYOUT=OFF";
   
   propagatedBuildInputs = [
-    catkin-pkg rospkg empy cmake
+    setupHook
+    rosPythonPackages.catkin-pkg
+    rosPythonPackages.empy
+    # pythonPackages.rospkg
   ];
+  nativeBuildInputs = [ cmake ];
+
+  doCheck = true;
 
   patchPhase = ''
     sed -i "s/check_output(\[/check_output(\['sh', /" ./python/catkin/environment_cache.py
