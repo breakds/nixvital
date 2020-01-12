@@ -34,6 +34,7 @@ addEnvHooks "$hostOffset" _findCatkinEnvHooks
 # Copied from lopisded98
 _runCatkinEnvHook() {
     [ -n "$1" ] || return 0
+    echo "Sourcing $(basename $1)"
     # Causes hooks to look in the wrong place
     unset CATKIN_ENV_HOOK_WORKSPACE
     # Some hooks assume set +u
