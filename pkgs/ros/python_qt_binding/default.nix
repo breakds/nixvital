@@ -15,6 +15,7 @@ in buildRosPackage {
   propagatedBuildInputs  = [
     qt5.qtbase
     rosPythonPackages.pyqt5
+    rosPythonPackages.sip
     rosbuild
   ];
 
