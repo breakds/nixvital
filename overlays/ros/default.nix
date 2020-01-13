@@ -106,4 +106,5 @@ in {
   urdfdom = self.callPackage ../../pkgs/ros/urdfdom {};
   urdf_parser_plugin = self.callPackage ../../pkgs/ros/urdf_parser_plugin {};
   urdf = self.callPackage ../../pkgs/ros/urdf {};
+  python_qt_binding = self.callPackage ../../pkgs/ros/python_qt_binding {};
 }

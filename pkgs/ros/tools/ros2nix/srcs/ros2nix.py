@@ -196,6 +196,8 @@ def GetRosDependency(path, show_xml=False):
                     item = 'rosPythonPackages.pyyaml'
                 elif item == 'python-imaging':
                     item = 'rosPythonPackages.pillow'
+                elif item == 'python-qt5-bindings':
+                    item = 'rosPythonPackages.pyqt5'
                 else:
                     item = 'rosPythonPackages.{}'.format(item[7:])
             yield item
@@ -215,7 +217,7 @@ def GetInstalledPackages(parent_dir):
 
     py_packages = ['rospkg', 'netifaces', 'catkin-pkg', 'numpy',
                    'pyyaml', 'rosdep', 'paramiko', 'defusedxml',
-                   'pillow']
+                   'pillow', 'pyqt5']
 
     result.extend(['rosPythonPackages.' + x for x in py_packages])
     result.extend(['boost162', 'lz4', 'bzip2', 'pkg-config', 'gtest', 'tinyxml',
