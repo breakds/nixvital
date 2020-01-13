@@ -15,7 +15,7 @@ stdenv.mkDerivation(attrs // rec {
 
   doCheck = attrs.doCheck or false;
 
-  cmakeFlags = "-DCATKIN_ENABLE_TESTING=${if doCheck then "ON" else "OFF"} -DSETUPTOOLS_DEB_LAYOUT=OFF";
+  cmakeFlags = "-DCATKIN_ENABLE_TESTING=${if doCheck then "ON" else "OFF"} -DSETUPTOOLS_DEB_LAYOUT=OFF -DCMAKE_BUILD_TYPE=Release";
 
   preConfigure = ''
     if [ ! -e CMakeLists.txt ]; then

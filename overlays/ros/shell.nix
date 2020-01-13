@@ -40,7 +40,7 @@ in pkgs.mkShell rec {
     message_filters angles tf2 tf2_py tf2_ros tf
     image_transport resource_retriever
     laser_geometry interactive_markers interactive_marker_tutorials
-    media_export
+    media_export urdfdom_headers urdf_parser_plugin
   ];
   
   # To use rosdep without sudo, environment variable needs to be
