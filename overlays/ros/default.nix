@@ -105,4 +105,5 @@ in {
   urdfdom_headers = self.callPackage ../../pkgs/ros/urdfdom_headers {};
   urdfdom = self.callPackage ../../pkgs/ros/urdfdom {};
   urdf_parser_plugin = self.callPackage ../../pkgs/ros/urdf_parser_plugin {};
+  urdf = self.callPackage ../../pkgs/ros/urdf {};
 }

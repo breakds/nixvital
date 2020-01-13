@@ -41,7 +41,7 @@ in pkgs.mkShell rec {
     image_transport resource_retriever
     laser_geometry interactive_markers interactive_marker_tutorials
     media_export
-    urdfdom_headers urdf_parser_plugin urdfdom
+    urdfdom_headers urdf_parser_plugin urdfdom urdf
   ];
   
   # To use rosdep without sudo, environment variable needs to be

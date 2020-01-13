@@ -8,6 +8,8 @@ let pname = "urdfdom";
     version = "1.0.3";
     rosdistro = "kinetic";
 
+    urdfdomComfigCMakeInPatch = ./urdfdom-config.cmake.in.patch;
+
 in buildRosPackage {
   name = "${pname}-${version}";
 
@@ -22,6 +24,10 @@ in buildRosPackage {
     rev = "${version}";
     sha256 = "1i6xd6rhz024cwrhi5h7g4j7qv5v0b708mnlghk2vsczfjxshy6m";
   };
+
+  patchPhase = ''
+    patch ./cmake/urdfdom-config.cmake.in ${urdfdomComfigCMakeInPatch}
+  '';
 
   meta = {
     description = "urdfdom";
