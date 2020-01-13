@@ -182,6 +182,8 @@ def GetRosDependency(path, show_xml=False):
             if item.startswith('python-'):
                 if item == 'python-yaml':
                     item = 'rosPythonPackages.pyyaml'
+                elif item == 'python-imaging':
+                    item = 'rosPythonPackages.pillow'
                 else:
                     item = 'rosPythonPackages.{}'.format(item[7:])
             yield item
@@ -200,7 +202,8 @@ def GetInstalledPackages(parent_dir):
     result = []
 
     py_packages = ['rospkg', 'netifaces', 'catkin-pkg', 'numpy',
-                   'pyyaml', 'rosdep', 'paramiko', 'defusedxml']
+                   'pyyaml', 'rosdep', 'paramiko', 'defusedxml',
+                   'pillow']
 
     result.extend(['rosPythonPackages.' + x for x in py_packages])
     result.extend(['boost162', 'lz4', 'bzip2', 'pkg-config', 'gtest', 'tinyxml'])

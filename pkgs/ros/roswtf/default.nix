@@ -1,5 +1,13 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- roslaunch, python-rospkg, rosnode, rosgraph, rosservice, rostest, rosbuild, roslib, python-paramiko }:
+  rosPythonPackages,
+  rosgraph
+  ,rosnode
+  ,rostest
+  ,roslib
+  ,rosbuild
+  ,roslaunch
+  ,rosservice
+}:
 
 let pname = "roswtf";
     version = "1.12.14";
@@ -9,7 +17,17 @@ let pname = "roswtf";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ roslaunch python-rospkg rosnode rosgraph rosservice rostest rosbuild roslib python-paramiko ];
+  propagatedBuildInputs  = [
+    rosgraph
+    rosnode
+    rostest
+    roslib
+    rosPythonPackages.paramiko
+    rosPythonPackages.rospkg
+    rosbuild
+    roslaunch
+    rosservice
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

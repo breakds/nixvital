@@ -1,5 +1,7 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- python-defusedxml, rosgraph }:
+  rosPythonPackages,
+  rosgraph
+}:
 
 let pname = "rosmaster";
     version = "1.12.14";
@@ -9,7 +11,10 @@ let pname = "rosmaster";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ python-defusedxml rosgraph ];
+  propagatedBuildInputs  = [
+    rosPythonPackages.defusedxml
+    rosgraph
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

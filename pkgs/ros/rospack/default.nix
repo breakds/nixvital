@@ -1,5 +1,13 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- pkg-config, cmake_modules, python-rosdep, python, gtest, ros_environment, tinyxml, boost162, python-catkin-pkg }:
+  rosPythonPackages,
+  tinyxml
+  ,pkg-config
+  ,gtest
+  ,ros_environment
+  ,cmake_modules
+  ,python
+  ,boost162
+}:
 
 let pname = "rospack";
     version = "2.4.5";
@@ -9,7 +17,17 @@ let pname = "rospack";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ pkg-config cmake_modules python-rosdep python gtest ros_environment tinyxml boost162 python-catkin-pkg ];
+  propagatedBuildInputs  = [
+    tinyxml
+    pkg-config
+    gtest
+    ros_environment
+    cmake_modules
+    python
+    rosPythonPackages.catkin-pkg
+    rosPythonPackages.rosdep
+    boost162
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

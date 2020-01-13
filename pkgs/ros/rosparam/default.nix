@@ -1,5 +1,7 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- python-yaml, rosgraph }:
+  rosPythonPackages,
+  rosgraph
+}:
 
 let pname = "rosparam";
     version = "1.12.14";
@@ -9,7 +11,10 @@ let pname = "rosparam";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ python-yaml rosgraph ];
+  propagatedBuildInputs  = [
+    rosgraph
+    rosPythonPackages.pyyaml
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

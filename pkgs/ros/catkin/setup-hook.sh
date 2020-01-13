@@ -24,7 +24,9 @@ _findCatkinEnvHooks() {
             done
 
             for hook in $(ls -d ${pkgEnvHookDir}/*.bash 2>/dev/null); do
-                _catkinBashEnvHooks["$(basename $hook)"]="$hook"
+                if [ "${hook}" != "." ]; then                
+                    _catkinBashEnvHooks["$(basename $hook)"]="$hook"
+                fi
             done
         fi
     fi

@@ -18,6 +18,27 @@ in pkgs.mkShell rec {
 
     # Message Generation Packages
     genmsg gencpp genpy geneus genlisp gennodejs
+
+    # Messages
+    std_msgs geometry_msgs sensor_msgs actionlib_msgs nav_msgs map_msgs
+    rosgraph_msgs trajectory_msgs control_msgs diagnostic_msgs
+    shape_msgs stereo_msgs visualization_msgs common_msgs tf2_msgs
+
+    # General Modules
+    rosclean console_bridge cpp_common rostime
+    rosunit rosconsole rosconsole_bridge rosmsg
+    roscpp_core roscpp_traits roscpp_serialization
+    message_generation message_runtime roslang
+    xmlrpcpp rosgraph roscpp roscpp_tutorials
+    ros_environment roslz4 std_srvs cmake_modules
+    rospack rosbash roslib rosmaster
+    rospy rosparam rosout roslaunch
+    rostest topic_tools rosbag_storage rosbag
+    actionlib ros_core ros_base class_loader
+    pluginlib rosbag_migration_rule rostopic
+    rosnode rosservice rosbuild roswtf
+    message_filters angles tf2 tf2_py tf2_ros tf
+    image_transport resource_retriever
   ];
   
   # buildInputs = with pkgs; [ ros-essential.all genmsg gencpp genpy geneus gennodejs genlisp

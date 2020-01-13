@@ -1,5 +1,13 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- python-rospkg, roslib, rosunit, rosclean, python-yaml, rosgraph_msgs, rosmaster, python-paramiko, rosout, rosparam }:
+  rosPythonPackages,
+  rosgraph_msgs
+  ,rosparam
+  ,rosclean
+  ,rosmaster
+  ,roslib
+  ,rosunit
+  ,rosout
+}:
 
 let pname = "roslaunch";
     version = "1.12.14";
@@ -9,7 +17,18 @@ let pname = "roslaunch";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ python-rospkg roslib rosunit rosclean python-yaml rosgraph_msgs rosmaster python-paramiko rosout rosparam ];
+  propagatedBuildInputs  = [
+    rosPythonPackages.paramiko
+    rosgraph_msgs
+    rosparam
+    rosclean
+    rosPythonPackages.pyyaml
+    rosmaster
+    roslib
+    rosunit
+    rosout
+    rosPythonPackages.rospkg
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

@@ -1,5 +1,19 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- xmlrpcpp, roscpp_serialization, rosbag_storage, cpp_common, boost162, python-imaging, genmsg, roscpp, python-rospkg, std_srvs, rospy, roslib, topic_tools, rosconsole, genpy }:
+  rosPythonPackages,
+  cpp_common
+  ,boost162
+  ,genpy
+  ,topic_tools
+  ,xmlrpcpp
+  ,rospy
+  ,rosbag_storage
+  ,genmsg
+  ,std_srvs
+  ,rosconsole
+  ,roscpp_serialization
+  ,roslib
+  ,roscpp
+}:
 
 let pname = "rosbag";
     version = "1.12.14";
@@ -9,7 +23,23 @@ let pname = "rosbag";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ xmlrpcpp roscpp_serialization rosbag_storage cpp_common boost162 python-imaging genmsg roscpp python-rospkg std_srvs rospy roslib topic_tools rosconsole genpy ];
+  propagatedBuildInputs  = [
+    cpp_common
+    rosPythonPackages.pillow
+    boost162
+    genpy
+    topic_tools
+    rosPythonPackages.rospkg
+    xmlrpcpp
+    rospy
+    rosbag_storage
+    genmsg
+    std_srvs
+    rosconsole
+    roscpp_serialization
+    roslib
+    roscpp
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

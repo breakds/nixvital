@@ -1,5 +1,7 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- python-rospkg, python-netifaces }:
+  rosPythonPackages,
+  
+}:
 
 let pname = "rosgraph";
     version = "1.12.14";
@@ -9,7 +11,10 @@ let pname = "rosgraph";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ python-rospkg python-netifaces ];
+  propagatedBuildInputs  = [
+    rosPythonPackages.rospkg
+    rosPythonPackages.netifaces
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";

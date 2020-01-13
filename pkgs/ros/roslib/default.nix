@@ -1,5 +1,9 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
- ros_environment, boost162, rospack, python-rospkg }:
+  rosPythonPackages,
+  ros_environment
+  ,boost162
+  ,rospack
+}:
 
 let pname = "roslib";
     version = "1.14.6";
@@ -9,7 +13,12 @@ let pname = "roslib";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  propagatedBuildInputs  = [ ros_environment boost162 rospack python-rospkg ];
+  propagatedBuildInputs  = [
+    ros_environment
+    boost162
+    rosPythonPackages.rospkg
+    rospack
+  ];
 
   src = fetchFromGitHub {
     owner = "ros-gbp";
