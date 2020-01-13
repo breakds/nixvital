@@ -182,9 +182,16 @@ def GetRosDependency(path, show_xml=False):
                 item = 'boost162'
             elif item == 'yaml-cpp':
                 item = 'libyamlcpp'
-            if item.startswith('libqt5'):
+            elif item == 'liburdfdom-headers-dev':
+                item = 'urdfdom_headers'
+            elif item == 'liburdfdom-dev':
+                item = 'urdfdom'
+            elif item == 'assimp-dev':
+                item = 'assimp'
+                
+            if item.startswith('libqt5') or item.startswith('qtbase5'):
                 item = 'qt5.qtbase'
-            if item.startswith('python-'):
+            elif item.startswith('python-'):
                 if item == 'python-yaml':
                     item = 'rosPythonPackages.pyyaml'
                 elif item == 'python-imaging':
@@ -212,7 +219,7 @@ def GetInstalledPackages(parent_dir):
 
     result.extend(['rosPythonPackages.' + x for x in py_packages])
     result.extend(['boost162', 'lz4', 'bzip2', 'pkg-config', 'gtest', 'tinyxml',
-                   'assimp', 'eigen', 'libyamlcpp', 'qt5.qtbase'])
+                   'assimp', 'eigen', 'libyamlcpp', 'qt5.qtbase', 'assimp'])
     for item in os.listdir(parent_dir):
         path = pathlib.Path(parent_dir, item)
         if path.is_dir():
