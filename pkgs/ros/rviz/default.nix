@@ -42,6 +42,8 @@ let pname = "rviz";
 in buildRosPackage {
   name = "${pname}-${version}";
 
+  navtiveBuildInputs = [ qt5.wrapQtAppsHook ];
+
   propagatedBuildInputs  = [
     sensor_msgs
     map_msgs

@@ -1,7 +1,8 @@
 { stdenv, buildRosPackage, fetchFromGitHub,
   qt5,
   rosPythonPackages,
-  rosbuild
+  rosbuild,
+  writeText
 }:
 
 let pname = "python_qt_binding";
@@ -25,6 +26,21 @@ in buildRosPackage {
     rev = "release/${rosdistro}/${pname}/${version}-${subversion}";
     sha256 = "1glg3c317lgbxkyira2g5ds974qrwv8gf5484rx2klh9z04hznah";
   };
+
+  # Credit to lopsided98
+  postPatch = ''
+    sed -e "s#sipconfig\._pkg_config\['default_sip_dir'\]#'${rosPythonPackages.pyqt5}/share/sip'#" \
+        -e "s#qtconfig\['QT_INSTALL_HEADERS'\]#'${qt5.qtbase.dev}/include'#g" \
+        -i cmake/sip_configure.py
+  '';
+
+  setupHook = writeText "python-qt-binding-setup-hook" ''
+    _pythonQtBindingPreFixupHook() {
+      # Prevent /build RPATH references
+      rm -rf devel/lib
+    }
+    preFixupHooks+=(_pythonQtBindingPreFixupHook)
+  '';
 
   meta = {
     description = "python_qt_binding";
