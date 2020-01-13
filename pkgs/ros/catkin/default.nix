@@ -34,7 +34,6 @@ in stdenv.mkDerivation {
     setupHook
     rosPythonPackages.catkin-pkg
     rosPythonPackages.empy
-    # pythonPackages.rospkg
   ];
   nativeBuildInputs = [ cmake ];
 
