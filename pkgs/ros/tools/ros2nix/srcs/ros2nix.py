@@ -126,7 +126,7 @@ def GenerateNixFile(directory, package, sha256, deps):
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
         else:
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub,\n')
-            out.write('  {}'.format('\n  ,'.join(SnatchTopLevelModules(deps))))
+            out.write('  {}'.format(',\n  '.join(SnatchTopLevelModules(deps))))
             out.write('\n}:\n')
         out.write('\n')
         out.write('let pname = "{}";\n'.format(package.pname))
