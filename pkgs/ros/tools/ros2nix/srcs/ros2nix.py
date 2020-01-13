@@ -105,12 +105,18 @@ def PromptForYesOrNo(message):
     return answer == 'yes'
 
 
+def SnatchTopLevelModules(deps):
+    result = set()
+    for dep in deps:
+        parent = dep.split('.')[0]
+        result.add(parent)
+    return list(result)
+
+
 def GenerateNixFile(directory, package, sha256, deps):
     package_dir = pathlib.Path(directory, package.pname)
     package_dir.mkdir(parents=True, exist_ok=True)
     config_path = pathlib.Path(package_dir, 'default.nix')
-
-    need_ros_py_pkgs = any([x.startswith('rosPythonPackages') for x in deps])
 
     if 'catkin' in deps:
         deps.remove('catkin')
@@ -120,12 +126,7 @@ def GenerateNixFile(directory, package, sha256, deps):
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
         else:
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub,\n')
-            if need_ros_py_pkgs:
-                out.write('  rosPythonPackages,\n')
-            rest_deps = list(filter(
-                lambda x: not x.startswith('rosPythonPackages'),
-                deps))
-            out.write('  {}'.format('\n  ,'.join(rest_deps)))
+            out.write('  {}'.format('\n  ,'.join(SnatchTopLevelModules(deps))))
             out.write('\n}:\n')
         out.write('\n')
         out.write('let pname = "{}";\n'.format(package.pname))
@@ -179,6 +180,10 @@ def GetRosDependency(path, show_xml=False):
             item = dep.text
             if item == 'boost':
                 item = 'boost162'
+            elif item == 'yaml-cpp':
+                item = 'libyamlcpp'
+            if item.startswith('libqt5'):
+                item = 'qt5.qtbase'
             if item.startswith('python-'):
                 if item == 'python-yaml':
                     item = 'rosPythonPackages.pyyaml'
@@ -206,7 +211,8 @@ def GetInstalledPackages(parent_dir):
                    'pillow']
 
     result.extend(['rosPythonPackages.' + x for x in py_packages])
-    result.extend(['boost162', 'lz4', 'bzip2', 'pkg-config', 'gtest', 'tinyxml'])
+    result.extend(['boost162', 'lz4', 'bzip2', 'pkg-config', 'gtest', 'tinyxml',
+                   'assimp', 'eigen', 'libyamlcpp', 'qt5.qtbase'])
     for item in os.listdir(parent_dir):
         path = pathlib.Path(parent_dir, item)
         if path.is_dir():

@@ -98,4 +98,8 @@ in {
   tf = self.callPackage ../../pkgs/ros/tf {};
   image_transport = self.callPackage ../../pkgs/ros/image_transport {};
   resource_retriever = self.callPackage ../../pkgs/ros/resource_retriever {};
+  laser_geometry = self.callPackage ../../pkgs/ros/laser_geometry {};
+  interactive_markers = self.callPackage ../../pkgs/ros/interactive_markers {};
+  interactive_marker_tutorials = self.callPackage ../../pkgs/ros/interactive_marker_tutorials {};
+  media_export = self.callPackage ../../pkgs/ros/media_export {};
 }

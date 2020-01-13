@@ -39,6 +39,8 @@ in pkgs.mkShell rec {
     rosnode rosservice rosbuild roswtf
     message_filters angles tf2 tf2_py tf2_ros tf
     image_transport resource_retriever
+    laser_geometry interactive_markers interactive_marker_tutorials
+    media_export
   ];
   
   # To use rosdep without sudo, environment variable needs to be
