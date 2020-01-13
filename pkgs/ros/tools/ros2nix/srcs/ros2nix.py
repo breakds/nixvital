@@ -37,7 +37,7 @@ class Logger(object):
     @staticmethod
     def Fail(message):
         print_formatted_text(HTML('[<fail>WARN</fail>] {}'.format(message)), style=APP_STYLE)
-    
+
 
 def GetPname(name):
     return name.split(r'http(.*)')[-1]
@@ -71,7 +71,7 @@ class PackageItem(object):
 class CandidateValidator(Validator):
     def __init__(self, candidates):
         self.candidates = candidates
-        
+
     def validate(self, document):
         if document.text not in self.candidates:
             raise ValidationError(
@@ -110,6 +110,8 @@ def GenerateNixFile(directory, package, sha256, deps):
     package_dir.mkdir(parents=True, exist_ok=True)
     config_path = pathlib.Path(package_dir, 'default.nix')
 
+    need_ros_py_pkgs = any([x.startswith('rosPythonPackages') for x in deps])
+
     if 'catkin' in deps:
         deps.remove('catkin')
 
@@ -118,9 +120,13 @@ def GenerateNixFile(directory, package, sha256, deps):
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub }:\n')
         else:
             out.write('{ stdenv, buildRosPackage, fetchFromGitHub,\n')
-            # TODO(breakds): Make it better formatted
-            out.write(' {} '.format(', '.join(deps)))
-            out.write('}:\n')
+            if need_ros_py_pkgs:
+                out.write('  rosPythonPackages,\n')
+            rest_deps = list(filter(
+                lambda x: not x.startswith('rosPythonPackages'),
+                deps))
+            out.write('  {}'.format('\n  ,'.join(rest_deps)))
+            out.write('\n}:\n')
         out.write('\n')
         out.write('let pname = "{}";\n'.format(package.pname))
         out.write('    version = "{}";\n'.format(package.version))
@@ -130,11 +136,13 @@ def GenerateNixFile(directory, package, sha256, deps):
         out.write('in buildRosPackage {\n')
         out.write('  name = "${pname}-${version}";\n')
         out.write('\n')
-        if len(deps) == 0:        
+        if len(deps) == 0:
             out.write('  propagatedBuildInputs  = [];\n')
         else:
-            # TODO(breakds): Make it better formatted            
-            out.write('  propagatedBuildInputs  = [ {} ];\n'.format(' '.join(deps)))
+            out.write('  propagatedBuildInputs  = [\n')
+            for dep in deps:
+                out.write('    {}\n'.format(dep))
+            out.write('  ];\n')
         out.write('\n')
         out.write('  src = fetchFromGitHub {\n')
         out.write('    owner = "{}";\n'.format(package.owner))
@@ -151,29 +159,41 @@ def GenerateNixFile(directory, package, sha256, deps):
         out.write('}\n')
 
 
-def GetRosDependency(path):
+def GetRosDependency(path, show_xml=False):
     package_xml = pathlib.Path(path, 'package.xml')
 
     if not package_xml.exists():
         return [], []
 
+    if show_xml:
+        with open(package_xml, 'r') as f:
+            for line in f:
+                print(line.rstrip())
+
     root = ET.parse(package_xml).getroot()
 
-    build_depends = []
-    for dep in root.findall('build_depend'):
-        item = dep.text
-        if item == 'boost':
-            item = 'boost162'
-        build_depends.append(item)
-
     run_depends = []
-    for dep in root.findall('run_depend'):
-        item = dep.text
-        if item == 'boost':
-            item = 'boost162'
-        run_depends.append(item)
 
-    return build_depends, run_depends
+    def CollectTypedDeps(dep_type):
+        for dep in root.findall(dep_type):
+            item = dep.text
+            if item == 'boost':
+                item = 'boost162'
+            if item.startswith('python-'):
+                if item == 'python-yaml':
+                    item = 'rosPythonPackages.pyyaml'
+                else:
+                    item = 'rosPythonPackages.{}'.format(item[7:])
+            yield item
+
+    build_depends = set()
+    build_depends.update(CollectTypedDeps('build_depend'))
+
+    run_depends = set()
+    run_depends.update(CollectTypedDeps('run_depend'))
+    run_depends.update(CollectTypedDeps('exec_depend'))
+
+    return list(build_depends), list(run_depends)
 
 
 def GetInstalledPackages(parent_dir):
@@ -193,7 +213,8 @@ def GetInstalledPackages(parent_dir):
 @click.option('--package_list', required=True,
               type=click.Path(exists=True, file_okay=True, dir_okay=False,
                               writable=False, readable=True))
-def main(package_list):
+@click.option('--show_xml/--no_show_xml', default=False)
+def main(package_list, show_xml):
     all_modules = {}
 
     with open(package_list, 'r') as f:
@@ -219,7 +240,7 @@ def main(package_list):
     sha256, unpacked_path = ret.stdout.decode('ascii').strip().split('\n')
 
     # Handle dependencies
-    build_deps, run_deps = GetRosDependency(unpacked_path)
+    build_deps, run_deps = GetRosDependency(unpacked_path, show_xml)
     installed = GetInstalledPackages(os.getcwd())
 
     print_formatted_text(HTML('<skyblue>Build Dependencies:</skyblue>'))
@@ -246,7 +267,7 @@ def main(package_list):
         Logger.Ok('{}/default.nix generated.'.format(package_name))
     else:
         Logger.Ok('Aborted')
-    
+
 
 
 if __name__ == '__main__':
