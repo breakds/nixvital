@@ -12,7 +12,6 @@ in buildRosPackage {
 
   propagatedBuildInputs  = [];
 
-  # https://github.com/ros/urdfdom_headers/archive/1.0.4.tar.gz
   src = fetchFromGitHub {
     owner = "ros";
     repo = "${pname}";

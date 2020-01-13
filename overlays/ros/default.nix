@@ -103,5 +103,6 @@ in {
   interactive_marker_tutorials = self.callPackage ../../pkgs/ros/interactive_marker_tutorials {};
   media_export = self.callPackage ../../pkgs/ros/media_export {};
   urdfdom_headers = self.callPackage ../../pkgs/ros/urdfdom_headers {};
+  urdfdom = self.callPackage ../../pkgs/ros/urdfdom {};
   urdf_parser_plugin = self.callPackage ../../pkgs/ros/urdf_parser_plugin {};
 }
