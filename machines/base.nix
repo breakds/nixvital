@@ -15,6 +15,7 @@
   # Specifies the overlay for all the packages.
   nixpkgs.overlays = [
     (import ../overlays)
+    (import ../overlays/ros)
   ];
 
   # +------------------------------------------------------------+

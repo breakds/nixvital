@@ -1,7 +1,4 @@
-let pkgs = import <nixpkgs> {
-      config.allowUnfree = true;
-      overlays = [ (import ./default.nix) ];
-    };
+let pkgs = (import <nixpkgs/nixos> {}).pkgs;
 
     python-env = pkgs.python2.buildEnv.override (with pkgs.python2Packages; {
       extraLibs = [ rosdistro matplotlib h5py ];
