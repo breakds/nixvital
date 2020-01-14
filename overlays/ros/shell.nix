@@ -3,9 +3,10 @@ let pkgs = import <nixpkgs> {
       overlays = [ (import ./default.nix) ];
     };
 
-    python-env = pkgs.python2.withPackages (ps: [
-      ps.rosdistro
-    ]);
+    python-env = pkgs.python2.buildEnv.override (with pkgs.python2Packages; {
+      extraLibs = [ rosdistro matplotlib h5py ];
+      ignoreCollisions = true;
+    });
 
 in pkgs.mkShell rec {
   name = "ROS-D";
