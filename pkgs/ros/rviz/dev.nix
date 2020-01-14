@@ -1,6 +1,2 @@
-let pkgs = import <nixpkgs> {
-      overlays = [
-        (import ../../../overlays/ros)
-      ];
-    };
+let pkgs = (import <nixpkgs/nixos> {}).pkgs;
 in pkgs.rviz

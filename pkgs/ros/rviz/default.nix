@@ -31,7 +31,7 @@
   interactive_markers,
   ogre1_9,
   laser_geometry,
-  visualization_msgs
+  visualization_msgs,
 }:
 
 let pname = "rviz";
@@ -42,7 +42,7 @@ let pname = "rviz";
 in buildRosPackage {
   name = "${pname}-${version}";
 
-  navtiveBuildInputs = [ qt5.wrapQtAppsHook ];
+  nativeBuildInputs = [ qt5.wrapQtAppsHook ];
 
   propagatedBuildInputs  = [
     sensor_msgs
@@ -86,6 +86,11 @@ in buildRosPackage {
     rev = "release/${rosdistro}/${pname}/${version}-${subversion}";
     sha256 = "03ykxqfh7p7vpgcivyx2s4z87mybpnqk4ni2rrn7irzw79hga9aj";
   };
+
+  # FIXME: Still cannot run. Stuck at splash screen
+  postFixup = ''
+    wrapQtApp $out/bin/rviz
+  '';
 
   meta = {
     description = "rviz";
