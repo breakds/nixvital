@@ -126,7 +126,6 @@ def RewriteConfiguration(install_root, username, machine, hostname):
     print_formatted_text(HTML(
         'Main configuration generated at <green>{}</green>'.format(
             config_path)))
-        
 
 
 def main():
