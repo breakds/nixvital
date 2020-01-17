@@ -23,6 +23,22 @@ APP_STYLE = Style.from_dict({
     'info': 'skyblue',
 })
 
+
+def GenerateHardwareConfig(install_root):
+    pathlib.Path(install_root, 'etc', 'nixos').mkdir(parents=True, exist_ok=True)
+    ret = subprocess.run(['nixos-generate-config', '--root', install_root,
+                          '--show-hardware-config'], capture_output=True)
+
+    hardware_config = pathlib.Path(install_root, 'etc', 'nixos',
+                                   'hardware-configuration.nix')
+
+    with open(hardware_config, 'w') as out:
+        out.write(ret.stdout.decode('utf-8'))
+        print_formatted_text(HTML(
+            'Hardware configuration generated at <green>{}</green>'.format(
+                hardware_config)))
+
+
 def CloneNixvital(install_root):
     # Ensure parent directory
     pathlib.Path(install_root, 'opt').mkdir(parents=True, exist_ok=True)
@@ -45,7 +61,7 @@ def ListOfMachines(vital_dir):
 class CandidateValidator(Validator):
     def __init__(self, candidates):
         self.candidates = candidates
-        
+
     def validate(self, document):
         if document.text not in self.candidates:
             raise ValidationError(
@@ -61,7 +77,7 @@ def PromptFor(property, doc=None, candidates=None, default=''):
             return HTML(doc)
         else:
             return HTML('Please input <b>{}</b>'.format(doc))
-    
+
     return prompt(
         [
             ('class:prompt_text', 'Please specify '),
@@ -75,7 +91,6 @@ def PromptFor(property, doc=None, candidates=None, default=''):
 def CreateSymbolicLink(install_root, vital_dir):
     vital_symlink = pathlib.Path(install_root, 'etc/nixos/nixvital')
     vital_symlink.parent.mkdir(parents=True, exist_ok=True)
-    print(vital_symlink)
     if vital_symlink.exists():
         vital_symlink.unlink()
     vital_symlink.symlink_to(pathlib.Path('../../opt/nixvital'))
@@ -87,7 +102,7 @@ def RewriteConfiguration(install_root, username, machine, hostname):
 
     with open('/etc/machine-id', 'r') as f:
         machine_id = f.read(8)
-        
+
 
     config_path = pathlib.Path(install_root, 'etc/nixos/configuration.nix')
     config_path.parent.mkdir(parents=True, exist_ok=True)
@@ -108,6 +123,11 @@ def RewriteConfiguration(install_root, username, machine, hostname):
         out.write('  # should.\n')
         out.write('  system.stateVersion = "19.09"; # Did you read the comment?\n')
         out.write('}\n')
+    print_formatted_text(HTML(
+        'Main configuration generated at <green>{}</green>'.format(
+            config_path)))
+        
+
 
 def main():
     # 1. Installation root (default to /mnt)
@@ -138,9 +158,10 @@ def main():
     # | Install                                                    |
     # +------------------------------------------------------------+
 
+    GenerateHardwareConfig(install_root)
     CreateSymbolicLink(install_root, vital_dir)
     RewriteConfiguration(install_root, username, machine, hostname)
-    
+
 
 if __name__ == '__main__':
     main()
