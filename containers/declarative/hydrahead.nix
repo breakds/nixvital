@@ -113,8 +113,12 @@ in {
         # TODO(breakds): Figure out whether the admin user is useful.
         script = ''
           if [ ! -e ~hydra/.setup-is-complete ]; then
-             # Create admin user
-             # /run/current-system/sw/bin/hydra-create-user alice --full-name 'Alice Q. User' --email-address 'alice@breakds.org' --password foobar --role admin
+             # Create admin user, for web sign-in
+             /run/current-system/sw/bin/hydra-create-user breakds \
+                 --full-name 'Master Break' \
+                 --email-address 'bds@breakds.org' \
+                 --password foobar \
+                 --role admin
              # Create signing keys
              /run/current-system/sw/bin/install -d -m 551 ${hydraKeyDir}
              /run/current-system/sw/bin/nix-store --generate-binary-cache-key \
