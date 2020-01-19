@@ -7,6 +7,8 @@
     ../modules/user.nix    
     ../modules/desktop
     ../modules/web
+    # containers
+    ../containers/declarative/hydra-master.nix
   ];
 
   vital.machineType = "desktop";
@@ -28,7 +30,7 @@
       enable = true;
     };
   };
-  
+
   # +------------+
   # | WakeOnLan  |
   # +------------+
