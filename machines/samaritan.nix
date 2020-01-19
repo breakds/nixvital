@@ -8,7 +8,7 @@
     ../modules/desktop
     ../modules/web
     # containers
-    ../containers/declarative/hydra-master.nix
+    ../containers/declarative/hydrahead.nix
   ];
 
   vital.machineType = "desktop";

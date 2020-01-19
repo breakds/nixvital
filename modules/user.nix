@@ -18,7 +18,7 @@ in {
       extraUsers = {
         "${cfg.mainUser}" = {
           isNormalUser = true;
-	        initialPassword = "abcdefg";
+          initialHashedPassword = lib.mkDefault "$5$o2c1SrFVg1xK570h$EO3uklJz1y3SbIPJ5zBUdG6ZYNFKoui3EYa5CX/9j0A";
 	        home = "/home/${cfg.mainUser}";
           uid = 1000;
           # TODO(breakds): Make this configurable.

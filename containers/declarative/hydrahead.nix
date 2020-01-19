@@ -9,16 +9,28 @@
 
   # Declarative containers can be started and stopped using the
   # corresponding systemd service, e.g.
-  # systemctl start container@hydra-master.
+  # systemctl start container@hydrahead.
   
-  containers.hydra-master = {
-    config = {
+  containers.hydrahead = {
+    autoStart = true;
+
+    privateNetwork = true;
+    hostAddress = "192.168.86.26"; 
+    localAddress = "192.168.88.26";
+    
+    config = { config, pkgs, ... }: {
       imports = [
         ../container-base.nix
         ../../modules/user.nix
       ];
 
-      networking.hostName = "hydra-master";
+      boot.isContainer = true;
+
+      environment.systemPackages = with pkgs; [
+        (callPackage ../../pkgs/public-web {})
+      ];
+
+      networking.hostName = "hydrahead";
     };
   };
 }
