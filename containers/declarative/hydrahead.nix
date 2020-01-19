@@ -15,8 +15,8 @@
     autoStart = true;
 
     privateNetwork = true;
-    hostAddress = "192.168.86.26"; 
-    localAddress = "192.168.88.26";
+    hostAddress = "192.168.88.26"; 
+    localAddress = "192.168.88.27";
     
     config = { config, pkgs, ... }: {
       imports = [
@@ -24,11 +24,22 @@
         ../../modules/user.nix
       ];
 
-      boot.isContainer = true;
-
       environment.systemPackages = with pkgs; [
         (callPackage ../../pkgs/public-web {})
       ];
+
+      fonts.fonts = with pkgs; [
+        font-awesome-ttf
+      ];
+
+      environment.etc = {
+        "bashrc.local".text = ''
+          if [ -z "$PS1" ]; then
+            return
+          fi
+          export PS1="\[\033[38;5;81m\]\u\[$(tput sgr0)\]\[\033[38;5;15m\]@$(echo -e '\uf3b0') $(echo -e '\uf23b') $(echo -e '\uf394')$(echo -e '\uf25d')$(echo -e '\uf1fa') {\[$(tput sgr0)\]\[\033[38;5;228m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\]} \\$ \[$(tput sgr0)\]"
+      '';
+      };
 
       networking.hostName = "hydrahead";
     };
