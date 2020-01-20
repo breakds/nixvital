@@ -11,6 +11,7 @@
     ../modules/web/samba.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
+    ../containers/declarative/hydrahead.nix
   ];
 
   vital.machineType = "server";
@@ -44,6 +45,7 @@
     enable = true;
     serveHomePage = true;
     serveFilerun = true;
+    serveHydra = true;
     cgit = {
       enable = true;
       title = "Break's Repos.";

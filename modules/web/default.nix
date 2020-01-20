@@ -9,6 +9,7 @@ in {
     enable = lib.mkEnableOption "Enable Hosted Web Services";
     serveHomePage = lib.mkEnableOption "Whether host web page.";
     serveFilerun = lib.mkEnableOption "Whether to host the filerun server.";
+    serveHydra = lib.mkEnableOption "Whether to host hydra server.";
   };
 
   config = lib.mkIf cfg.enable {
@@ -34,6 +35,9 @@ in {
         });
         "files.breakds.org" = lib.mkIf cfg.serveFilerun (template // {
           locations."/".proxyPass = "http://localhost:5962";
+        });
+        "hydra.breakds.org" = lib.mkIf cfg.serveHydra (template // {
+          locations."/".proxyPass = "http://192.168.88.27:8080";
         });
         "${cfg.cgit.servedUrl}" = lib.mkIf cfg.cgit.enable (
           template // {

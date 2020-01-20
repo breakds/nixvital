@@ -80,10 +80,13 @@ in {
         enable = true;
         hydraURL = "https://hydra.breakds.org";
         notificationSender = "bds@breakds.org";
+        buildMachinesFiles = [];
         port = 8080;
         useSubstitutes = true;
         extraConfig = ''
+          store_uri = file:///var/lib/hydra/cache?secret-key=${hydraKeyDir}/secret
           binary_cache_secret_key_file = ${hydraKeyDir}/secret
+          binary_cache_dir = /var/lib/hydra/cache
         '';
         # logo = ./hydra.png
       };
@@ -134,8 +137,27 @@ in {
       };
 
       # +------------------------------------------------------------+
-      # | Nginx                                                      |
+      # | Build Machines and Settings                                |
       # +------------------------------------------------------------+
+
+      # Credit: http://qfpl.io/posts/nix/starting-simple-hydra/
+      nix = {
+        trustedUsers = ["hydra" "hydra-evaluator" "hydra-queue-runner"];
+        distributedBuilds = true;
+        nrBuildUsers = 16;
+        gc = {
+          automatic = true;
+          dates = "0 0 1 * *"; # On the first day of every month.
+        };
+        autoOptimiseStore = true;
+
+        buildMachines = [{
+          hostName = "localhost";
+          systems = [ "x86_64-linux" "i686-linux" ];
+          maxJobs = "4";
+          supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ]; 
+        }];
+      };
     };
   };
 }
