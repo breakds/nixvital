@@ -108,4 +108,13 @@ in {
   urdf = self.callPackage ../../pkgs/ros/urdf {};
   python_qt_binding = self.callPackage ../../pkgs/ros/python_qt_binding {};
   rviz = self.callPackage ../../pkgs/ros/rviz {};
+
+  # Bazel
+  bazel = self.callPackage ../../pkgs/bazel-classic {
+    inherit (super.darwin) cctools;
+    inherit (super.darwin.apple_sdk.frameworks) CoreFoundation CoreServices Foundation;
+    buildJdk = super.jdk8;
+    buildJdkName = "jdk8";
+    runJdk = super.jdk11_headless;
+  };
 }

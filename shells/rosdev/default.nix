@@ -41,6 +41,9 @@ in pkgs.mkShell rec {
     media_export python_qt_binding
     urdfdom_headers urdf_parser_plugin urdfdom urdf
     rviz
+
+    # Build Tools
+    bazel
   ];
   
   # To use rosdep without sudo, environment variable needs to be
