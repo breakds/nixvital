@@ -38,6 +38,13 @@ in {
         });
         "hydra.breakds.org" = lib.mkIf cfg.serveHydra (template // {
           locations."/".proxyPass = "http://192.168.88.27:8080";
+          # Without these extra config for ssl header and ssl name,
+          # the ACME certificate will not be able to certify the IP
+          # address here.
+          locations."/".extraConfig = ''
+            proxy_set_header Host  hydra.breakds.org;
+            proxy_ssl_name         hydra.breakds.org;
+          '';
         });
         "${cfg.cgit.servedUrl}" = lib.mkIf cfg.cgit.enable (
           template // {
