@@ -7,6 +7,7 @@
 
 let hydraToken = "hydra.breakds.org-1";
     hydraKeyDir = "/etc/nix/${hydraToken}";
+    addresses = (import ../../data/resources.nix).ips.containers.hydrahead;
 
 in {
 
@@ -18,8 +19,8 @@ in {
     autoStart = true;
 
     privateNetwork = true;
-    hostAddress = "192.168.88.26";
-    localAddress = "192.168.88.27";
+    hostAddress = addresses.host;
+    localAddress = addresses.local;
 
     config = { config, pkgs, ... }: {
       imports = [
