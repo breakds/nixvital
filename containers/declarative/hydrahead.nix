@@ -13,14 +13,14 @@ in {
   # Declarative containers can be started and stopped using the
   # corresponding systemd service, e.g.
   # systemctl start container@hydrahead.
-  
+
   containers.hydrahead = {
     autoStart = true;
 
     privateNetwork = true;
-    hostAddress = "192.168.88.26"; 
+    hostAddress = "192.168.88.26";
     localAddress = "192.168.88.27";
-    
+
     config = { config, pkgs, ... }: {
       imports = [
         ../container-base.nix
@@ -29,9 +29,15 @@ in {
 
       # +------------------------------------------------------------+
       # | Basic Setups                                               |
-      # +------------------------------------------------------------+      
+      # +------------------------------------------------------------+
 
       networking.hostName = "hydrahead";
+
+      # NAT rules. The container needs to talk to the outside via the
+      # host network devices.
+      networking.nat.enable = true;
+      networking.nat.internalInterfaces = ["ve-hydrahead"];
+      networking.nat.externalInterface = "eno1";
 
       # Set your time zone.
       time.timeZone = "America/Los_Angeles";
@@ -155,7 +161,7 @@ in {
           hostName = "localhost";
           systems = [ "x86_64-linux" "i686-linux" ];
           maxJobs = "4";
-          supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ]; 
+          supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
         }];
       };
     };
