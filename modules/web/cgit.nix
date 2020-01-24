@@ -22,18 +22,20 @@ let webCfg = config.vital.web;
       enable-html-serving=1
     '';
 
+    ports = (import ../../data/resources.nix).ports.cgit;
+
 in {
   options.vital.web.cgit = with lib; {
     enable = mkEnableOption "Enable the cgit service.";
     fcgiPort = mkOption {
       type = types.port;
       description = "Port to run the fastcgi endpoint.";
-      default = 5963;
+      default = ports.fcgi;
     };
     gitPort = mkOption {
       type = types.port;
       description = "Port on nginx for the cgit web ui.";
-      default = 5964;
+      default = ports.web;
     };
     cacheDir = mkOption {
       type = types.str;

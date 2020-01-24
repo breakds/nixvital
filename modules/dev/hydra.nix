@@ -2,6 +2,7 @@
 
 let hydraToken = "hydra.breakds.org-1";
     hydraKeyDir = "/etc/nix/${hydraToken}";
+    port = (import ../../data/resources.nix).ports.hydra.master;
 
 in {
   # +------------------------------------------------------------+
@@ -28,7 +29,7 @@ in {
     hydraURL = "https://hydra.breakds.org";
     notificationSender = "bds@breakds.org";
     buildMachinesFiles = [];
-    port = 8080;
+    port = port;
     useSubstitutes = true;
     extraConfig = ''
       store_uri = file:///var/lib/hydra/cache?secret-key=${hydraKeyDir}/secret

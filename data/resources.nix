@@ -1,8 +1,8 @@
 {
-  ips.containers = {
-    hydrahead = {
-      host = "192.168.88.26";
-      local = "192.168.88.26";
-    };
+  ports = {
+    hydra.master = 8017;
+    filerun = 5962;
+    cgit.fcgi = 5963;
+    cgit.web = 5964;
   };
 }

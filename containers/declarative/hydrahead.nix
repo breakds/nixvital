@@ -7,7 +7,6 @@
 
 let hydraToken = "hydra.breakds.org-1";
     hydraKeyDir = "/etc/nix/${hydraToken}";
-    addresses = (import ../../data/resources.nix).ips.containers.hydrahead;
 
 in {
 
@@ -18,9 +17,8 @@ in {
   containers.hydrahead = {
     autoStart = true;
 
-    privateNetwork = true;
-    hostAddress = addresses.host;
-    localAddress = addresses.local;
+    # Share the host's network.
+    privateNetwork = false;
 
     config = { config, pkgs, ... }: {
       imports = [
@@ -35,11 +33,14 @@ in {
 
       networking.hostName = "hydrahead";
 
-      # NAT rules. The container needs to talk to the outside via the
-      # host network devices.
-      networking.nat.enable = true;
-      networking.nat.internalInterfaces = ["ve-hydrahead"];
-      networking.nat.externalInterface = "eno1";
+      # NAT rules if privateNetwork is true. The container needs to
+      # talk to the outside via the host network devices.
+      #
+      # TODO(breakds): https://discourse.nixos.org/t/dns-in-declarative-container/1529
+      #
+      # networking.nat.enable = true;
+      # networking.nat.internalInterfaces = ["ve-hydrahead"];
+      # networking.nat.externalInterface = "eno1";
 
       # Set your time zone.
       time.timeZone = "America/Los_Angeles";
