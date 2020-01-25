@@ -2,6 +2,12 @@
 
 let hydraToken = "hydra.breakds.org-1";
     hydraKeyDir = "/etc/nix/${hydraToken}";
+    # hydraCacheDir is basically the /nix/store for the build machine.
+    #
+    # FIXME: currently I have to manually create this directory and chown to
+    # hydra-queue-runner:hydra to make it work. Should automate this in the
+    # future.
+    hydraCacheDir = "/var/lib/hydra/cache";
     port = (import ../../data/resources.nix).ports.hydra.master;
 
 in {
@@ -31,10 +37,11 @@ in {
     buildMachinesFiles = [];
     port = port;
     useSubstitutes = true;
+    # At this moment bindary_cache_secret_key_file and binary_cache_dir are
+    # deprecated. They are replacd by store_uri, where a question mark is used
+    # to separate the two.
     extraConfig = ''
-      store_uri = file:///var/lib/hydra/cache?secret-key=${hydraKeyDir}/secret
-      binary_cache_secret_key_file = ${hydraKeyDir}/secret
-      binary_cache_dir = /var/lib/hydra/cache
+      store_uri = file://${hydraCacheDir}?secret-key=${hydraKeyDir}/secret
     '';
     # logo = ./hydra.png
   };
@@ -101,7 +108,7 @@ in {
 
     buildMachines = [{
       hostName = "localhost";
-      systems = [ "x86_64-linux" "i686-linux" ];
+      systems = [ "builtin" "x86_64-linux" "i686-linux" ];
       maxJobs = "4";
       supportedFeatures = [ "kvm" "nixos-test" "big-parallel" "benchmark" ];
     }];
