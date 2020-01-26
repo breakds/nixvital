@@ -34,13 +34,23 @@
     };
 
     system.activationScripts.installInitScript = ''
-    ln -fs $systemConfig/init /init
-    mkdir -p /sbin/init || true
-    ln -fs $systemConfig/init /sbin/init
-  '';
+      ln -fs $systemConfig/init /init
+      mkdir -p /sbin/init || true
+      ln -fs $systemConfig/init /sbin/init
+    '';
 
     boot.specialFileSystems."/dev/pts" = {
       options = lib.mkAfter [ "ptmxmode=666" ];
+    };
+
+    environment.etc = {
+      "inputrc".text = lib.mkDefault (
+        builtins.readFile <nixpkgs/nixos/modules/programs/bash/inputrc> + ''
+          ## arrow up
+          "\e[A":history-search-backward
+          ## arrow down
+          "\e[B":history-search-forward
+        '');
     };
   };
 }
