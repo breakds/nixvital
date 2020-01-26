@@ -34,7 +34,7 @@ in {
     enable = true;
     hydraURL = "https://hydra.breakds.org";
     notificationSender = "bds@breakds.org";
-    buildMachinesFiles = [];
+    buildMachinesFiles = lib.mkIf (config.nix.buildMachines == []) [];
     port = port;
     useSubstitutes = true;
     # At this moment bindary_cache_secret_key_file and binary_cache_dir are
