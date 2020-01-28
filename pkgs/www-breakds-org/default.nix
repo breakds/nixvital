@@ -5,8 +5,8 @@ stdenv.mkDerivation {
   
   src = pkgs.fetchgit {
     url = "https://github.com/breakds/www.breakds.org.git";
-    rev = "eeaa9bac9b8ab992eff614462646bbc3dfdee34d";
-    sha256 = "1q7f50cg3h286w2fb7k33zb60hy8vyfw6sgjdf2v6f9jmdps77kn";
+    rev = "11dba588380596704c08249c92cad522f5b038a3";
+    sha256 = "1fhgvdmyvkdmbj0sphmki70j3qlvlv8fav2zhj9j0aq4fmzhcifk";
     fetchSubmodules = true;
   };
 
@@ -14,17 +14,11 @@ stdenv.mkDerivation {
   # with version > 0.60.
   buildInputs = [ hugo ];
 
-  phases = [ "unpackPhase" "buildPhase" "installPhase" ];
-
-  unpackPhase = ":";
-
   buildPhase = ''
-    cd $src
-    ${hugo}/bin/hugo
+    hugo
   '';
 
   installPhase = ''
-    mkdir -p $out
-    cp -r $src/public/* $out
+    cp -r public $out
   '';
 }
