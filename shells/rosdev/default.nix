@@ -42,8 +42,14 @@ in pkgs.mkShell rec {
     urdfdom_headers urdf_parser_plugin urdfdom urdf
     rviz
 
-    # Build Necessities
-    bazel postgresql95
+    # Build Tools
+    bazel
+
+    # Other
+    cudatoolkit
+    python2Packages.pip
+    postgresql.lib
+    pkgs.boost162
   ];
   
   # To use rosdep without sudo, environment variable needs to be
