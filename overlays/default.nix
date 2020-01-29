@@ -47,4 +47,7 @@ in {
 
   # Backport the newer version of hugo
   hugo = backportPkgs.hugo;
+
+  # www.breakds.org, the personal website
+  www-breakds-org = self.callPackage ../pkgs/www-breakds-org {};
 }

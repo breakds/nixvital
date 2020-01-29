@@ -33,7 +33,7 @@ in {
       }; in {
         # The home page
         "www.breakds.org" = lib.mkIf cfg.serveHomePage (template // {
-          root = "/home/delegator/www/breakds.org";
+          root = pkgs.www-breakds-org;
         });
         "files.breakds.org" = lib.mkIf cfg.serveFilerun (template // {
           locations."/".proxyPass = "http://localhost:${toString ports.filerun}";

@@ -5,8 +5,8 @@ stdenv.mkDerivation {
   
   src = pkgs.fetchgit {
     url = "https://github.com/breakds/www.breakds.org.git";
-    rev = "e3ee7a134b6df6388385933befc3025cf36bae30";
-    sha256 = "1ywlj2my262i2nz4nh0q1xha08yyn65pi2kbx8bxb3gjnsy5mpmb";
+    rev = "36e8c305df2cb3b2384512db0552af8b5e993a20";
+    sha256 = "0agdfc6cvm41x9f6248fqwfrs15lan6b51rvzmfcigqk8y3l1kjv";
     fetchSubmodules = true;
   };
 
