@@ -70,6 +70,9 @@
     };
   };
 
+  # Just for public access
+  networking.firewall.allowedTCPPorts = [ 7777 ];
+
   # +------------+
   # | WakeOnLan  |
   # +------------+
