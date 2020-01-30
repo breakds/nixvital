@@ -13,17 +13,25 @@ in {
   config = {
     services.gitea = lib.mkIf cfg.enable {
       enable = true;
+      appName = "Gitea: Break and Shan";
       user = "git";
+      
       # Hint browser to only send cookies via HTTPS
       # cookieSecure = true;
       domain = domain;
       httpPort = port;
-      rootUrl = "http://localhost:${toString port}/";
+      # NOTE(breakds): I am not sure how important this value is.
+      rootUrl = "https://${domain}";
+
       database = {
         user = "git";
         type = "sqlite3";
         path = "/var/lib/gitea/data/gitea.db";
       };
+      repositoryRoot = "/home/${config.services.gitea.user}/repos";
+
+      # TODO(breakds): Enable the dump (backup), preferrably weekly.
+
       extraConfig = ''
         [repository]
         DISABLE_HTTP_GIT = false
@@ -33,10 +41,9 @@ in {
         INSTALL_LOCK = true
         COOKIE_USERNAME = gitea_username
         COOKIE_REMEMBER_NAME = gitea_userauth
-
-        [service]
-        DISABLE_REGISTRATION = true
       '';
     };
+    
+    networking.firewall.allowedTCPPorts = [ config.services.gitea.httpPort ];
   };
 }

@@ -1,11 +1,12 @@
 { config, lib, pkgs, ... }:
 
 let cfg = config.vital.web;
-    ports = (import ../../data/resources.nix).ports;
-    
+    resources = (import ../../data/resources.nix);
+    ports = resources.ports;
+    domains = resources.domains;
 
 in {
-  imports = [ ./cgit.nix ];
+  imports = [ ./cgit.nix ./gitea.nix ];
 
   options.vital.web = {
     enable = lib.mkEnableOption "Enable Hosted Web Services";
@@ -55,6 +56,11 @@ in {
         "${cfg.cgit.servedUrl}" = lib.mkIf cfg.cgit.enable (
           template // {
             locations."/".proxyPass = "http://localhost:${toString ports.cgit.web}";
+          }
+        );
+        "${domains.gitea}" = lib.mkIf config.vital.gitea.enable (
+          template // {
+            locations."/".proxyPass = "http://localhost:${toString ports.gitea}";
           }
         );
       };

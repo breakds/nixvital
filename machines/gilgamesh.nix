@@ -9,6 +9,7 @@
     ../modules/web
     ../modules/deluge.nix
     ../modules/web/samba.nix
+    ../modules/web/gitea.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -54,6 +55,8 @@
       syncRepo.enable = true;
     };
   };
+
+  vital.gitea.enable = true;
 
   # +------------+
   # | WakeOnLan  |
