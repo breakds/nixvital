@@ -2,12 +2,24 @@
 
 let cfg = config.vital.gitea;
     resources = (import ../../data/resources.nix);
-    domain = resources.domains.gitea;
-    port = resources.ports.gitea;
+    defaultDomain = resources.domains.gitea;
+    defaultPort = resources.ports.gitea;
 
 in {
   options.vital.gitea = {
     enable = lib.mkEnableOption "enable the gitea service.";
+    domain = lib.mkOption {
+      type = lib.types.str;
+      description = "The domain name on which gitea is served.";
+      default = defaultDomain;
+      example = "git.breakds.org";
+    };
+    port = lib.mkOption {
+      type = lib.types.port;
+      description = "The port on which gitea is served.";
+      default = defaultPort;
+      example = 3000;
+    };
   };
 
   config = {
@@ -18,12 +30,12 @@ in {
       
       # Hint browser to only send cookies via HTTPS
       # cookieSecure = true;
-      domain = domain;
-      httpPort = port;
+      domain = cfg.domain;
+      httpPort = cfg.port;
       # NOTE(breakds): This is only for showing some information on
       # the website, e.g. instructions on how to access the repository
       # when it is first created.
-      rootUrl = lib.mkDefault "https://${domain}";
+      rootUrl = "https://${cfg.domain}";
 
       database = {
         user = "git";
@@ -44,6 +56,14 @@ in {
         COOKIE_USERNAME = gitea_username
         COOKIE_REMEMBER_NAME = gitea_userauth
       '';
+    };
+
+    services.nginx.virtualHosts = {
+      "${cfg.domain}" = {
+        enableACME = true;
+        forceSSL = true;
+        locations."/".proxyPass = "http://localhost:${toString cfg.port}";
+      };
     };
     
     networking.firewall.allowedTCPPorts = [ config.services.gitea.httpPort ];

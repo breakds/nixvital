@@ -6,11 +6,8 @@ let cfg = config.vital.web;
     domains = resources.domains;
 
 in {
-  imports = [ ../web/gitea.nix ];
-  
   options.vital.web = {
     enable = lib.mkEnableOption "Enable Nginx proxy for web services.";
-    serveHomePage = lib.mkEnableOption "Whether host web page.";
     serveFilerun = lib.mkEnableOption "Whether to host the filerun server.";
     serveHydra = lib.mkEnableOption "Whether to host hydra server.";
   };
@@ -48,11 +45,6 @@ in {
           #   proxy_ssl_name         hydra.breakds.org;
           # '';
         });
-        "${domains.gitea}" = lib.mkIf config.vital.gitea.enable (
-          template // {
-            locations."/".proxyPass = "http://localhost:${toString ports.gitea}";
-          }
-        );
       };
     };
   };

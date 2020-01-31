@@ -7,11 +7,11 @@
     ../modules/user.nix
     ../modules/desktop
     ../modules/web/samba.nix
-    ../modules/web/gitea.nix
     ../modules/services/deluge.nix
     ../modules/services/nginx.nix
     ../modules/services/cgit.nix
     ../modules/services/homepage.nix
+    ../modules/services/gitea.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -55,6 +55,8 @@
     syncRepo.enable = true;
   };
 
+  vital.gitea.enable = true;
+
   # +------------+
   # | Web Server |
   # +------------+
@@ -63,12 +65,9 @@
 
   vital.web = {
     enable = true;
-    serveHomePage = true;
     serveFilerun = true;
     serveHydra = true;
   };
-
-  vital.gitea.enable = true;
 
   # +------------+
   # | WakeOnLan  |
