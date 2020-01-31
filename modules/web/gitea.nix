@@ -13,7 +13,7 @@ in {
   config = {
     services.gitea = lib.mkIf cfg.enable {
       enable = true;
-      appName = "Gitea: Break and Shan";
+      appName = lib.mkDefault "Gitea: Break and Shan";
       user = "git";
       
       # Hint browser to only send cookies via HTTPS

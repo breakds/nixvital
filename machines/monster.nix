@@ -7,7 +7,7 @@
     ../modules/user.nix
     ../modules/desktop
     ../modules/weride.nix
-    ../modules/web
+    ../modules/web/gitea.nix
   ];
 
   vital.machineType = "desktop";
@@ -59,19 +59,30 @@
   # | Web Server |
   # +------------+
 
-  vital.web = {
+  # Note that 8888 is allowed for IDE
+  # And 7777 is allowed for arbitrary uses
+  networking.firewall.allowedTCPPorts = [ 80 443 8888 7777 ];
+  services.nginx = {
     enable = true;
-    cgit = {
-      enable = true;
-      title = "PnC's Misc Git Server.";
-      servedUrl = "monster";
-      repoPath = "/home/git";
-      syncRepo.enable = true;
+    package = pkgs.nginxMainline;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+    recommendedProxySettings = true;
+
+    # TODO(breakds): Make this per virtual host.
+    clientMaxBodySize = "100m";
+
+    virtualHosts = {
+      "monster.corp.weride.ai" = {
+        enableACME = false;
+        forceSSL = false;
+        locations."/".proxyPass = "http://localhost:${toString (import ../data/resources.nix).ports.gitea}";
+      };
     };
   };
 
-  # Just for public access
-  networking.firewall.allowedTCPPorts = [ 7777 ];
+  vital.gitea.enable = true;
+  services.gitea.appName = "PNC Team Git Repo";
 
   # +------------+
   # | WakeOnLan  |
