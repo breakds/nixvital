@@ -10,6 +10,7 @@
     ../modules/web/gitea.nix
     ../modules/services/deluge.nix
     ../modules/services/nginx.nix
+    ../modules/services/cgit.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -44,6 +45,13 @@
 
   vital.bittorrent.enable = true;
 
+  vital.cgit = {
+    enable = true;
+    title = "Break's Repos.";
+    repoPath = "/home/delegator/cgits";
+    syncRepo.enable = true;
+  };
+
   # +------------+
   # | Web Server |
   # +------------+
@@ -55,13 +63,6 @@
     serveHomePage = true;
     serveFilerun = true;
     serveHydra = true;
-    cgit = {
-      enable = true;
-      title = "Break's Repos.";
-      servedUrl = "git.breakds.org";
-      repoPath = "/home/delegator/cgits";
-      syncRepo.enable = true;
-    };
   };
 
   vital.gitea.enable = true;

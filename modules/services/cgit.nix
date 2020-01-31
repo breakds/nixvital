@@ -6,7 +6,7 @@
 { config, lib, pkgs, ... }:
 
 let webCfg = config.vital.web;
-    cfg = config.vital.web.cgit;
+    cfg = config.vital.cgit;
 
     configFile = pkgs.writeText "cgitrc" ''
       virtual-root=/
@@ -15,17 +15,19 @@ let webCfg = config.vital.web;
       cache-size=1000
       max-stats=year
       root-title=${cfg.title}
-      root-desc=Repositories hosted at ${cfg.servedUrl}.
+      root-desc=Repositories hosted at ${cfg.domain}.
       source-filter=${pkgs.cgit}/lib/cgit/filters/syntax-highlighting.py
       enable-commit-graph=true
       repository-sort=age
       enable-html-serving=1
     '';
 
-    ports = (import ../../data/resources.nix).ports.cgit;
+    resources = (import ../../data/resources.nix);
+    ports = resources.ports.cgit;
+    defaultDomain = resources.domains.cgit;
 
 in {
-  options.vital.web.cgit = with lib; {
+  options.vital.cgit = with lib; {
     enable = mkEnableOption "Enable the cgit service.";
     fcgiPort = mkOption {
       type = types.port;
@@ -68,10 +70,10 @@ in {
       description = "The title of the cgit web UI.";
       default = "";
     };
-    servedUrl = mkOption {
+    domain = mkOption {
       type = types.str;
-      description = "The url at which cgit is served.";
-      default = "";
+      description = "The domain name at which cgit is served.";
+      default = defaultDomain;
       example = "git.breakds.org";
     };
   };
@@ -96,7 +98,7 @@ in {
 
           locations."/git/" = {
             extraConfig = ''
-            rewrite ^/git/(.*) https://${cfg.servedUrl}/$1 permanent;
+            rewrite ^/git/(.*) https://${cfg.domain}/$1 permanent;
           '';
           };
 
@@ -111,6 +113,12 @@ in {
             fastcgi_pass  127.0.0.1:${toString cfg.fcgiPort};
           '';
           };
+        };
+
+        "${cfg.domain}" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://localhost:${toString cfg.gitPort}";
         };
       };
     };

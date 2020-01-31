@@ -11,6 +11,7 @@
     };
   };
   domains = {
+    cgit = "git.breakds.org";
     gitea = "gitea.breakds.org";
   };
 }

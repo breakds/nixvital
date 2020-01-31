@@ -6,7 +6,7 @@ let cfg = config.vital.web;
     domains = resources.domains;
 
 in {
-  imports = [ ../web/cgit.nix ../web/gitea.nix ];
+  imports = [ ../web/gitea.nix ];
   
   options.vital.web = {
     enable = lib.mkEnableOption "Enable Nginx proxy for web services.";
@@ -52,11 +52,6 @@ in {
           #   proxy_ssl_name         hydra.breakds.org;
           # '';
         });
-        "${cfg.cgit.servedUrl}" = lib.mkIf cfg.cgit.enable (
-          template // {
-            locations."/".proxyPass = "http://localhost:${toString ports.cgit.web}";
-          }
-        );
         "${domains.gitea}" = lib.mkIf config.vital.gitea.enable (
           template // {
             locations."/".proxyPass = "http://localhost:${toString ports.gitea}";
