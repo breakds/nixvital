@@ -7,9 +7,9 @@
     ../modules/user.nix
     ../modules/desktop
     ../modules/web
-    ../modules/deluge.nix
     ../modules/web/samba.nix
     ../modules/web/gitea.nix
+    ../modules/services/deluge.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -39,6 +39,12 @@
   };
 
   # +------------+
+  # | Services   |
+  # +------------+
+
+  vital.bittorrent.enable = true;
+
+  # +------------+
   # | Web Server |
   # +------------+
 
@@ -65,6 +71,4 @@
   services.wakeonlan.interfaces = [{
     interface = "eno1";
   }];
-
-  vital.bittorrent.enable = true;
 }

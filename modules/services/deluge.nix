@@ -2,6 +2,8 @@
 
 let
   cfg = config.vital.bittorrent;
+  delugePorts = (import ../../data/resources.nix).ports.deluge;
+    
 in {
   options.vital.bittorrent = {
     enable = lib.mkEnableOption "Deluge BitTorrent client";
@@ -19,8 +21,8 @@ in {
       
       config = {
         download_location = "/home/breakds/.deluge_stuff";
-        daemon_port = 10733;
-        listen_ports = [ 10781 10789 ];
+        daemon_port = delugePorts.daemon;
+        listen_ports = delugePorts.listen;
         max_upload_speed = "1024";
       };
 
