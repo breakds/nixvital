@@ -11,6 +11,7 @@
     ../modules/services/deluge.nix
     ../modules/services/nginx.nix
     ../modules/services/cgit.nix
+    ../modules/services/homepage.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -42,6 +43,8 @@
   # +------------+
   # | Services   |
   # +------------+
+
+  vital.homepage.enable = true;
 
   vital.bittorrent.enable = true;
 
