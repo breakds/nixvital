@@ -6,7 +6,6 @@
     ../nix-home/breakds
     ../modules/user.nix    
     ../modules/desktop
-    ../modules/web
   ];
 
   vital.machineType = "desktop";

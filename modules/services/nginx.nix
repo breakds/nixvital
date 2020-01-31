@@ -6,18 +6,17 @@ let cfg = config.vital.web;
     domains = resources.domains;
 
 in {
-  imports = [ ./cgit.nix ./gitea.nix ];
-
+  imports = [ ../web/cgit.nix ../web/gitea.nix ];
+  
   options.vital.web = {
-    enable = lib.mkEnableOption "Enable Hosted Web Services";
+    enable = lib.mkEnableOption "Enable Nginx proxy for web services.";
     serveHomePage = lib.mkEnableOption "Whether host web page.";
     serveFilerun = lib.mkEnableOption "Whether to host the filerun server.";
     serveHydra = lib.mkEnableOption "Whether to host hydra server.";
   };
 
   config = lib.mkIf cfg.enable {
-    # Note that 8888 is allowed for Jupyter Lab
-    networking.firewall.allowedTCPPorts = [ 80 443 8888 ];
+    networking.firewall.allowedTCPPorts = [ 80 443 ];
     services.nginx = {
       enable = true;
       package = pkgs.nginxMainline;

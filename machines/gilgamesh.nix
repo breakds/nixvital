@@ -6,10 +6,10 @@
     ../nix-home/breakds
     ../modules/user.nix
     ../modules/desktop
-    ../modules/web
     ../modules/web/samba.nix
     ../modules/web/gitea.nix
     ../modules/services/deluge.nix
+    ../modules/services/nginx.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -47,6 +47,8 @@
   # +------------+
   # | Web Server |
   # +------------+
+
+  networking.firewall.allowedTCPPorts = [ 8888 ];
 
   vital.web = {
     enable = true;
