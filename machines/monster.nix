@@ -82,7 +82,10 @@
   };
 
   vital.gitea.enable = true;
-  services.gitea.appName = "PNC Team Git Repo";
+  services.gitea = {
+    appName = "Username: pnc, Password: pncpnc";
+    rootUrl = "http://monster.corp.weride.ai";
+  };
 
   # +------------+
   # | WakeOnLan  |

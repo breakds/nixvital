@@ -20,8 +20,10 @@ in {
       # cookieSecure = true;
       domain = domain;
       httpPort = port;
-      # NOTE(breakds): I am not sure how important this value is.
-      rootUrl = "https://${domain}";
+      # NOTE(breakds): This is only for showing some information on
+      # the website, e.g. instructions on how to access the repository
+      # when it is first created.
+      rootUrl = lib.mkDefault "https://${domain}";
 
       database = {
         user = "git";
