@@ -58,7 +58,7 @@ in {
       '';
     };
 
-    services.nginx.virtualHosts = {
+    services.nginx.virtualHosts = lib.mkIf config.vital.web.enable {
       "${cfg.domain}" = {
         enableACME = true;
         forceSSL = true;
