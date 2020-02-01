@@ -6,7 +6,7 @@
     ../nix-home/breakds
     ../modules/user.nix
     ../modules/desktop
-    ../modules/web/samba.nix
+    ../modules/services/samba.nix
     ../modules/services/deluge.nix
     ../modules/services/nginx.nix
     ../modules/services/cgit.nix
