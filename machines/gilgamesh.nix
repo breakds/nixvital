@@ -48,8 +48,9 @@
 
   vital.bittorrent.enable = true;
 
+  # Does not need it served right now.
   vital.cgit = {
-    enable = true;
+    enable = false;
     title = "Break's Repos.";
     repoPath = "/home/delegator/cgits";
     syncRepo.enable = true;

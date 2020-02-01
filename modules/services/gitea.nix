@@ -55,6 +55,9 @@ in {
         INSTALL_LOCK = true
         COOKIE_USERNAME = gitea_username
         COOKIE_REMEMBER_NAME = gitea_userauth
+        
+        [server]
+        LANDING_PAGE = explore
       '';
     };
 
