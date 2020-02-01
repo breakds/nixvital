@@ -47,8 +47,8 @@
     pciutils usbutils mkpasswd nixops remmina p7zip
     arandr smbclient neofetch
     # ---------- Development ----------
-    git tig cmake clang clang-tools silver-searcher sbcl
-    gcc 
+    git tig cmake clang clang-tools binutils
+    gcc silver-searcher sbcl
     web-dev-tools
     py-dev-tools
     ros2nix
