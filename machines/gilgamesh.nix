@@ -57,17 +57,14 @@
 
   vital.gitea.enable = true;
 
-  # +------------+
-  # | Web Server |
-  # +------------+
-
-  networking.firewall.allowedTCPPorts = [ 8888 ];
-
   vital.web = {
     enable = true;
     serveFilerun = true;
     serveHydra = true;
   };
+
+  # For temporary serving something such as Jupyter Notebook.
+  networking.firewall.allowedTCPPorts = [ 8888 ];
 
   # +------------+
   # | WakeOnLan  |
