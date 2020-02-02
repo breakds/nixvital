@@ -18,8 +18,6 @@ in rustPlatform.buildRustPackage rec {
     sha256 = "1y2irlnha0dj63zp3dfbmrhssjj9qdxcl7h5sfr5nxf6dd4vjccg";
   };
 
-  name = "simple-reflection-server";
-
   # FIXME: This is a hack that should be removed in the future.
   #
   # Cargo needs $HOME to do some work but buildRustPackage did not
