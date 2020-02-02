@@ -10,6 +10,7 @@
       ../modules/top-level-options.nix
       ../modules/security.nix
       ../modules/docker.nix
+      ../modules/services/nixvital-reflection.nix
     ];
 
   # Specifies the overlay for all the packages.
@@ -115,4 +116,10 @@
   environment.etc = {
     "bashrc.local".source = ../data/bashrc.local;
   };
+
+  # +------------------------------------------------------------+
+  # | Other Services                                             |
+  # +------------------------------------------------------------+
+
+  vital.nixvital-reflection.enable = lib.mkDefault true;
 }

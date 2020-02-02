@@ -9,6 +9,7 @@
       daemon = 10733;
       listen = [ 10781 10789 ];
     };
+    nixvital-reflection = 5888;
   };
   domains = {
     cgit = "cgit.breakds.org";

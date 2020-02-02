@@ -127,7 +127,7 @@ in {
       services.cgit-init = {
         description = "init cgit cache";
         path = [ pkgs.coreutils ];
-        after = [ "networking.target" ];
+        after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];
         script = ''
           echo "Creating cache directory"
