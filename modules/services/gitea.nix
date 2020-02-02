@@ -71,8 +71,8 @@ in {
     
     networking.firewall.allowedTCPPorts = [ config.services.gitea.httpPort ];
 
-    vital.nixvital-reflection.show = {
+    vital.nixvital-reflection.show = [
       { key = "vital.gitea.port"; val = "${toString config.vital.gitea.port}"; }
-    };
+    ];
   };
 }

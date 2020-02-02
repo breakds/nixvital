@@ -16,8 +16,8 @@
       };
     };
 
-    vital.nixvital-reflection.show = {
+    vital.nixvital-reflection.show = [
       { key = "vital.homepage.enable"; val = "${toString config.vital.homepage.enable}"; }
-    };
+    ];
   };
 }
