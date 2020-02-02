@@ -121,5 +121,12 @@
   # | Other Services                                             |
   # +------------------------------------------------------------+
 
-  vital.nixvital-reflection.enable = lib.mkDefault true;
+  vital.nixvital-reflection = {
+    enable = lib.mkDefault true;
+    show = [
+      { key = "system.stateVersion"; val = config.system.stateVersion; }
+      { key = "vital.machineType"; val = config.vital.machineType; }
+      { key = "vital.mainUser"; val = config.vital.mainUser; }
+    ];
+  };
 }
