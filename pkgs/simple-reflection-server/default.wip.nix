@@ -9,26 +9,29 @@ let mkRustPlatform = pkgs.callPackage ../build-tools/mk-rust-platform.nix {};
 
 in rustPlatform.buildRustPackage rec {
   pname = "simple-reflection-server";
-  version = "1.1.x";
+  version = "1.1.0";
 
   src = fetchFromGitHub {
     owner = "breakds";
     repo = pname;
     rev = version;
-    sha256 = "1y2irlnha0dj63zp3dfbmrhssjj9qdxcl7h5sfr5nxf6dd4vjccg";
+    sha256 = "09rr5gj45hh5j5hs03x30lny8pjzdd65kwhbwj771xzx4sh22dgm";
   };
 
   name = "simple-reflection-server";
 
-  # FIXME: This is a hack that should be removed in the future.
-  #
-  # Cargo needs $HOME to do some work but buildRustPackage did not
-  # handle that. Cheating by give it a temporary directory as home.
+  # src = pkgs.fetchgit {
+  #   url = "https://github.com/breakds/simple-reflection-server.git";
+  #   rev = "6194f931635c2210b78f9a497fe59b053dab09c6";
+  #   sha256 = "0ap5y7j990qnicgzn9vnp1vv5bg10wvbr9pr1jghd0drzii21xcy";
+  # };
+
   preConfigure = ''
     export HOME=$(mktemp -d)
   '';
 
-  cargoSha256 = "0drf5xnqin26zdyvx9n2zzgahcnrna0y56cphk2pb97qhpakvhbj";
+  cargoSha256 = "09rr5gj45hh5j5hs03x30lny8pjzdd65kwhbwj771xzx4sh22dgm";
+  # cargoSha256 = "0drf5xnqin26zdyvx9n2zzgahcnrna0y56cphk2pb97qhpakvhbj";
   verifyCargoDeps = true;
 
   meta = with stdenv.lib; {
