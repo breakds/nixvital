@@ -50,4 +50,8 @@ in {
 
   # www.breakds.org, the personal website
   www-breakds-org = self.callPackage ../pkgs/www-breakds-org {};
+
+  # This is for nixvital-reflection service, a web page to list
+  # current highlighted NixOS variable/value pairs.
+  simple-reflection-server = self.callPackage ../pkgs/simple-reflection-server {};
 }
