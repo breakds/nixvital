@@ -1,12 +1,12 @@
 { stdenv, pkgs, hugo, ... }:
 
 stdenv.mkDerivation {
-  name = "www-personal";
+  name = "www-breakds-org";
   
   src = pkgs.fetchgit {
     url = "https://github.com/breakds/www.breakds.org.git";
-    rev = "36e8c305df2cb3b2384512db0552af8b5e993a20";
-    sha256 = "0agdfc6cvm41x9f6248fqwfrs15lan6b51rvzmfcigqk8y3l1kjv";
+    rev = "32b292ab095c5f08fc2d78af3d649a01ed3599d2";
+    sha256 = "1kl5vpd7jl6rkq7akq6140789sqp1gnwxaaz7hp9jkv49zn2hgay";
     fetchSubmodules = true;
   };
 
