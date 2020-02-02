@@ -1,4 +1,4 @@
-{ stdenv, pkgs, fetchFromGitHub, ... }:
+{ stdenv, pkgs, fetchFromGitHub, makeWrapper, ... }:
 
 let mkRustPlatform = pkgs.callPackage ../build-tools/mk-rust-platform.nix {};
 
@@ -18,6 +18,11 @@ in rustPlatform.buildRustPackage rec {
     sha256 = "1y2irlnha0dj63zp3dfbmrhssjj9qdxcl7h5sfr5nxf6dd4vjccg";
   };
 
+  nativeBuildInputs = [ makeWrapper ];
+
+  cargoSha256 = "0drf5xnqin26zdyvx9n2zzgahcnrna0y56cphk2pb97qhpakvhbj";
+  verifyCargoDeps = true;
+
   # FIXME: This is a hack that should be removed in the future.
   #
   # Cargo needs $HOME to do some work but buildRustPackage did not
@@ -26,8 +31,13 @@ in rustPlatform.buildRustPackage rec {
     export HOME=$(mktemp -d)
   '';
 
-  cargoSha256 = "0drf5xnqin26zdyvx9n2zzgahcnrna0y56cphk2pb97qhpakvhbj";
-  verifyCargoDeps = true;
+  postInstall = ''
+    mkdir $out/etc/
+    cp -r templates $out/etc
+    wrapProgram "$out/bin/simple-reflection-server" \
+      --prefix ROCKET_WORKERS : "1" \
+      --prefix ROCKET_TEMPLATE_DIR : "$out/etc/templates"
+  '';
 
   meta = with stdenv.lib; {
     description = "Nothing fancy, just show the key:value pairs it asks to show on a web page.";
