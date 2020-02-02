@@ -22,8 +22,8 @@ in {
     };
   };
 
-  config = {
-    services.gitea = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    services.gitea = {
       enable = true;
       appName = lib.mkDefault "Gitea: Break and Shan";
       user = "git";
@@ -70,5 +70,9 @@ in {
     };
     
     networking.firewall.allowedTCPPorts = [ config.services.gitea.httpPort ];
+
+    vital.nixvital-reflection.show = {
+      { key = "vital.gitea.port"; val = "${toString config.vital.gitea.port}"; }
+    };
   };
 }
