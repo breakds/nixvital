@@ -12,6 +12,7 @@
     ../modules/services/cgit.nix
     ../modules/services/homepage.nix
     ../modules/services/gitea.nix
+    ../modules/services/filerun.nix
     # TODO(breakds): Bring it up
     # ../modules/web/filerun.nix
     ../containers/declarative/hydrahead.nix
@@ -62,6 +63,14 @@
     enable = true;
     serveFilerun = true;
     serveHydra = true;
+  };
+
+  vital.filerun = {
+    enable = true;
+    volumes = [
+      "/home/breakds/filerun/web:/var/www/html"
+      "/home/breakds/filerun/user-files:/user-files"
+    ];
   };
 
   # For temporary serving something such as Jupyter Notebook.
