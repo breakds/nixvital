@@ -67,10 +67,7 @@
 
   vital.filerun = {
     enable = true;
-    volumes = [
-      "/home/breakds/filerun/web:/var/www/html"
-      "/home/breakds/filerun/user-files:/user-files"
-    ];
+    workDir = "/home/breakds/filerun";
   };
 
   # For temporary serving something such as Jupyter Notebook.
