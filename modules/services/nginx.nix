@@ -28,9 +28,6 @@ in {
         enableACME = true;
         forceSSL = true;
       }; in {
-        "files.breakds.org" = lib.mkIf cfg.serveFilerun (template // {
-          locations."/".proxyPass = "http://localhost:${toString ports.filerun}";
-        });
         "hydra.breakds.org" = lib.mkIf cfg.serveHydra (template // {
           locations."/".proxyPass = "http://localhost:${toString ports.hydra.master}";
           # The following commented out configuration are for the case when

@@ -14,5 +14,6 @@
   domains = {
     cgit = "cgit.breakds.org";
     gitea = "git.breakds.org";
+    filerun = "files.breakds.org";
   };
 }

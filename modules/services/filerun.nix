@@ -3,6 +3,7 @@
 let cfg = config.vital.filerun;
     resources = (import ../../data/resources.nix);
     defaultPort = resources.ports.filerun;
+    defaultDomain = resources.domains.filerun;
 
 in {
   options.vital.filerun = {
@@ -50,6 +51,12 @@ in {
       example = lib.literalExample ''
         [ "breakds-files" ]
       '';
+    };
+    domain = lib.mkOption {
+      type = lib.types.str;
+      description = "The domain to configure nginx for this service.";
+      default = defaultDomain;
+      example = "files.breakds.org";
     };
   };
 
@@ -125,6 +132,15 @@ in {
                      echo "${bridgeNetworkName} already exists in docker"
                    fi
                  '';
+      };
+
+      # The nginx configuration to expose it if nginx is enabled.
+      services.nginx.virtualHosts = lib.mkIf config.vital.web.enable {
+        "${cfg.domain}" = {
+          enableACME = true;
+          forceSSL = true;
+          locations."/".proxyPass = "http://localhost:${toString cfg.port}";
+        };
       };
     });
 }
