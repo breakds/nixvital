@@ -42,7 +42,7 @@
 
   # Basic softwares that should definitely exist.
   environment.systemPackages = with pkgs; [
-    wget vim emacs firefox google-chrome dmenu scrot inkscape
+    wget vim emacs firefox google-chrome dmenu scrot inkscape pdftk
     # ---------- System Utils ----------
     rsync pciutils usbutils mkpasswd nixops remmina
     pciutils usbutils mkpasswd nixops remmina p7zip
