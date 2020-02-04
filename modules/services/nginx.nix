@@ -8,7 +8,6 @@ let cfg = config.vital.web;
 in {
   options.vital.web = {
     enable = lib.mkEnableOption "Enable Nginx proxy for web services.";
-    serveFilerun = lib.mkEnableOption "Whether to host the filerun server.";
     serveHydra = lib.mkEnableOption "Whether to host hydra server.";
   };
 

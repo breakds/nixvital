@@ -61,7 +61,6 @@
 
   vital.web = {
     enable = true;
-    serveFilerun = true;
     serveHydra = true;
   };
 
