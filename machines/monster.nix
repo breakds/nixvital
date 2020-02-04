@@ -7,7 +7,8 @@
     ../modules/user.nix
     ../modules/desktop
     ../modules/weride.nix
-    ../modules/web/gitea.nix
+    ../modules/services/gitea.nix
+    ../modules/services/nginx.nix
   ];
 
   vital.machineType = "desktop";
@@ -59,33 +60,21 @@
   # | Web Server |
   # +------------+
 
+  vital.gitea = {
+    enable = true;
+    domain = "monster.corp.weride.ai";
+    useSSL = false;    
+    appName = "Username: pnc, Password: pncpnc";
+    landingPage = "home";
+  };
+
+  vital.web = {
+    enable = true;
+  };
+
   # Note that 8888 is allowed for IDE
   # And 7777 is allowed for arbitrary uses
-  networking.firewall.allowedTCPPorts = [ 80 443 8888 7777 ];
-  services.nginx = {
-    enable = true;
-    package = pkgs.nginxMainline;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-    recommendedProxySettings = true;
-
-    # TODO(breakds): Make this per virtual host.
-    clientMaxBodySize = "100m";
-
-    virtualHosts = {
-      "monster.corp.weride.ai" = {
-        enableACME = false;
-        forceSSL = false;
-        locations."/".proxyPass = "http://localhost:${toString (import ../data/resources.nix).ports.gitea}";
-      };
-    };
-  };
-
-  vital.gitea.enable = true;
-  services.gitea = {
-    appName = "Username: pnc, Password: pncpnc";
-    rootUrl = "http://monster.corp.weride.ai";
-  };
+  networking.firewall.allowedTCPPorts = [ 8888 7777 ];
 
   # +------------+
   # | WakeOnLan  |

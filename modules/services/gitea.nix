@@ -20,12 +20,30 @@ in {
       default = defaultPort;
       example = 3000;
     };
+    useSSL = lib.mkOption {
+      type = lib.types.bool;
+      description = "Serve with HTTPS when set to true.";
+      default = true;
+      example = true;
+    };
+    appName = lib.mkOption {
+      type = lib.types.str;
+      description = "The title for the website and on the browser tab.";
+      default = "Gitea: Break and Shan";
+      example = "My Git Repos";
+    };
+    landingPage = lib.mkOption {
+      type = lib.types.enum [ "home" "explore" "organization" ];
+      description = "Landing page for unauthenticated users";
+      default = "explore";
+      example = "home";
+    };
   };
 
   config = lib.mkIf cfg.enable {
     services.gitea = {
       enable = true;
-      appName = lib.mkDefault "Gitea: Break and Shan";
+      appName = cfg.appName;
       user = "git";
       
       # Hint browser to only send cookies via HTTPS
@@ -35,7 +53,7 @@ in {
       # NOTE(breakds): This is only for showing some information on
       # the website, e.g. instructions on how to access the repository
       # when it is first created.
-      rootUrl = "https://${cfg.domain}";
+      rootUrl = "http${if cfg.useSSL then "s" else ""}://${cfg.domain}";
 
       database = {
         user = "git";
@@ -63,8 +81,8 @@ in {
 
     services.nginx.virtualHosts = lib.mkIf config.vital.web.enable {
       "${cfg.domain}" = {
-        enableACME = true;
-        forceSSL = true;
+        enableACME = cfg.useSSL;
+        forceSSL = cfg.useSSL;
         locations."/".proxyPass = "http://localhost:${toString cfg.port}";
       };
     };
