@@ -44,9 +44,11 @@ in {
 
         # The user delegator is used to serve content for web services.
         delegator = {
+          isNormalUser = false;
           group = "delegator";
-          createHome = false;
+          createHome = true;
           uid = 600;
+          # FIXME: need manually setting the home directory's permission.
           home = "/home/delegator";
           extraGroups = [ "delegator" ];
         };
@@ -60,20 +62,20 @@ in {
 
         fcgi = {
           group = "fcgi";
-	        extraGroups = [ "delegator" "fcgi" "git" ];
+	        extraGroups = [ "fcgi" "git" ];
 	        uid = 500;
         };
 
         nginx = {
           group = "nginx";
-          extraGroups = [ "delegator" "nginx" ];
+          extraGroups = [ "nginx" ];
           uid = 60;
         };
 
         git = {
           isNormalUser = true;
           group = "git";
-          extraGroups = [ "git" "delegator" "fcgi" ];
+          extraGroups = [ "git" "fcgi" ];
           uid = 510;
           home = "/home/git";
           description = "User for git server.";
