@@ -10,12 +10,6 @@ in {
 
   options.vital.filerun = {
     enable = lib.mkEnableOption "Enable the filerun service.";
-    dbPasswd = lib.mkOption {
-      type = lib.types.str;
-      description = "The password for the database.";
-      default = "filerunpasswd";
-      example = "filerunpasswd";
-    };
     workDir = lib.mkOption {
       type = lib.types.str;
       description = ''
@@ -71,6 +65,8 @@ in {
           group = config.users.extraGroups.delegator;
         };
 
+        dbPasswd = "filerunpasswd";
+
     in {
       # Note that both containers will be put in the same user defined
       # (bridge) network.
@@ -79,9 +75,9 @@ in {
       docker-containers."${dbContainerName}" = {
         image = "mariadb:10.1";
         environment = {
-          "MYSQL_ROOT_PASSWORD" = cfg.dbPasswd;
+          "MYSQL_ROOT_PASSWORD" = dbPasswd;
           "MYSQL_USER" = "filerun";
-          "MYSQL_PASSWORD" = cfg.dbPasswd;
+          "MYSQL_PASSWORD" = dbPasswd;
           "MYSQL_DATABASE" = "filerundb";
         };
         volumes = [ "${dbPath}:/var/lib/mysql" ];
@@ -97,7 +93,7 @@ in {
           "FR_DB_PORT" = "3306";
           "FR_DB_NAME" = "filerundb";
           "FR_DB_USER" = "filerun";
-          "FR_DB_PASS" = cfg.dbPasswd;
+          "FR_DB_PASS" = dbPasswd;
           "APACHE_RUN_USER" = "${runner.user.name}";
           "APACHE_RUN_USER_ID" = "${toString runner.user.uid}";
           "APACHE_RUN_GROUP" = "${runner.group.name}";
