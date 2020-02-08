@@ -34,18 +34,10 @@ in {
 	          "lxd"
 	          "docker"
             "nginx"
-            "filerun"
             "samba"
 	        ];
           useDefaultShell = true;
           openssh.authorizedKeys.keyFiles = lib.mkIf (cfg.mainUser == "breakds") [ ../keys/breakds_samaritan.pub ];
-        };
-
-        filerun = {
-          isNormalUser = false;
-          initialPassword = "filerunpasswd";
-          uid = 33;
-          extraGroups = [ "filerun" ];
         };
 
         fcgi = {
@@ -73,7 +65,6 @@ in {
       extraGroups = {
         "${cfg.mainUser}" = { gid = 1000; members = [ "${cfg.mainUser}" ]; };
         fcgi = { gid = 500; members = [ "fcgi" ]; };
-        filerun = { gid = 33; members = [ "${cfg.mainUser}" "filerun" ]; };
         plugdev = { gid = 501; };
         nginx = { gid = 60; members = [ "nginx" ]; };
         git = { gid = 510; members = [ "${cfg.mainUser}" "git" "fcgi" ]; };
