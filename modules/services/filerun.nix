@@ -27,15 +27,6 @@ in {
       default = "/home/${config.vital.mainUser}/filerun";
       example = "/home/${config.vital.mainUser}/filerun";
     };
-    dbPath = lib.mkOption {
-      type = lib.types.str;
-      description = ''
-        Path to the MariaDB directory.
-        It will be mapped to /var/lib/mysql in the mariadb container.
-      '';
-      default = "/home/breakds/filerun/db";
-      example = "/home/breakds/filerun/db";
-    };
     port = lib.mkOption {
       type = lib.types.port;
       description = "The port (on host) that filerun will be served on.";
@@ -99,10 +90,10 @@ in {
           "FR_DB_NAME" = "filerundb";
           "FR_DB_USER" = "filerun";
           "FR_DB_PASS" = cfg.dbPasswd;
-          "APACHE_RUN_USER" = "www-data";
-          "APACHE_RUN_USER_ID" = "33";
-          "APACHE_RUN_GROUP" = "www-data";
-          "APACHE_RUN_GROUP_ID" = "33";
+          "APACHE_RUN_USER" = "delegator";
+          "APACHE_RUN_USER_ID" = "600";
+          "APACHE_RUN_GROUP" = "delegator";
+          "APACHE_RUN_GROUP_ID" = "600";
         };
         ports = [ "${toString cfg.port}:80" ];
         volumes = [
@@ -114,7 +105,7 @@ in {
 
       # This is an one-shot systemd service to make sure that the
       # required network is there.
-      systemd.services.init-filerun-docker-bridge = {
+      systemd.services.init-filerun-network-and-files = {
         description = "Create the network bridge ${bridgeNetworkName} for filerun.";
         after = [ "network.target" ];
         wantedBy = [ "multi-user.target" ];

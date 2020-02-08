@@ -44,7 +44,7 @@ in {
 
         # The user delegator is used to serve content for web services.
         delegator = {
-          isNormalUser = false;
+          isNormalUser = true;
           group = "delegator";
           createHome = true;
           uid = 600;

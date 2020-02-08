@@ -66,7 +66,7 @@
 
   vital.filerun = {
     enable = true;
-    workDir = "/home/breakds/filerun";
+    workDir = "/home/delegator/filerun";
   };
 
   # For temporary serving something such as Jupyter Notebook.
