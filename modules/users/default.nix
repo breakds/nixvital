@@ -35,22 +35,10 @@ in {
 	          "docker"
             "nginx"
             "filerun"
-            "delegator"
             "samba"
 	        ];
           useDefaultShell = true;
           openssh.authorizedKeys.keyFiles = lib.mkIf (cfg.mainUser == "breakds") [ ../keys/breakds_samaritan.pub ];
-        };
-
-        # The user delegator is used to serve content for web services.
-        delegator = {
-          isNormalUser = true;
-          group = "delegator";
-          createHome = true;
-          uid = 600;
-          # FIXME: need manually setting the home directory's permission.
-          home = "/home/delegator";
-          extraGroups = [ "delegator" ];
         };
 
         filerun = {
@@ -87,7 +75,6 @@ in {
         fcgi = { gid = 500; members = [ "fcgi" ]; };
         filerun = { gid = 33; members = [ "${cfg.mainUser}" "filerun" ]; };
         plugdev = { gid = 501; };
-        delegator = { gid = 600; members = [ "delegator" "${cfg.mainUser}" "nginx" "fcgi" ]; };
         nginx = { gid = 60; members = [ "nginx" ]; };
         git = { gid = 510; members = [ "${cfg.mainUser}" "git" "fcgi" ]; };
       };

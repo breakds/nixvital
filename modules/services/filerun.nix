@@ -6,6 +6,8 @@ let cfg = config.vital.filerun;
     defaultDomain = resources.domains.filerun;
 
 in {
+  imports = [ ../users/delegator.nix ];
+
   options.vital.filerun = {
     enable = lib.mkEnableOption "Enable the filerun service.";
     dbPasswd = lib.mkOption {
@@ -63,6 +65,12 @@ in {
         # 3. Hence the composite hostname below.
         dbContainerHost = "docker-${dbContainerName}.service";
         bridgeNetworkName = "filerun_network";
+
+        runner = {
+          user = config.users.extraUsers.delegator;
+          group = config.users.extraGroups.delegator;
+        };
+
     in {
       # Note that both containers will be put in the same user defined
       # (bridge) network.
@@ -90,10 +98,10 @@ in {
           "FR_DB_NAME" = "filerundb";
           "FR_DB_USER" = "filerun";
           "FR_DB_PASS" = cfg.dbPasswd;
-          "APACHE_RUN_USER" = "delegator";
-          "APACHE_RUN_USER_ID" = "600";
-          "APACHE_RUN_GROUP" = "delegator";
-          "APACHE_RUN_GROUP_ID" = "600";
+          "APACHE_RUN_USER" = "${runner.user.name}";
+          "APACHE_RUN_USER_ID" = "${toString runner.user.uid}";
+          "APACHE_RUN_GROUP" = "${runner.group.name}";
+          "APACHE_RUN_GROUP_ID" = "${toString runner.group.gid}";
         };
         ports = [ "${toString cfg.port}:80" ];
         volumes = [
