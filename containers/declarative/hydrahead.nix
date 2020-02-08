@@ -23,7 +23,7 @@ in {
     config = { config, pkgs, ... }: {
       imports = [
         ../container-base.nix
-        ../../modules/user.nix
+        ../../modules/users
         ../../modules/dev/hydra.nix
       ];
 

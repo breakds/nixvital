@@ -4,7 +4,7 @@
   imports = [
     ./base.nix
     ../nix-home/breakds
-    ../modules/user.nix    
+    ../modules/users
     ../modules/desktop
   ];
 

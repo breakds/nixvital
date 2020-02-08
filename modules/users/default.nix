@@ -39,7 +39,7 @@ in {
             "samba"
 	        ];
           useDefaultShell = true;
-          openssh.authorizedKeys.keyFiles = lib.mkIf (cfg.mainUser == "breakds") [ ./keys/breakds_samaritan.pub ];
+          openssh.authorizedKeys.keyFiles = lib.mkIf (cfg.mainUser == "breakds") [ ../keys/breakds_samaritan.pub ];
         };
 
         # The user delegator is used to serve content for web services.

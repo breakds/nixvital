@@ -4,7 +4,7 @@
   imports = [
     ../base.nix
     ../../nix-home/cassandra
-    ../../modules/user.nix
+    ../../modules/users
     ../../modules/desktop
     ../../modules/dev/vscode.nix
   ];

@@ -10,7 +10,7 @@
 {
   imports = [
     ../container-base.nix
-    ../../modules/user.nix
+    ../../modules/users
   ];
 
   networking.hostName = "cupbearer";
