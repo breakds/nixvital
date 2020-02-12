@@ -6,7 +6,6 @@
     ../nix-home/breakds
     ../modules/users
     ../modules/desktop
-    ../modules/laptop.nix
     ../modules/IoT/monitor-camera.nix
   ];
 

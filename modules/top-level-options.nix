@@ -33,5 +33,13 @@ in {
       xserver.i3_show_battery = cfg.machineType == "laptop";
       xserver.useCapsAsCtrl = lib.mkDefault (cfg.machineType == "laptop" && cfg.mainUser == "breakds");
     };
+
+    # Handle lids for laptops.
+    services.logind = lib.mkIf (cfg.machineType == "laptop") {
+      extraConfig = "HandleLidSwitch=ignore";
+      lidSwitch = "suspend-then-hibernate";
+      lidSwitchDocked = "ignore";
+      lidSwitchExternalPower = "ignore";
+    };
   };
 }
