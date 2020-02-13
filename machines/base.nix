@@ -11,6 +11,7 @@
       ../modules/security.nix
       ../modules/docker.nix
       ../modules/services/nixvital-reflection.nix
+      ../modules/perf.nix
     ];
 
   # Specifies the overlay for all the packages.
