@@ -46,7 +46,7 @@
     wget vim emacs firefox google-chrome dmenu scrot inkscape pdftk
     # ---------- System Utils ----------
     rsync pciutils usbutils mkpasswd nixops remmina
-    pciutils usbutils mkpasswd nixops remmina p7zip
+    pciutils usbutils mkpasswd nixops remmina p7zip unzip
     arandr smbclient neofetch ffmpeg zstd
     # ---------- Development ----------
     git tig cmake clang clang-tools binutils
