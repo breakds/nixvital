@@ -16,6 +16,8 @@ from prompt_toolkit.validation import Validator, ValidationError
 from prompt_toolkit.completion import WordCompleter
 from prompt_toolkit.styles import Style
 
+from config_writer import RewriteConfiguration
+
 APP_STYLE = Style.from_dict({
     'prompt_text': '#00aa00 bold',
     'input_target': '#DDA0DD bold underline',
@@ -46,7 +48,7 @@ def CloneNixvital(install_root):
     # Clone if nixvital is not there yet
     vital_dir = pathlib.Path(install_root, 'opt', 'nixvital')
     if not (vital_dir.exists() and vital_dir.is_dir()):
-        repo = Repo.clone_from('https://git.breakds.org/nixvital.git/', vital_dir)
+        repo = Repo.clone_from('https://git.breakds.org/breakds/nixvital.git/', vital_dir)
     return vital_dir
 
 
@@ -94,38 +96,6 @@ def CreateSymbolicLink(install_root, vital_dir):
     if vital_symlink.exists():
         vital_symlink.unlink()
     vital_symlink.symlink_to(pathlib.Path('../../opt/nixvital'))
-
-def RewriteConfiguration(install_root, username, machine, hostname):
-    # TODO(breakds) Use nixos-version to get the NixOS version first
-    #   ret = subprocess.run(['nixos-version'], capture_output=True)
-    #   print(ret.stdout)
-
-    with open('/etc/machine-id', 'r') as f:
-        machine_id = f.read(8)
-
-
-    config_path = pathlib.Path(install_root, 'etc/nixos/configuration.nix')
-    config_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(config_path, 'w') as out:
-        out.write('{ config, pkgs, ... }:\n\n')
-        out.write('{\n')
-        out.write('  imports = [\n')
-        out.write('    ./hardware-configuration.nix\n')
-        out.write('    ./nixvital/machines/{}\n'.format(machine))
-        out.write('  ];\n\n')
-        out.write('  vital.mainUser = "{}";\n'.format(username))
-        out.write('  networking.hostName = "{}";\n'.format(hostname))
-        out.write('  networking.hostId = "{}";\n'.format(machine_id))
-        out.write('\n')
-        out.write('  # This value determines the NixOS release with which your system is to be\n')
-        out.write('  # compatible, in order to avoid breaking some software such as database\n')
-        out.write('  # servers. You should change this only after NixOS release notes say you\n')
-        out.write('  # should.\n')
-        out.write('  system.stateVersion = "19.09"; # Did you read the comment?\n')
-        out.write('}\n')
-    print_formatted_text(HTML(
-        'Main configuration generated at <green>{}</green>'.format(
-            config_path)))
 
 
 def main():

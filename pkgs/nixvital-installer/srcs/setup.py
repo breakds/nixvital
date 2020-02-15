@@ -7,7 +7,7 @@ setuptools.setup(
     author='Break Yang',
     author_email='breakds@gmail.com',
     packages=setuptools.find_packages(),
-    py_modules=['install'],
+    py_modules=['config_writer', 'install'],
     entry_points={
         'console_scripts': [
             'nixvital_install=install:main',
