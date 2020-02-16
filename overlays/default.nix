@@ -4,10 +4,6 @@ let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
       url = https://github.com/NixOS/nixpkgs/tarball/83c627b8b0e40d14aed0b02ecb3c303444152a8b;
     }) { config.allowUnfree = true; };
 
-    old-nodejs-nixpkgs = import (builtins.fetchTarball {
-      url = https://github.com/NixOS/nixpkgs/tarball/5ba41e5940a4c72cfa9b085e3be84a629ca02cac;
-    }) { config.allowUnfree = true; };    
-
     backportPkgs = import (builtins.fetchTarball {
       # 2020 Jan 26
       url = https://github.com/NixOS/nixpkgs/tarball/05e661f665047984189b96c724f5a5a1745ec7cb;
@@ -58,6 +54,4 @@ in {
   # This is for nixvital-reflection service, a web page to list
   # current highlighted NixOS variable/value pairs.
   simple-reflection-server = self.callPackage ../pkgs/simple-reflection-server {};
-
-  nodejs-8_x = old-nodejs-nixpkgs.nodejs-8_x;
 }

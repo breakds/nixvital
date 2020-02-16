@@ -68,7 +68,6 @@ def GenerateLorriFiles(version):
 
 def main():
     version = SelectVersion([
-        ('8.x', '8_x'),
         ('10.x', '10_x'),
         ('12.x', '12_x'),
     ])
