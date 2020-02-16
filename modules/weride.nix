@@ -46,10 +46,19 @@ in {
   };
 
   config = {
+    nixpkgs.overlays = lib.mkIf (lib.any (x: x == "weride") config.vital.machineTags) (
+      let weride-overlay = builtins.fetchGit {
+            url = "http://monster.corp.weride.ai/weride-infra/weride-nix-overlay.git";
+            rev = "080b84d98a14c6485b36795dec1b0dc60cb407c3";
+          }; in [
+            (import "${weride-overlay}/default.nix")
+          ]);
+
     # Add arcanist for phabricator related stuff.
     environment.systemPackages = with pkgs; [
       arcanist axel cpplint patchedHostname openconnect
       bazel old-jetbrains.clion
+      jc_artifact
     ];
 
     # Mount NAS
