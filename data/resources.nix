@@ -10,6 +10,7 @@
       listen = [ 10781 10789 ];
     };
     nixvital-reflection = 5888;
+    terraria = 5970;
   };
   domains = {
     cgit = "cgit.breakds.org";

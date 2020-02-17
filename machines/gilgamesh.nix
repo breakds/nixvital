@@ -13,8 +13,7 @@
     ../modules/services/homepage.nix
     ../modules/services/gitea.nix
     ../modules/services/filerun.nix
-    # TODO(breakds): Bring it up
-    # ../modules/web/filerun.nix
+    ../modules/services/terraria.nix
     ../containers/declarative/hydrahead.nix
   ];
 
