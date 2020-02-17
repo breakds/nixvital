@@ -47,7 +47,7 @@
     # ---------- System Utils ----------
     rsync pciutils usbutils mkpasswd nixops remmina
     pciutils usbutils mkpasswd nixops remmina p7zip unzip
-    arandr smbclient neofetch ffmpeg zstd
+    arandr smbclient neofetch ffmpeg zstd tmux
     # ---------- Development ----------
     git tig cmake clang clang-tools binutils
     gcc silver-searcher sbcl
