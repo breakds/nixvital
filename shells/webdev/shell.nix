@@ -1,6 +1,6 @@
 let pkgs = import <nixpkgs> {};
 
-    buildNodejs = pkgs.callPackage (<nixpkgs> + /pkgs/development/web/nodejs/nodejs.nix) {};
+    buildNodejs = pkgs.callPackage <nixpkgs/pkgs/development/web/nodejs/nodejs.nix> {};
 
     nodejs-12 = buildNodejs {
       enableNpm = true;
