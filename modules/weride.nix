@@ -59,6 +59,8 @@ in {
       arcanist axel cpplint patchedHostname openconnect
       bazel old-jetbrains.clion
       jc_artifact
+      autoconf
+      automake
     ];
 
     # Mount NAS
