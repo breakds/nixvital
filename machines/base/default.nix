@@ -15,6 +15,7 @@
       ../../modules/top-level-options.nix
 
       # Other bases
+      ./laptop-base.nix
       ./breakds-base.nix
     ];
 
