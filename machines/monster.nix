@@ -6,7 +6,6 @@
     ../nix-home/breakds
     ../modules/users
     ../modules/desktop
-    ../modules/weride.nix
     ../modules/services/gitea.nix
     ../modules/services/nginx.nix
   ];
@@ -28,29 +27,6 @@
     # TODO(breakds): Figure out why without this line build will fail.
     xserver.displayManager = "gdm";
     nvidia.enable = true;
-  };
-
-  # +----------+
-  # | Weride   |
-  # +----------+
-
-  vital.weride = {
-    nasDevices."/media/nas" = {
-      source = "//10.1.50.20/Public";
-      credentials = "/home/breakds/.ussmbcredentials";
-    };
-    nasDevices."/media/us_nas_80t" = {
-      source = "//10.1.50.20/80t";
-      credentials = "/home/breakds/.ussmbcredentials";
-    };
-    nasDevices."/media/gz_nas_50t" = {
-      source = "//10.18.50.20/Public";
-      credentials = "/home/breakds/.gzsmbcredentials";
-    };
-    nasDevices."/media/gz_nas_80t" = {
-      source = "//10.18.50.20/80t";
-      credentials = "/home/breakds/.gzsmbcredentials";
-    };
   };
 
   # Enable nvidia-docker

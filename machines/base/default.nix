@@ -17,6 +17,7 @@
       # Other bases
       ./laptop-base.nix
       ./breakds-base.nix
+      ./weride-base.nix
     ];
 
   # Specifies the overlay for all the packages.

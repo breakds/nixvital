@@ -1,12 +1,11 @@
 { config, lib, pkgs, ... }:
 
-let cfg = config.vital.weride;
+let cfg = config.vital.mounts;
 
     types = lib.types;
 
 in {
-
-  options.vital.weride = {
+  options.vital.mounts = {
     # For nas devices
     nasDevices = lib.mkOption {
       type = types.attrsOf (types.submodule {
@@ -46,24 +45,6 @@ in {
   };
 
   config = {
-    nixpkgs.overlays = lib.mkIf (lib.any (x: x == "weride") config.vital.machineTags) (
-      let weride-overlay = builtins.fetchGit {
-            url = "http://monster.corp.weride.ai/weride-infra/weride-nix-overlay.git";
-            rev = "819ec1b226004de247d4d9f0ba7922e9ca193587";
-          }; in [
-            (import "${weride-overlay}/default.nix")
-          ]);
-
-    # Add arcanist for phabricator related stuff.
-    environment.systemPackages = with pkgs; [
-      arcanist axel cpplint patchedHostname openconnect
-      bazel old-jetbrains.clion
-      autoconf
-      automake
-      jc_artifact
-      jc_tune
-    ];
-
     # Mount NAS
     fileSystems = lib.mapAttrs (target: deviceCfg: {
       device = deviceCfg.source;
