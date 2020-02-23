@@ -9,6 +9,21 @@ in {
     };
     environment.systemPackages = with pkgs; [
       breakds-texlive
+
+      # For Lisp Development
+      lispPackages.quicklisp
+
+      # Other useful packages
+      wesnoth
+      httpie
+      gnupg
+      pass
+      ledger
+      graphviz
+      feh
+      graphicsmagick
+      hugo
+      quickserve      
     ];
   };
 }
