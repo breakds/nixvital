@@ -49,7 +49,7 @@ in {
     nixpkgs.overlays = lib.mkIf (lib.any (x: x == "weride") config.vital.machineTags) (
       let weride-overlay = builtins.fetchGit {
             url = "http://monster.corp.weride.ai/weride-infra/weride-nix-overlay.git";
-            rev = "080b84d98a14c6485b36795dec1b0dc60cb407c3";
+            rev = "819ec1b226004de247d4d9f0ba7922e9ca193587";
           }; in [
             (import "${weride-overlay}/default.nix")
           ]);
@@ -58,9 +58,10 @@ in {
     environment.systemPackages = with pkgs; [
       arcanist axel cpplint patchedHostname openconnect
       bazel old-jetbrains.clion
-      jc_artifact
       autoconf
       automake
+      jc_artifact
+      jc_tune
     ];
 
     # Mount NAS
