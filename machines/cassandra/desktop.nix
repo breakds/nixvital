@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../base.nix
+    ../base
     ../../nix-home/cassandra
     ../../modules/users
     ../../modules/desktop

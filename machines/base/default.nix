@@ -7,18 +7,18 @@
 {
   imports =
     [
-      ../modules/top-level-options.nix
-      ../modules/security.nix
-      ../modules/docker.nix
-      ../modules/services/nixvital-reflection.nix
-      ../modules/perf.nix
-      ../modules/dev/latex.nix
+      ../../modules/top-level-options.nix
+      ../../modules/security.nix
+      ../../modules/docker.nix
+      ../../modules/services/nixvital-reflection.nix
+      ../../modules/perf.nix
+      ../../modules/dev/latex.nix
     ];
 
   # Specifies the overlay for all the packages.
   nixpkgs.overlays = [
-    (import ../overlays)
-    (import ../overlays/ros)
+    (import ../../overlays)
+    (import ../../overlays/ros)
   ];
 
   # +------------------------------------------------------------+
@@ -116,7 +116,7 @@
   # +------------------------------------------------------------+
 
   environment.etc = {
-    "bashrc.local".source = ../data/bashrc.local;
+    "bashrc.local".source = ../../data/bashrc.local;
   };
 
   # +------------------------------------------------------------+
