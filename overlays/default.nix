@@ -54,4 +54,10 @@ in {
   # This is for nixvital-reflection service, a web page to list
   # current highlighted NixOS variable/value pairs.
   simple-reflection-server = self.callPackage ../pkgs/simple-reflection-server {};
+
+  # Customized texlive
+  breakds-texlive =  super.texlive.combine {
+    inherit (super.texlive) collection-basic collection-latex collection-fontsrecommended
+      collection-langchinese collection-langcjk collection-metapost;
+  };
 }

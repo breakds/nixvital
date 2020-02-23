@@ -12,7 +12,10 @@
       ../../modules/docker.nix
       ../../modules/services/nixvital-reflection.nix
       ../../modules/perf.nix
-      ../../modules/dev/latex.nix
+      ../../modules/top-level-options.nix
+
+      # Other bases
+      ./breakds-base.nix
     ];
 
   # Specifies the overlay for all the packages.

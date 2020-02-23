@@ -31,7 +31,6 @@ in {
         laptop = false;
       });
       xserver.i3_show_battery = cfg.machineType == "laptop";
-      xserver.useCapsAsCtrl = lib.mkDefault (cfg.machineType == "laptop" && cfg.mainUser == "breakds");
     };
 
     # Handle lids for laptops.
