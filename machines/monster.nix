@@ -8,6 +8,7 @@
     ../modules/desktop
     ../modules/services/gitea.nix
     ../modules/services/nginx.nix
+    ../modules/services/filerun.nix
   ];
 
   vital.machineType = "desktop";
@@ -46,6 +47,11 @@
 
   vital.web = {
     enable = true;
+  };
+
+  vital.filerun = {
+    enable = true;
+    domain = "files-monster.corp.weride.ai";
   };
 
   # Note that 8888 is allowed for IDE
