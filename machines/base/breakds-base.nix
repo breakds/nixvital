@@ -14,6 +14,7 @@ in {
       lispPackages.quicklisp
 
       # Other useful packages
+      meld
       wesnoth
       httpie
       gnupg
