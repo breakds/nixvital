@@ -22,6 +22,7 @@
       bazel
       autoconf
       automake
+      pprof
 
       # First-party Tools
       jc_artifact
