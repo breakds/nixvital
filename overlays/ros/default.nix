@@ -110,7 +110,7 @@ in {
   rviz = self.callPackage ../../pkgs/ros/rviz {};
 
   # Bazel
-  bazel = self.callPackage ../../pkgs/bazel-classic {
+  bazel-classic = self.callPackage ../../pkgs/bazel-classic {
     inherit (super.darwin) cctools;
     inherit (super.darwin.apple_sdk.frameworks) CoreFoundation CoreServices Foundation;
     buildJdk = super.jdk8;

@@ -2,6 +2,8 @@
 
 let cfg = config.vital;
 
+    isWeride = lib.any (x: x == "weride") cfg.machineTags;
+
 in {
   config = lib.mkIf (cfg.mainUser == "breakds") {
     vital.desktop = {
@@ -24,6 +26,6 @@ in {
       graphicsmagick
       hugo
       quickserve      
-    ];
+    ] ++ (if isWeride then [] else [ pkgs.bazel ]);
   };
 }

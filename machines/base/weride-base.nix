@@ -19,7 +19,7 @@
     environment.systemPackages = with pkgs; [
       arcanist axel cpplint patchedHostname openconnect
       old-jetbrains.clion      
-      bazel
+      bazel-classic
       autoconf
       automake
 
