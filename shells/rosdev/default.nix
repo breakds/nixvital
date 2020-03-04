@@ -50,6 +50,7 @@ in pkgs.mkShell rec {
     python2Packages.pip
     postgresql.lib
     pkgs.boost162
+    gflags
   ];
   
   # To use rosdep without sudo, environment variable needs to be
