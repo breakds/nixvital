@@ -59,6 +59,6 @@ in {
   breakds-texlive =  super.texlive.combine {
     inherit (super.texlive) collection-basic collection-latex collection-latexextra
       collection-latexrecommended collection-fontsrecommended collection-langchinese collection-langcjk collection-metapost
-      collection-bibtexextra;
+      collection-bibtexextra newlfm;
   };
 }
