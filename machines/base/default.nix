@@ -122,6 +122,7 @@
 
   environment.etc = {
     "bashrc.local".source = ../../data/bashrc.local;
+    "inputrc".source = ../../data/inputrc;
   };
 
   # +------------------------------------------------------------+
