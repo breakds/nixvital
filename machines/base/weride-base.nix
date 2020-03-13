@@ -2,11 +2,28 @@
 
 let cfg = config.vital;
 
+    home-manager = builtins.fetchGit {
+      url = "https://github.com/rycee/home-manager";
+      ref = "release-19.09";
+    };
+
 in {
   imports = [
     ../../modules/mounts.nix
   ];
-  
+
+  options.vital.weride = with lib; {
+    account = mkOption {
+      description = "The weride (email) account to use";
+      default = "not-an-user";
+      type = types.str;
+    };
+    gitUserName = mkOption {
+      description = "User name for the local git config";
+      type = types.str;
+    };
+  };
+
   config = lib.mkIf (lib.any (x: x == "weride") config.vital.machineTags) {
     # NOTE(breakds): For development, one solution is to temporarily
     # import the overlay from a local development repo of the overlay.
@@ -50,6 +67,16 @@ in {
       nasDevices."/media//hdfs" = {
         source = "//10.18.51.1/hdfs";
         credentials = "/home/${cfg.mainUser}/.gzhdfscredentials";
+      };
+    };
+
+    # Setup Git with Home Manager
+    home-manager.users."${cfg.mainUser}" = { pkgs, ... }: {
+      programs.git = {
+        package = pkgs.gitAndTools.gitFull;
+        enable = true;
+        userName = cfg.gitUser;
+        userEmail = "${cfg.weride.account}@weride.ai";
       };
     };
   };
