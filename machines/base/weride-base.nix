@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
-{
+let cfg = config.vital;
+
+in {
   imports = [
     ../../modules/mounts.nix
   ];
@@ -18,8 +20,8 @@
 
     environment.systemPackages = with pkgs; [
       arcanist axel cpplint patchedHostname openconnect
-      old-jetbrains.clion      
-      bazel-classic
+      htop neofetch vim terminator
+      old-jetbrains.clion
       autoconf
       automake
 
@@ -31,23 +33,23 @@
     vital.mounts = {
       nasDevices."/media/nas" = {
         source = "//10.1.50.20/Public";
-        credentials = "/home/breakds/.ussmbcredentials";
+        credentials = "/home/${cfg.mainUser}/.ussmbcredentials";
       };
       nasDevices."/media/us_nas_80t" = {
         source = "//10.1.50.20/80t";
-        credentials = "/home/breakds/.ussmbcredentials";
+        credentials = "/home/${cfg.mainUser}/.ussmbcredentials";
       };
       nasDevices."/media/gz_nas_50t" = {
         source = "//10.18.50.20/Public";
-        credentials = "/home/breakds/.gzsmbcredentials";
+        credentials = "/home/${cfg.mainUser}/.gzsmbcredentials";
       };
       nasDevices."/media/gz_nas_80t" = {
         source = "//10.18.50.20/80t";
-        credentials = "/home/breakds/.gzsmbcredentials";
+        credentials = "/home/${cfg.mainUser}/.gzsmbcredentials";
       };
       nasDevices."/media//hdfs" = {
         source = "//10.18.51.1/hdfs";
-        credentials = "/home/breakds/.gzhdfscredentials";
+        credentials = "/home/${cfg.mainUser}/.gzhdfscredentials";
       };
     };
   };
