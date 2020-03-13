@@ -50,23 +50,19 @@ in {
     vital.mounts = {
       nasDevices."/media/nas" = {
         source = "//10.1.50.20/Public";
-        credentials = "/home/${cfg.mainUser}/.ussmbcredentials";
+        credentials = ../../data/nas/smbcredentials;
       };
       nasDevices."/media/us_nas_80t" = {
         source = "//10.1.50.20/80t";
-        credentials = "/home/${cfg.mainUser}/.ussmbcredentials";
+        credentials = ../../data/nas/smbcredentials;        
       };
       nasDevices."/media/gz_nas_50t" = {
         source = "//10.18.50.20/Public";
-        credentials = "/home/${cfg.mainUser}/.gzsmbcredentials";
+        credentials = ../../data/nas/gzsmbcredentials;
       };
       nasDevices."/media/gz_nas_80t" = {
         source = "//10.18.50.20/80t";
-        credentials = "/home/${cfg.mainUser}/.gzsmbcredentials";
-      };
-      nasDevices."/media//hdfs" = {
-        source = "//10.18.51.1/hdfs";
-        credentials = "/home/${cfg.mainUser}/.gzhdfscredentials";
+        credentials = ../../data/nas/gzsmbcredentials;        
       };
     };
 
