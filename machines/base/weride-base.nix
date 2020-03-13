@@ -50,19 +50,19 @@ in {
     vital.mounts = {
       nasDevices."/media/nas" = {
         source = "//10.1.50.20/Public";
-        credentials = ../../data/nas/smbcredentials;
+        credentials = "${toString ../../data/nas/smbcredentials}";
       };
       nasDevices."/media/us_nas_80t" = {
         source = "//10.1.50.20/80t";
-        credentials = ../../data/nas/smbcredentials;        
+        credentials = "${toString ../../data/nas/smbcredentials}";        
       };
       nasDevices."/media/gz_nas_50t" = {
         source = "//10.18.50.20/Public";
-        credentials = ../../data/nas/gzsmbcredentials;
+        credentials = "${toString ../../data/nas/gzsmbcredentials}";
       };
       nasDevices."/media/gz_nas_80t" = {
         source = "//10.18.50.20/80t";
-        credentials = ../../data/nas/gzsmbcredentials;        
+        credentials = "${toString ../../data/nas/gzsmbcredentials}";        
       };
     };
 
@@ -71,7 +71,7 @@ in {
       programs.git = {
         package = pkgs.gitAndTools.gitFull;
         enable = true;
-        userName = cfg.gitUser;
+        userName = cfg.weride.gitUserName;
         userEmail = "${cfg.weride.account}@weride.ai";
       };
     };

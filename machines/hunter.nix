@@ -9,7 +9,7 @@
 
   vital.machineTags = [ "weride" ];
   vital.weride.account = "yiqing.yang";
-  vital.weride.gitUser = "Break Yang";
+  vital.weride.gitUserName = "Break Yang";
 
   # Machine-specific networking configuration.
   networking.hostName = "hunter";
