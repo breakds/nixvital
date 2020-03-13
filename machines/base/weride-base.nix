@@ -19,7 +19,7 @@ in {
           ]);
 
     environment.systemPackages = with pkgs; [
-      arcanist axel cpplint patchedHostname openconnect
+      arcanist axel cpplint patchedHostname openconnect jq
       htop neofetch vim terminator
       old-jetbrains.clion
       autoconf
