@@ -7,7 +7,9 @@
     ../modules/users
   ];
 
-  vital.machineTags = [ "weride" ];  
+  vital.machineTags = [ "weride" ];
+  vital.weride.account = "yiqing.yang";
+  vital.weride.gitUser = "Break Yang";
 
   # Machine-specific networking configuration.
   networking.hostName = "hunter";
