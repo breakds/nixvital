@@ -25,7 +25,8 @@ in {
       feh
       graphicsmagick
       hugo
-      quickserve      
+      quickserve
+      parted
     ] ++ (if isWeride then [] else [ pkgs.bazel ]);
   };
 }
