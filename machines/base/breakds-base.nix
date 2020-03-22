@@ -27,6 +27,7 @@ in {
       hugo
       quickserve
       parted
+      steam-run-native
     ] ++ (if isWeride then [] else [ pkgs.bazel ]);
   };
 }
