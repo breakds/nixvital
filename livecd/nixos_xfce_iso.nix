@@ -25,6 +25,5 @@
 
   environment.systemPackages = with pkgs; [
     vim emacs firefox git
-    (callPackage ../pkgs/nixvital-installer {})
   ];
 }
