@@ -7,6 +7,7 @@
     ../../modules/users
     ../../modules/desktop
     ../../modules/dev/vscode.nix
+    ../../modules/IoT/apple-devices.nix
   ];
 
   vital.machineType = "laptop";

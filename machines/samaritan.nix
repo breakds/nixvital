@@ -6,6 +6,7 @@
     ../nix-home/breakds
     ../modules/users
     ../modules/desktop
+    ../modules/IoT/apple-devices.nix
   ];
 
   vital.machineType = "desktop";
