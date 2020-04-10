@@ -7,6 +7,7 @@
     ../modules/users
     ../modules/desktop
     ../modules/IoT/apple-devices.nix
+    ../modules/steam.nix
   ];
 
   vital.machineType = "desktop";
