@@ -12,6 +12,9 @@ in {
     environment.systemPackages = with pkgs; [
       breakds-texlive
 
+      # For C++ Development
+      include-what-you-use
+
       # For Lisp Development
       lispPackages.quicklisp
 
