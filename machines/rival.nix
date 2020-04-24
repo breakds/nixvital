@@ -6,6 +6,7 @@
     ../nix-home/breakds
     ../modules/users
     ../modules/desktop
+    ../modules/vm.nix
   ];
 
   vital.machineType = "laptop";
