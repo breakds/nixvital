@@ -54,7 +54,7 @@
     pciutils usbutils mkpasswd nixops remmina p7zip unzip
     arandr smbclient neofetch ffmpeg zstd tmux
     # ---------- Development ----------
-    git tig cmake clang clang-tools binutils
+    git tig cmake gnumake clang clang-tools binutils
     gcc silver-searcher sbcl
     web-dev-tools
     py-dev-tools
