@@ -135,11 +135,12 @@ in {
       inconsolata
     ];
 
-    # International Support
+    console = {
+      packages = [ pkgs.wqy_microhei pkgs.terminus_font  ];
+      font = "ter-132n";
+    };
+    
     i18n = {
-      consoleFont = "ter-132n";
-      consolePackages = [ pkgs.wqy_microhei pkgs.terminus_font ];
-
       # Input Method
       inputMethod = {
         enabled = "fcitx";

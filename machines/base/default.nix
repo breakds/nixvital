@@ -129,7 +129,8 @@
   # +------------------------------------------------------------+
 
   vital.nixvital-reflection = {
-    enable = lib.mkDefault true;
+    # FIXME: 20.03 breaks it. Let's try to re-enable it.
+    enable = lib.mkDefault false;
     show = [
       { key = "system.stateVersion"; val = config.system.stateVersion; }
       { key = "vital.machineType"; val = config.vital.machineType; }
