@@ -7,7 +7,7 @@ let cfg = config.vital.desktop;
     xserverOptions = {
       options = {
         displayManager = lib.mkOption {
-          type = types.enum [ "gdm" "sddm" "slim" ];
+          type = types.enum [ "gdm" "sddm" ];
           default = "gdm";
           description = ''
             To use gdm or sddm for the display manager.
@@ -115,7 +115,6 @@ in {
       # keep the server running.
       displayManager.gdm.autoSuspend = false;
       displayManager.sddm.enable = cfg.xserver.displayManager == "sddm";
-      displayManager.slim.enable = cfg.xserver.displayManager == "slim";
 
       # Extra window manager: i3
       windowManager.i3 = {
