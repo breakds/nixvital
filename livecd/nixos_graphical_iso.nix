@@ -1,4 +1,8 @@
 # nix-build '<nixpkgs/nixos>' -A config.system.build.isoImage -I nixos-config=[this-nix-file]
+#
+# Or, if you want to try the livecd with qeum
+#
+# qemu-system-x86_64 -boot d -cdrom nixos-19.09.2350.d011e474945-x86_64-linux.iso -m 8192 -enable-kvm
 
 {config, pkgs, ...}:
 
@@ -12,9 +16,6 @@
     ../modules/services/nixvital-web-installer.nix
   ];
 
-  # Disable wayland.
-  services.xserver.displayManager.gdm.wayland = false;
-  
   environment.systemPackages = with pkgs; [
     vim emacs firefox git
   ];
