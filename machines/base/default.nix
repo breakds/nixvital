@@ -49,6 +49,7 @@
   # Basic softwares that should definitely exist.
   environment.systemPackages = with pkgs; [
     wget vim emacs firefox google-chrome dmenu scrot inkscape pdftk
+    pinentry
     # ---------- System Utils ----------
     rsync pciutils usbutils mkpasswd nixops remmina
     pciutils usbutils mkpasswd nixops remmina p7zip unzip
@@ -65,7 +66,13 @@
   # started in user sessions.
   programs.bash.enableCompletion = true;
   # TODO(breakds): Figure out how to use GPG.
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
+  programs.gnupg.agent = {
+    enable = true;
+    enableSSHSupport = true;
+    pinentryFlavor = "tty";
+  };
+
+  programs.ssh.startAgent = lib.mkDefault false;
 
   # For monitoring and inspecting the system.
   programs.sysdig.enable = true;
