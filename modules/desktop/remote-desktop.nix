@@ -20,7 +20,6 @@ in {
     
     services.xrdp = {
       enable = true;
-      # FIXME: Make sure that we do not only get to the xterm.
       defaultWindowManager = "xfce4-session";
       port = cfg.port;
     };
