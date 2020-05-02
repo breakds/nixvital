@@ -7,4 +7,5 @@
     autoCreatedWorldSize = "medium";
     messageOfTheDay = "Welcome to the Farm.";
   };
+  networking.firewall.allowedTCPPorts = [ config.services.terraria.port ];
 }
