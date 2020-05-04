@@ -13,6 +13,10 @@ in {
 
   config = lib.mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [ 80 443 ];
+    security.acme = {
+      acceptTerms = true;
+      email = "bds@breakds.org";
+    };
     services.nginx = {
       enable = true;
       package = pkgs.nginxMainline;
