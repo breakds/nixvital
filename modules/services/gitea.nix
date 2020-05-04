@@ -60,7 +60,8 @@ in {
         type = "sqlite3";
         path = "/var/lib/gitea/data/gitea.db";
       };
-      repositoryRoot = "/home/${config.services.gitea.user}/repos";
+      
+      repositoryRoot = "${config.services.gitea.stateDir}/repos";
 
       # TODO(breakds): Enable the dump (backup), preferrably weekly.
 

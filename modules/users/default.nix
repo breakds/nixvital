@@ -31,6 +31,7 @@ in {
 	          "uucp"  # Access /ev/ttyS... RS-232 serial ports and devices.
 	          "audio"
 	          "plugdev"  # Allow members to mount/umount removable devices via pmount.
+            "gitea"
 	          "lxd"
 	          "docker"
             "nginx"
@@ -55,7 +56,7 @@ in {
         git = {
           isNormalUser = true;
           group = "git";
-          extraGroups = [ "git" "fcgi" ];
+          extraGroups = [ "git" "fcgi" "gitea" ];
           uid = 510;
           home = "/home/git";
           description = "User for git server.";
