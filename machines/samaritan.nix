@@ -38,4 +38,13 @@
   # services.wakeonlan.interfaces = [{
   #   interface = "eno1";
   # }];
+
+  # +------------+
+  # | Gaming     |
+  # +------------+
+
+  # Support Logitech G29 Steering Wheel
+  services.udev.packages = with pkgs; [
+    usb-modeswitch-data
+  ];
 }
