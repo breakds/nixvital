@@ -9,9 +9,24 @@ let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
       url = https://github.com/NixOS/nixpkgs/tarball/05e661f665047984189b96c724f5a5a1745ec7cb;
     }) { config.allowUnfree = true; };
 
+    unstablePkgs = import (builtins.fetchTarball {
+      # 2020 May 17
+      url = https://github.com/NixOS/nixpkgs/tarball/548872be20dcb78cdb1a554dcef51caf1d6055ca;
+    }) { config.allowUnfree = true; };
+
+    pythonOverride = {
+      packageOverrides = python-self: python-super: {
+        jupyterlab_server = python-self.callPackage ./python/jupyterlab_server.nix {};
+        jupyterlab = python-self.callPackage ./python/jupyterlab.nix {};
+      };
+    };
+
 in {
   # LLVM series
   inherit (super.llvmPackages_8) clang libclang llvm;
+
+  # Python package overrides.
+  python3 = super.python3.override pythonOverride;
 
   # termite the terminal emulator, with my own configuration
   termite = self.callPackage ./termite.nix {

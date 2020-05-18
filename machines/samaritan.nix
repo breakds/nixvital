@@ -9,6 +9,7 @@
     ../modules/IoT/apple-devices.nix
     ../modules/steam.nix
     ../modules/vm.nix
+    ../modules/dev/machine-learning.nix
   ];
 
   vital.machineType = "desktop";
