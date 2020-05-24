@@ -57,7 +57,7 @@ in {
         #    name as the hostname to access each other.
         # 2. In NixOS the container's actual name will be docker-<name>.service
         # 3. Hence the composite hostname below.
-        dbContainerHost = "docker-${dbContainerName}.service";
+        dbContainerHost = "${dbContainerName}";
         bridgeNetworkName = "filerun_network";
 
         runner = {
