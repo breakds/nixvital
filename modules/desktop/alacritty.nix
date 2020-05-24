@@ -37,7 +37,6 @@ let draculaColorTheme = {
     cfg = {
       window.decorations = "full";
       scrolling.history = 10000;
-      tabspaces = 4;
       font = {
         normal.family = "Fira Code";
         bold.family = "Fira Code";
