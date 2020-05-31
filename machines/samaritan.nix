@@ -10,6 +10,7 @@
     ../modules/steam.nix
     ../modules/vm.nix
     ../modules/dev/machine-learning.nix
+    ../modules/dev/vscode.nix
   ];
 
   vital.machineType = "desktop";
