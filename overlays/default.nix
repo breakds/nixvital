@@ -76,4 +76,7 @@ in {
       collection-latexrecommended collection-fontsrecommended collection-langchinese collection-langcjk collection-metapost
       collection-bibtexextra newlfm;
   };
+
+  # Web-based Visual Studio Code
+  code-server = self.callPackage ../pkgs/code-server {};
 }
