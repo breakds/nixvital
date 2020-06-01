@@ -17,6 +17,6 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    vim emacs firefox git
+    vim emacs firefox git gparted
   ];
 }
