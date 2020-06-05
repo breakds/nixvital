@@ -78,5 +78,7 @@ in {
   };
 
   # Web-based Visual Studio Code
-  code-server = self.callPackage ../pkgs/code-server {};
+  code-server = self.callPackage ../pkgs/code-server {
+    nodejs = super.nodejs-12_x;
+  };
 }
