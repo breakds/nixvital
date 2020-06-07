@@ -32,4 +32,6 @@ in {
     obs-studio
     imagemagick
   ];
+
+  hardware.opengl.driSupport32Bit = true;
 }

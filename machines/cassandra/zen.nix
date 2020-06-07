@@ -8,6 +8,7 @@
     ../../modules/desktop
     ../../modules/dev/vscode.nix
     ../../modules/IoT/apple-devices.nix
+    ../../modules/steam.nix
   ];
 
   vital.machineType = "laptop";
