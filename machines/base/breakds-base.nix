@@ -19,7 +19,6 @@ in {
       lispPackages.quicklisp
 
       # Other useful packages
-      toybox
       wesnoth
       httpie
       gnupg
