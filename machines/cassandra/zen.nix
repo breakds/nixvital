@@ -28,6 +28,7 @@
   environment.systemPackages = with pkgs; [
     gimp peek gnupg pass libreoffice
     nodejs-12_x
+    skypeforlinux
   ];
 
   vital.security.enableFingerprint = true;
