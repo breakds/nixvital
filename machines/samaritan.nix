@@ -9,7 +9,7 @@
     ../modules/IoT/apple-devices.nix
     ../modules/steam.nix
     ../modules/vm.nix
-    ../modules/dev/machine-learning.nix
+    ../modules/dev/python-with-batteries.nix
     ../modules/dev/vscode.nix
   ];
 
@@ -49,4 +49,14 @@
   services.udev.packages = with pkgs; [
     usb-modeswitch-data
   ];
+
+  # +-------------+
+  # | Development |
+  # +-------------+
+
+  vital.dev.python = {
+    batteries = {
+      machineLearning = true;
+    };
+  };
 }
