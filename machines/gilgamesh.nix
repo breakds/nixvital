@@ -14,6 +14,7 @@
     ../modules/services/gitea.nix
     ../modules/services/filerun.nix
     ../modules/services/terraria.nix
+    ../modules/dev/python-with-batteries.nix
     ../containers/declarative/hydrahead.nix
   ];
 
@@ -70,6 +71,16 @@
 
   # For temporary serving something such as Jupyter Notebook.
   networking.firewall.allowedTCPPorts = [ 8888 ];
+
+  # +-------------+
+  # | Development |
+  # +-------------+
+
+  vital.dev.python = {
+    batteries = {
+      machineLearning = true;
+    };
+  };
 
   # +------------+
   # | WakeOnLan  |
