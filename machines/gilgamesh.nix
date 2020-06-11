@@ -15,7 +15,7 @@
     ../modules/services/filerun.nix
     ../modules/services/terraria.nix
     ../modules/dev/python-with-batteries.nix
-    ../containers/declarative/hydrahead.nix
+    # ../containers/declarative/hydrahead.nix
   ];
 
   vital.machineType = "server";
@@ -78,7 +78,7 @@
 
   vital.dev.python = {
     batteries = {
-      machineLearning = true;
+      machineLearning = false;
     };
   };
 
