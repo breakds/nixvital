@@ -32,6 +32,9 @@ in {
       parted
       gparted
       steam-run-native
+
+      # Entertainment
+      strawberry
     ] ++ (if isWeride then [] else [ pkgs.bazel ]);
   };
 }
