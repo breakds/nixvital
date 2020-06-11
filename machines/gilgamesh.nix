@@ -78,7 +78,7 @@
 
   vital.dev.python = {
     batteries = {
-      machineLearning = false;
+      machineLearning = true;
     };
   };
 
