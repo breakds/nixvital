@@ -14,6 +14,10 @@
 
   vital.machineType = "laptop";
 
+  vital.dev.python = {
+    batteries.machineLearning = false;
+  };
+
   # +----------+
   # | Desktop  |
   # +----------+

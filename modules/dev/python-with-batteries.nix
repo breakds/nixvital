@@ -28,7 +28,7 @@ in {
                let the-torchvision = torchvision.override {
                      pytorch = pytorchWithCuda;
                    };
-               in [ numpy pandas matplotlib jupyterlab jupyterlab plotly dash tqdm ]
+               in [ numpy pandas matplotlib jupyterlab plotly dash tqdm ]
                   ++ (lib.optionals cfg.batteries.machineLearning [ lightgbm pytorchWithCuda the-torchvision ])
                   ++ (lib.optionals cfg.batteries.jupyterhub [ jupyterhub ])
            );
