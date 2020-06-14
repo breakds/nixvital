@@ -7,6 +7,9 @@ let cfg = config.vital.dev.python;
         machineLearning = lib.mkEnableOption ''
           Include the machine learning libraries, e.g. pytorch and lightbm.
         '';
+        jupyterhub = lib.mkEnableOption ''
+          Include jupyterhub.
+        '';
       };
     };
 
@@ -27,6 +30,7 @@ in {
                    };
                in [ numpy pandas matplotlib jupyterlab jupyterlab plotly dash tqdm ]
                   ++ (lib.optionals cfg.batteries.machineLearning [ lightgbm pytorchWithCuda the-torchvision ])
+                  ++ (lib.optionals cfg.batteries.jupyterhub [ jupyterhub ])
            );
        in pythonWithBatteries)
     ];

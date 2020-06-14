@@ -79,6 +79,7 @@
   vital.dev.python = {
     batteries = {
       machineLearning = true;
+      jupyterhub = true;
     };
   };
 
