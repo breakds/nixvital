@@ -60,6 +60,7 @@
     web-dev-tools
     py-dev-tools
     ros2nix
+    nodejs-12_x
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
