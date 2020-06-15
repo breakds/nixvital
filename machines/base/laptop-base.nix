@@ -21,7 +21,7 @@ in {
       lidSwitchDocked = "ignore";
       lidSwitchExternalPower = "ignore";
       extraConfig = ''
-        HoldoffTimeoutSec=20
+        HoldoffTimeoutSec=60
       '';
     };
   };
