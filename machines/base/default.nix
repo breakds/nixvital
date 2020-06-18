@@ -27,7 +27,7 @@
 
   # +------------------------------------------------------------+
   # | Boot Settings                                              |
-  # +------------------------------------------------------------+  
+  # +------------------------------------------------------------+
 
   # Boot with UEFI
   boot.loader.systemd-boot.enable = true;
@@ -49,7 +49,7 @@
   # Basic softwares that should definitely exist.
   environment.systemPackages = with pkgs; [
     wget vim emacs firefox google-chrome dmenu scrot inkscape pdftk
-    pinentry
+    pinentry meld
     # ---------- System Utils ----------
     rsync pciutils usbutils mkpasswd nixops remmina
     pciutils usbutils mkpasswd nixops remmina p7zip unzip
@@ -85,7 +85,7 @@
     forwardX11 = true;
     allowSFTP = config.vital.machineType == "server";
   };
-    
+
   # Enable CUPS services
   services.printing.enable = true;
 
@@ -100,7 +100,7 @@
 
   services.avahi = {
     enable = true;
-      
+
     # Whether to enable the mDNS NSS (Name Service Switch) plugin.
     # Enabling this allows applications to resolve names in the
     # `.local` domain.
@@ -109,7 +109,7 @@
     # Whether to register mDNS address records for all local IP
     # addresses.
     publish.enable = true;
-    publish.addresses = true;    
+    publish.addresses = true;
   };
 
   services.blueman.enable = true;
