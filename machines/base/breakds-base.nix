@@ -14,6 +14,7 @@ in {
 
       # For C++ Development
       include-what-you-use
+      cgal
 
       # For Lisp Development
       lispPackages.quicklisp
