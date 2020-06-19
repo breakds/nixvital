@@ -11,6 +11,7 @@
     };
     nixvital-reflection = 5888;
     terraria = 5970;
+    jupyter-lab = 5555;
   };
   domains = {
     cgit = "cgit.breakds.org";

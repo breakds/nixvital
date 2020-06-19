@@ -40,11 +40,19 @@ in {
       default = "";
       example = "sha1:b30990a0275a:b125ac032e3da91c00fc5f5d6fb2f6b66dd00989";
     };
+
+    port = mkOption {
+      type = types.port;
+      description = "The port on which jupyter is served.";
+      default = (import ../../data/resources.nix).ports.jupyter-lab;
+      example = 5555;
+    };
   };
 
   config = lib.mkIf cfg.enable {
     systemd.services.jupyter-lab =
       let pythonWithBatteries = pkgs.callPackage ../../pkgs/dev/python-with-batteries.nix {
+            enableMachineLearning = true;
           }; in {
             description = "Long running Jupyter lab server.";
             after = [ "network.target" ];
@@ -56,10 +64,11 @@ in {
               Group = "users";
               WorkingDirectory = cfg.workspace;
               ExecStart = ''
-                ${pythonWithBatteries}/bin/jupyter lab --port 8888 --ip 0.0.0.0 \
+                ${pythonWithBatteries}/bin/jupyter lab --port ${toString cfg.port} --ip 0.0.0.0 \
                   --LabApp.token="" --LabApp.password="${cfg.hashedPassword}"
               '';
             };
           };
+    networking.firewall.allowedTCPPorts = [ cfg.port ];
   };
 }
