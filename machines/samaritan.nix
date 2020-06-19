@@ -9,7 +9,7 @@
     ../modules/IoT/apple-devices.nix
     ../modules/steam.nix
     ../modules/vm.nix
-    ../modules/dev/python-with-batteries.nix
+    ../modules/dev/python-environment.nix
     ../modules/dev/vscode.nix
   ];
 

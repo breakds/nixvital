@@ -14,7 +14,7 @@
     ../modules/services/gitea.nix
     ../modules/services/filerun.nix
     ../modules/services/terraria.nix
-    ../modules/dev/python-with-batteries.nix
+    ../modules/dev/python-environment.nix
     # ../containers/declarative/hydrahead.nix
   ];
 

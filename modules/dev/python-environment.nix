@@ -7,6 +7,8 @@ let cfg = config.vital.dev.python;
         machineLearning = lib.mkEnableOption ''
           Include the machine learning libraries, e.g. pytorch and lightbm.
         '';
+        # FIXME: Currently jupyterhub does not yet work with jupyter
+        # lab. Will make this working later.
         jupyterhub = lib.mkEnableOption ''
           Include jupyterhub.
         '';
@@ -21,18 +23,12 @@ in {
     };
   };
   
-  config = {
+  config = let pythonWithBatteries = pkgs.callPackage ../../pkgs/dev/python-with-batteries.nix {
+    enableMachineLearning = cfg.batteries.machineLearning;
+    enableJupyterhub = cfg.batteries.jupyterhub;
+  }; in {
     environment.systemPackages = [
-      (let pythonWithBatteries = pkgs.python3.withPackages (
-             pythonPackages: with pythonPackages;
-               let the-torchvision = torchvision.override {
-                     pytorch = pytorchWithCuda;
-                   };
-               in [ numpy pandas matplotlib jupyterlab plotly dash tqdm ]
-                  ++ (lib.optionals cfg.batteries.machineLearning [ lightgbm pytorchWithCuda the-torchvision ])
-                  ++ (lib.optionals cfg.batteries.jupyterhub [ jupyterhub ])
-           );
-       in pythonWithBatteries)
+      pythonWithBatteries
     ];
   };
 }

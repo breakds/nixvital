@@ -7,7 +7,7 @@
     ../../modules/users
     ../../modules/desktop
     ../../modules/dev/vscode.nix
-    ../../modules/dev/python-with-batteries.nix
+    ../../modules/dev/python-environment.nix
     ../../modules/IoT/apple-devices.nix
     ../../modules/steam.nix
   ];
