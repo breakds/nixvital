@@ -14,6 +14,7 @@
     ../modules/services/gitea.nix
     ../modules/services/filerun.nix
     ../modules/services/terraria.nix
+    ../modules/services/jupyter-lab.nix
     ../modules/dev/python-environment.nix
     # ../containers/declarative/hydrahead.nix
   ];
@@ -67,6 +68,11 @@
   vital.filerun = {
     enable = true;
     workDir = "/home/delegator/filerun";
+  };
+
+  vital.jupyter-lab = {
+    enable = true;
+    workspace = "/home/breakds/projects";
   };
 
   # For temporary serving something such as Jupyter Notebook.
