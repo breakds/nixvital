@@ -34,6 +34,7 @@ in {
       parted
       gparted
       steam-run-native
+      discord
 
       # Entertainment
       strawberry
