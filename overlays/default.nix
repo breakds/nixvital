@@ -13,6 +13,7 @@ let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
       packageOverrides = python-self: python-super: {
         jupyterlab_server = python-self.callPackage ./python/jupyterlab_server.nix {};
         jupyterlab = python-self.callPackage ./python/jupyterlab.nix {};
+        gdown = python-self.callPackage ../pkgs/temp/gdown {};
       };
     };
 
