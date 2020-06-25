@@ -38,6 +38,7 @@ in {
       gparted
       steam-run-native
       discord
+      python3Packages.gdown
 
       # Entertainment
       strawberry
