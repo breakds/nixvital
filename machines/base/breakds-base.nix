@@ -20,6 +20,9 @@ in {
       # For Lisp Development
       lispPackages.quicklisp
 
+      # For Nixpkgs Development
+      nixpkgs-review
+
       # Other useful packages
       wesnoth
       httpie
