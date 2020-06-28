@@ -7,6 +7,7 @@
     ../modules/users
     ../modules/desktop
     ../modules/vm.nix
+    ../modules/dev/python-environment.nix
   ];
 
   vital.machineType = "laptop";
@@ -26,4 +27,8 @@
   };
 
   vital.security.enableFingerprint = true;
+
+  vital.dev.python = {
+    machineLearning = false;
+  };
 }
