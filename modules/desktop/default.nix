@@ -38,7 +38,6 @@ in {
     ./nvidia.nix
     ./i3_status.nix
     ./remote-desktop.nix
-    ./alacritty.nix
   ];
 
   options.vital.desktop = {
