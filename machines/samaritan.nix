@@ -59,4 +59,8 @@
       machineLearning = true;
     };
   };
+
+  environment.systemPackages = with pkgs; [
+    darktable
+  ];
 }
