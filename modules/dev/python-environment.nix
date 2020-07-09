@@ -27,8 +27,8 @@ in {
     enableMachineLearning = cfg.batteries.machineLearning;
     enableJupyterhub = cfg.batteries.jupyterhub;
   }; in {
-    environment.systemPackages = [
-      pythonWithBatteries
-    ];
+    environment.systemPackages = with pkgs; [
+      pythonWithBatteries 
+    ] ++ (lib.optionals cfg.batteries.machineLearning [ opencv4 ]);
   };
 }

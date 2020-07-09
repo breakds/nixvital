@@ -8,7 +8,7 @@ python3.withPackages (
           pytorch = pytorchWithCuda;
         };
     in [ numpy pandas matplotlib jupyterlab plotly dash tqdm ]
-       ++ (lib.optionals enableMachineLearning [ lightgbm pytorchWithCuda the-torchvision ])
+       ++ (lib.optionals enableMachineLearning [ lightgbm pytorchWithCuda the-torchvision opencv4 ])
         # FIXME: Currently jupyterhub does not yet work with jupyter
         # lab. Will make this working later.
        ++ (lib.optionals enableJupyterhub [ jupyterhub ]))
