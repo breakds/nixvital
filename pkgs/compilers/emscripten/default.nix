@@ -1,10 +1,19 @@
-{ stdenv, fetchFromGitHub, emscriptenfastcomp, python, nodejs, closurecompiler
+{ stdenv, fetchFromGitHub, python, nodejs, closurecompiler
+, llvmPackages_10, clang, symlinkJoin
 , jre, binaryen, cmake
 }:
 
 let
   rev = "1.39.19";
   appdir = "share/emscripten";
+
+  upstream-llvm = symlinkJoin {
+    name = "emscripten-upstream-llvm-with-clang";
+    # Sadly, actually we need llvm 11
+    paths = [ llvmPackages_10.llvm llvmPackages_10.clang ];
+    allowSubstitutes = true;
+  };
+  
 in
 
 stdenv.mkDerivation {
@@ -34,7 +43,7 @@ stdenv.mkDerivation {
     ln -s $out/${appdir}/{em++,em++.py,em-config,em-config.py,emar,emar.py,embuilder.py,emcc,emcc.py,emcmake,emcmake.py,emconfigure,emconfigure.py,emlink.py,emmake,emmake.py,emranlib,emrun,emrun.py,emscons} $out/bin
 
     echo "EMSCRIPTEN_ROOT = '$out/${appdir}'" > $out/${appdir}/config
-    echo "LLVM_ROOT = '${emscriptenfastcomp}/bin'" >> $out/${appdir}/config
+    echo "LLVM_ROOT = '${upstream-llvm}/bin'" >> $out/${appdir}/config
     echo "PYTHON = '${python}/bin/python'" >> $out/${appdir}/config
     echo "NODE_JS = '${nodejs}/bin/node'" >> $out/${appdir}/config
     echo "JS_ENGINES = [NODE_JS]" >> $out/${appdir}/config

@@ -75,9 +75,9 @@ in {
     nodejs = super.nodejs-12_x;
   };
 
+  
   # WebAssembly Toolchain
-
-  binaryen = self.callPackage ../pkgs/compilers/binaryen {};
-  emscriptenfastcomp = (self.callPackage ../pkgs/compilers/emscripten/fastcomp {}).emscriptenfastcomp;
-  emscripten = self.callPackage ../pkgs/compilers/emscripten {};
+  # FIXME: Re-enable these when llvm 11 comes out
+  # binaryen = self.callPackage ../pkgs/compilers/binaryen {};
+  # emscripten = self.callPackage ../pkgs/compilers/emscripten {};
 }
