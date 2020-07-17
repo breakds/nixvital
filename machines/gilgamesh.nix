@@ -15,6 +15,7 @@
     ../modules/services/filerun.nix
     ../modules/services/terraria.nix
     ../modules/services/jupyter-lab.nix
+    ../modules/services/nix-serve.nix
     ../modules/dev/python-environment.nix
     # ../containers/declarative/hydrahead.nix
   ];
