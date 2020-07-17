@@ -5,6 +5,7 @@
     cgit.fcgi = 5963;
     cgit.web = 5964;
     gitea = 5965;
+    nix-serve = 5966;
     deluge = {
       daemon = 10733;
       listen = [ 10781 10789 ];
@@ -17,5 +18,6 @@
     cgit = "cgit.breakds.org";
     gitea = "git.breakds.org";
     filerun = "files.breakds.org";
+    nix-serve = "cache.breakds.org";
   };
 }
