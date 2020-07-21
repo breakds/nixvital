@@ -32,4 +32,8 @@
   vital.dev.python.batteries = {
    machineLearning = false;
   };
+
+  environment.systemPackages = with pkgs; [
+    fbreader
+  ];
 }
