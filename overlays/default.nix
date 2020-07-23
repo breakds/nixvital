@@ -5,8 +5,8 @@ let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
     }) { config.allowUnfree = true; };
 
     unstablePkgs = import (builtins.fetchTarball {
-      # 2020 May 17
-      url = https://github.com/NixOS/nixpkgs/tarball/548872be20dcb78cdb1a554dcef51caf1d6055ca;
+      # 2020 July 22
+      url = https://github.com/NixOS/nixpkgs/tarball/af5765b0dc424341c19a14bfbca5b98f6157cb75;
     }) { config.allowUnfree = true; };
 
     pythonOverride = {
@@ -14,6 +14,15 @@ let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
         jupyterlab_server = python-self.callPackage ./python/jupyterlab_server.nix {};
         jupyterlab = python-self.callPackage ./python/jupyterlab.nix {};
         gdown = python-self.callPackage ../pkgs/temp/gdown {};
+        pytorch = python-self.callPackage ../pkgs/temp/pytorch {
+          cudaSupport = false;
+          oneDNN = unstablePkgs.oneDNN;
+          blas = unstablePkgs.blas;
+        };
+        pytorchWithoutCuda = python-self.pytorch;
+        pytorchWithCuda = python-self.pytorch.override {
+          cudaSupport = true;
+        };
       };
     };
 
