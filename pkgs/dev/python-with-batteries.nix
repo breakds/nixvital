@@ -13,7 +13,7 @@ python3.withPackages (
         ];
 
         ide = [
-          jupyterhub
+          jupyterlab
         ];
 
         viz = [
