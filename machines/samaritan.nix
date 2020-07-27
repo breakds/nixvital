@@ -10,7 +10,7 @@
     ../modules/steam.nix
     ../modules/vm.nix
     ../modules/dev/python-environment.nix
-    ../modules/dev/vscode.nix
+    ../modules/dev/java.nix
     ../modules/binary-caches/gilgamesh.nix
   ];
 
