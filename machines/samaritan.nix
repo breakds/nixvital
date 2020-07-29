@@ -62,6 +62,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    darktable axel
+    darktable axel gimp
   ];
 }
