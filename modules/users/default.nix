@@ -36,8 +36,9 @@ in {
 	          "docker"
             "nginx"
             "samba"
-	        ];
-          useDefaultShell = true;
+          ];
+          shell = pkgs.zsh;
+          useDefaultShell = !(cfg.mainUser == "breakds");
           openssh.authorizedKeys.keyFiles = lib.mkIf (cfg.mainUser == "breakds") [ ../keys/breakds_samaritan.pub ];
         };
 
