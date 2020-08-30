@@ -2,6 +2,6 @@
 
 {
   environment.systemPackages = with pkgs; [
-    openjdk11
+    openjdk11 gradle
   ];
 }
