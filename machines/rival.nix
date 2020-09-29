@@ -9,6 +9,7 @@
     ../modules/vm.nix
     ../modules/dev/python-environment.nix
     ../modules/dev/java.nix
+    ../modules/dev/arduino.nix
     ../modules/binary-caches/gilgamesh.nix
   ];
 
