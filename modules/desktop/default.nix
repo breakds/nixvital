@@ -146,5 +146,7 @@ in {
         fcitx.engines = with pkgs.fcitx-engines; [cloudpinyin];
       };
     };
+
+    hardware.opengl.setLdLibraryPath = true;
   };
 }

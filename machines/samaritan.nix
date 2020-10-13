@@ -42,6 +42,9 @@
   #   interface = "eno1";
   # }];
 
+  # For ROS
+  networking.firewall.allowedTCPPorts = [ 11311 ];
+
   # +------------+
   # | Gaming     |
   # +------------+
