@@ -31,7 +31,7 @@
   # | Extras   |
   # +----------+
 
-  users.users."${vital.mainUser}".shell = pkgs.bash;
+  users.users."${config.vital.mainUser}".shell = pkgs.bash;
 
   environment.systemPackages = with pkgs; [
     gimp peek gnupg pass libreoffice
