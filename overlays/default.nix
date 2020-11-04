@@ -28,7 +28,7 @@ let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
 
 in {
   # LLVM series
-  inherit (super.llvmPackages_10) clang libclang llvm;
+  inherit (super.llvmPackages_11) clang libclang llvm;
 
   # Python package overrides.
   python3 = super.python3.override pythonOverride;
