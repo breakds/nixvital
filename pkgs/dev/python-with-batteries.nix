@@ -14,6 +14,9 @@ python3.withPackages (
 
         ide = [
           jupyterlab
+          # Support Jupyter Lab
+          ipywidgets
+          ipydatawidgets
         ];
 
         viz = [
