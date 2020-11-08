@@ -70,6 +70,7 @@ in {
         plugdev = { gid = 501; };
         nginx = { gid = 60; members = [ "nginx" ]; };
         git = { gid = 510; members = [ "${cfg.mainUser}" "git" "fcgi" ]; };
+        localshare = { gid = 758; members = [ "${cfg.mainUser}" ]; };
       };
     };
   };

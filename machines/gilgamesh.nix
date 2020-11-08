@@ -5,6 +5,7 @@
     ./base
     ../nix-home/breakds
     ../modules/users
+    ../modules/users/zrw.nix
     ../modules/desktop
     ../modules/services/samba.nix
     ../modules/services/deluge.nix
