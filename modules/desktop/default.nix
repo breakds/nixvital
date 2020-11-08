@@ -36,6 +36,7 @@ let cfg = config.vital.desktop;
 in {
   imports = [
     ./nvidia.nix
+    ./wacom.nix
     ./i3_status.nix
     ./remote-desktop.nix
   ];
