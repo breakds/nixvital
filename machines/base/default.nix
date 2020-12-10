@@ -54,7 +54,7 @@
     rsync pciutils usbutils mkpasswd nixops remmina
     pciutils usbutils mkpasswd nixops remmina p7zip unzip
     arandr smbclient neofetch ffmpeg zstd tmux fd
-    inetutils
+    inetutils file
     # ---------- Development ----------
     git tig cmake gnumake clang clang-tools binutils
     gcc silver-searcher sbcl
