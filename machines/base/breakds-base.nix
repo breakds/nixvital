@@ -9,6 +9,14 @@ in {
     vital.desktop = {
       xserver.useCapsAsCtrl = lib.mkDefault (cfg.machineType == "laptop");
     };
+    
+    users.extraUsers = {
+      "breakds" = {
+        shell = pkgs.zsh;
+        useDefaultShell = false;
+      };
+    };
+      
     environment.systemPackages = with pkgs; [
       breakds-texlive
 

@@ -37,8 +37,6 @@ in {
             "nginx"
             "samba"
           ];
-          shell = lib.mkDefault pkgs.zsh;
-          useDefaultShell = !(cfg.mainUser == "breakds");
           openssh.authorizedKeys.keyFiles = lib.mkIf (cfg.mainUser == "breakds") [ ../keys/breakds_samaritan.pub ];
         };
 
