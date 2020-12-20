@@ -9,13 +9,7 @@
       uid = 1008;
       home = "/home/zrw";
       extraGroups = [ "zrw" "audio" ];
-      shell = lib.mkDefault pkgs.bash;
-      openssh.authorizedKeys.keyFiles = ../keys/zrw.pub;
-    };
-
-    extraGroups.zrw = {
-      gid = 1008;
-      members = [ "zrw" ];
+      openssh.authorizedKeys.keyFiles = [ ../keys/zrw.pub ];
     };
 
     extraGroups = {
