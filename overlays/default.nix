@@ -1,10 +1,6 @@
 self: super:
 
-let old-jetbrains-nixpkgs = import (builtins.fetchTarball {
-      url = https://github.com/NixOS/nixpkgs/tarball/83c627b8b0e40d14aed0b02ecb3c303444152a8b;
-    }) { config.allowUnfree = true; };
-
-    unstablePkgs = import (builtins.fetchTarball {
+let unstablePkgs = import (builtins.fetchTarball {
       # 2020 July 22
       url = https://github.com/NixOS/nixpkgs/tarball/af5765b0dc424341c19a14bfbca5b98f6157cb75;
     }) { config.allowUnfree = true; };
