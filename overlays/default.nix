@@ -86,6 +86,9 @@ in {
   # Need this for hugo 0.74
   hugo = unstablePkgs.hugo;
 
+  ethminer = super.ethminer.override {
+    stdenv = self.clangStdenv;
+  };
   
   # WebAssembly Toolchain
   # FIXME: Re-enable these when llvm 11 comes out
