@@ -53,9 +53,6 @@ in {
   web-dev-tools = self.callPackage ../pkgs/web-dev-tools {};
   py-dev-tools = self.callPackage ../pkgs/py-dev-tools {};
 
-  # Override the jetbrains with an older version, where clion supports bazel.
-  old-jetbrains = old-jetbrains-nixpkgs.jetbrains;
-
   # www.breakds.org, the personal website
   www-breakds-org = self.callPackage ../pkgs/www-breakds-org {};
 
