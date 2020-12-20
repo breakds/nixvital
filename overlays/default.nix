@@ -42,10 +42,6 @@ in {
     };
   };
 
-  patchedHostname = self.callPackage ./hostname {
-    inherit (super) nettools;
-  };
-
   ros2nix = self.callPackage ../pkgs/ros/tools/ros2nix {};
 
   cudatoolkit = super.cudatoolkit_10;
