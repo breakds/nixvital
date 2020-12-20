@@ -68,9 +68,6 @@ in {
     nodejs = super.nodejs-12_x;
   };
 
-  # Need this for hugo 0.74
-  hugo = unstablePkgs.hugo;
-
   ethminer = super.ethminer.override {
     stdenv = self.clangStdenv;
   };
