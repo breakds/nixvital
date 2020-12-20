@@ -67,4 +67,21 @@
   environment.systemPackages = with pkgs; [
     darktable axel gimp go-ethereum ethminer
   ];
+
+  # +-------------+
+  # | Services    |
+  # +-------------+
+
+  # Eth Mining
+  services.ethminer = {
+    enable = true;
+    recheckInterval = 1000;
+    toolkit = "cuda";
+    wallet = "0x5c2816Cd036B29dA9Ba03E0D7c4BEDBbEAA671eA.samaritan1080Ti";
+    pool = "us2.ethermine.org";
+    stratumPort = 4444;
+    maxPower = 300;
+    registerMail = "";
+    rig = "";
+  };
 }
