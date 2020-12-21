@@ -7,8 +7,6 @@ let unstablePkgs = import (builtins.fetchTarball {
 
     pythonOverride = {
       packageOverrides = python-self: python-super: {
-        jupyterlab_server = python-self.callPackage ./python/jupyterlab_server.nix {};
-        jupyterlab = python-self.callPackage ./python/jupyterlab.nix {};
         pytorch = python-self.callPackage ../pkgs/temp/pytorch {
           cudaSupport = false;
           oneDNN = unstablePkgs.oneDNN;
