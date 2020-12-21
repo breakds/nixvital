@@ -7,15 +7,7 @@ let unstablePkgs = import (builtins.fetchTarball {
 
     pythonOverride = {
       packageOverrides = python-self: python-super: {
-        pytorch = python-self.callPackage ../pkgs/temp/pytorch {
-          cudaSupport = false;
-          oneDNN = unstablePkgs.oneDNN;
-          blas = unstablePkgs.blas;
-        };
-        pytorchWithoutCuda = python-self.pytorch;
-        pytorchWithCuda = python-self.pytorch.override {
-          cudaSupport = true;
-        };
+        # Put the customized python packages here.
       };
     };
 
