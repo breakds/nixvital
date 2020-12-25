@@ -11,7 +11,7 @@
     ../modules/vm.nix
     ../modules/dev/python-environment.nix
     ../modules/dev/java.nix
-    ../modules/binary-caches/gilgamesh.nix
+    # ../modules/binary-caches/gilgamesh.nix
   ];
 
   vital.machineType = "desktop";
