@@ -21,6 +21,15 @@
     # ../containers/declarative/hydrahead.nix
   ];
 
+  nixpkgs.overlays = [
+    (self: super: {
+      ethminer = super.ethminer.override {
+        stdenv = self.clangStdenv;
+        cudatoolkit = super.cudatoolkit_11;
+      };
+    })
+  ];
+
   vital.machineType = "server";
 
   # Machine-specific networking configuration.
