@@ -65,19 +65,22 @@ in {
 
       # TODO(breakds): Enable the dump (backup), preferrably weekly.
 
-      extraConfig = ''
-        [repository]
-        DISABLE_HTTP_GIT = false
-        USE_COMPAT_SSH_URI = true
+      settings = {
+        repository = {
+          DISABLE_HTTP_GIT = false;
+          USE_COMPAT_SSH_URI = true;         
+        };
 
-        [security]
-        INSTALL_LOCK = true
-        COOKIE_USERNAME = gitea_username
-        COOKIE_REMEMBER_NAME = gitea_userauth
-        
-        [server]
-        LANDING_PAGE = explore
-      '';
+        security = {
+          INSTALL_LOCK = true;
+          COOKIE_USERNAME = "gitea_username";
+          COOKIE_REMEMBER_NAME = "gitea_userauth";
+        };
+
+        servert = {
+          LANDING_PAGE = "explore";
+        };
+      };
     };
 
     services.nginx.virtualHosts = lib.mkIf config.vital.web.enable {
