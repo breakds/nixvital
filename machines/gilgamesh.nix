@@ -113,6 +113,6 @@
   # +------------+
 
   services.wakeonlan.interfaces = [{
-    interface = "eno1";
+    interface = "enp6s0";
   }];
 }
