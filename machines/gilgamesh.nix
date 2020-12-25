@@ -77,6 +77,23 @@
     workspace = "/home/breakds/projects";
   };
 
+  # Eth Mining
+  
+  # TODO(breakds) Lift "allow broken" when my ethminer fix is
+  # backported.
+  nixpkgs.config.allowBroken = true;
+  services.ethminer = {
+    enable = true;
+    recheckInterval = 1000;
+    toolkit = "cuda";
+    wallet = "0x5c2816Cd036B29dA9Ba03E0D7c4BEDBbEAA671eA.gilgamesh3080";
+    pool = "us2.ethermine.org";
+    stratumPort = 4444;
+    maxPower = 340;
+    registerMail = "";
+    rig = "";
+  };
+
   # For temporary serving something such as Jupyter Notebook.
   networking.firewall.allowedTCPPorts = [ 8888 ];
 
