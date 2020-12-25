@@ -21,12 +21,11 @@
     # ../containers/declarative/hydrahead.nix
   ];
 
+  # Temporarily build customized ethminer for 3080 and Cuda 11, which
+  # is also of the newest version.
   nixpkgs.overlays = [
     (self: super: {
-      ethminer = super.ethminer.override {
-        stdenv = self.clangStdenv;
-        cudatoolkit = super.cudatoolkit_11;
-      };
+      ethminer = self.callPackage ../pkgs/temp/ethminer {};
     })
   ];
 
