@@ -72,7 +72,7 @@ in {
       # (bridge) network.
       
       # The database (MariaDB)
-      docker-containers."${dbContainerName}" = {
+      virtualisation.oci-containers.containers."${dbContainerName}" = {
         image = "mariadb:10.1";
         environment = {
           "MYSQL_ROOT_PASSWORD" = dbPasswd;
@@ -81,11 +81,11 @@ in {
           "MYSQL_DATABASE" = "filerundb";
         };
         volumes = [ "${dbPath}:/var/lib/mysql" ];
-        extraDockerOptions = [ "--network=${bridgeNetworkName}" ];
+        extraOptions = [ "--network=${bridgeNetworkName}" ];
       };
 
       # The backend and web app (Filerun)
-      docker-containers."filerun" = {
+      virtualisation.oci-containers.containers."filerun" = {
         image = "afian/filerun";
         environment = {
           "FR_DB_HOST" = "${dbContainerHost}";
@@ -104,7 +104,7 @@ in {
           "${cfg.workDir}/web:/var/www/html"
           "${cfg.workDir}/user-files:/user-files"
         ] ++ lib.lists.map (x: "${cfg.workDir}/${x}:/${x}") cfg.extraUserData;
-        extraDockerOptions = [ "--network=${bridgeNetworkName}" ];
+        extraOptions = [ "--network=${bridgeNetworkName}" ];
       };
 
       # This is an one-shot systemd service to make sure that the
