@@ -11,7 +11,7 @@
     ../modules/vm.nix
     ../modules/dev/python-environment.nix
     ../modules/dev/java.nix
-    # ../modules/binary-caches/gilgamesh.nix
+    ../modules/binary-caches/gilgamesh.nix
   ];
 
   vital.machineType = "desktop";
@@ -33,14 +33,6 @@
       enable = true;
     };
   };
-
-  # +------------+
-  # | WakeOnLan  |
-  # +------------+
-
-  # services.wakeonlan.interfaces = [{
-  #   interface = "eno1";
-  # }];
 
   # For ROS
   networking.firewall.allowedTCPPorts = [ 11311 ];
