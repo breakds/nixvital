@@ -14,13 +14,6 @@ let cfg = config.vital.desktop;
             Values can be "gdm" or "sddm".
           '';
         };
-        i3_show_battery = lib.mkOption {
-          type = types.bool;
-          default = false;
-          description = ''
-            Whether to show battery on i3 status bar.
-          '';
-        };
         dpi = lib.mkOption {
           type = types.nullOr types.ints.positive;
           default = null;
@@ -37,7 +30,6 @@ in {
   imports = [
     ./nvidia.nix
     ./wacom.nix
-    ./i3_status.nix
     ./remote-desktop.nix
   ];
 
@@ -110,18 +102,24 @@ in {
         [org.gnome.desktop.peripherals.touchpad]
         click-method='default'
       '';
+
+      # Special Session managed by Home Manager.
+      # This is how I get display manager recognize my customized i3.
+      desktopManager.session = [
+        {
+          name = "home-manager";
+          start = ''
+            ${pkgs.runtimeShell} $HOME/.hm-xsession &
+            waitPID=$!
+          '';
+        }
+      ];
+      
       displayManager.gdm.enable = cfg.xserver.displayManager == "gdm";
       # When using gdm, do not automatically suspend since we want to
       # keep the server running.
       displayManager.gdm.autoSuspend = false;
       displayManager.sddm.enable = cfg.xserver.displayManager == "sddm";
-
-      # Extra window manager: i3
-      windowManager.i3 = {
-        enable = true;
-        configFile = ./i3.config;
-        extraPackages = with pkgs; [ dmenu i3status-rust i3lock i3lock-fancy ];
-      };
     };
 
     # Font

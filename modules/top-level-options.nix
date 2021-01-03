@@ -30,7 +30,6 @@ in {
         server = true;
         laptop = false;
       });
-      xserver.i3_show_battery = cfg.machineType == "laptop";
     };
   };
 }

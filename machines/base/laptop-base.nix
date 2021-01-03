@@ -4,10 +4,6 @@ let cfg = config.vital;
 
 in {
   config = lib.mkIf (cfg.machineType == "laptop") {
-    vital.desktop = {
-      xserver.i3_show_battery = true;      
-    };
-
     # Handle lids for laptops.
     services.logind = {
       # The following settings configures the following behavior for laptops
