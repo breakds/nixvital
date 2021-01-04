@@ -1,8 +1,8 @@
 self: super:
 
 let unstablePkgs = import (builtins.fetchTarball {
-      # 2020 July 22
-      url = https://github.com/NixOS/nixpkgs/tarball/af5765b0dc424341c19a14bfbca5b98f6157cb75;
+      # 2021 Jan 03
+      url = https://github.com/NixOS/nixpkgs/tarball/77d190f10931c1d06d87bf6d772bf65346c71777;
     }) { config.allowUnfree = true; };
 
     pythonOverride = {
@@ -57,6 +57,8 @@ in {
   ethminer = super.ethminer.override {
     stdenv = self.clangStdenv;
   };
+
+  terraria-server = unstablePkgs.terraria-server;
   
   # WebAssembly Toolchain
   # FIXME: Re-enable these when llvm 11 comes out
