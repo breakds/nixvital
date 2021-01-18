@@ -7,7 +7,7 @@ let cfg = config.vital.desktop;
     xserverOptions = {
       options = {
         displayManager = lib.mkOption {
-          type = types.enum [ "gdm" "sddm" ];
+          type = types.enum [ "gdm" "sddm" "lightdm" ];
           default = "gdm";
           description = ''
             To use gdm or sddm for the display manager.

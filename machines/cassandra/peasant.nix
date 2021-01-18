@@ -24,7 +24,15 @@
 
   vital.desktop = {
     enable = true;
-    xserver.displayManager = "gdm";
+    xserver.displayManager = "lightdm";
+    nvidia = {
+      enable = true;
+      prime = {
+        enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
   };
 
   # +----------+
