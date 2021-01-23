@@ -57,7 +57,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    darktable axel gimp go-ethereum woeusb
+    darktable axel gimp go-ethereum woeusb filezilla
   ];
 
   # +-------------+
