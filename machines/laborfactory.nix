@@ -2,12 +2,12 @@
 
 {
   imports = [
-    ../base
+    ./base
     ../nix-home/breakds
-    ../../modules/users
-    ../../modules/desktop
-    ../../modules/dev/python-environment.nix
-    ../../modules/IoT/apple-devices.nix
+    ../modules/users
+    ../modules/desktop
+    ../modules/dev/python-environment.nix
+    ../modules/IoT/apple-devices.nix
     ../modules/binary-caches/gilgamesh.nix
   ];
 
@@ -37,8 +37,6 @@
   # +----------+
   # | Extras   |
   # +----------+
-
-  users.users."${config.vital.mainUser}".shell = pkgs.bash;
 
   environment.systemPackages = with pkgs; [
     filezilla
