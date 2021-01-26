@@ -24,6 +24,7 @@
   vital.desktop = {
     enable = true;
     xserver.displayManager = "lightdm";
+    xserver.dpi = 108;
     nvidia = {
       enable = true;
       prime = {
