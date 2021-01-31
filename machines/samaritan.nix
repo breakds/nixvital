@@ -14,6 +14,14 @@
     ../modules/binary-caches/gilgamesh.nix
   ];
 
+  # Temporarily build customized ethminer for 3060 Ti and Cuda 11,
+  # which is also of the newest version.
+  nixpkgs.overlays = [
+    (self: super: {
+      ethminer = self.callPackage ../pkgs/temp/ethminer {};
+    })
+  ];
+
   vital.machineType = "desktop";
 
   # Machine-specific networking configuration.
@@ -69,10 +77,10 @@
     enable = true;
     recheckInterval = 1000;
     toolkit = "cuda";
-    wallet = "0x5c2816Cd036B29dA9Ba03E0D7c4BEDBbEAA671eA.samaritan1080Ti";
+    wallet = "0x5c2816Cd036B29dA9Ba03E0D7c4BEDBbEAA671eA.samaritan3060Ti";
     pool = "us2.ethermine.org";
     stratumPort = 4444;
-    maxPower = 300;
+    maxPower = 240;
     registerMail = "";
     rig = "";
   };
