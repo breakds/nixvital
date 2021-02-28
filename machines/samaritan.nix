@@ -84,4 +84,7 @@
     registerMail = "";
     rig = "";
   };
+
+  # Trezor cryptocurrency hardware wallet
+  services.trezord.enable = true;
 }
