@@ -94,7 +94,7 @@
     enable = true;
     recheckInterval = 1000;
     toolkit = "cuda";
-    wallet = "0x5c2816Cd036B29dA9Ba03E0D7c4BEDBbEAA671eA.gilgamesh3080";
+    wallet = "0xcdea2bD3AC8089e9aa02cC6CF5677574f76f0df2.gilgamesh3080";
     pool = "us2.ethermine.org";
     stratumPort = 4444;
     maxPower = 340;
