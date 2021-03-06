@@ -17,6 +17,7 @@
     ../modules/services/terraria.nix
     ../modules/services/jupyter-lab.nix
     ../modules/services/nix-serve.nix
+    ../modules/services/docker-registry.nix
     ../modules/dev/python-environment.nix
     # ../containers/declarative/hydrahead.nix
   ];

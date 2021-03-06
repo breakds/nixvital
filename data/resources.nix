@@ -13,11 +13,13 @@
     nixvital-reflection = 5888;
     terraria = 5970;
     jupyter-lab = 5555;
+    docker-registry = 5050;
   };
   domains = {
     cgit = "cgit.breakds.org";
     gitea = "git.breakds.org";
     filerun = "files.breakds.org";
     nix-serve = "cache.breakds.org";
+    docker-registry = "docker.breakds.org";
   };
 }
