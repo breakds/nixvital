@@ -5,6 +5,7 @@
   boot.kernel.sysctl = {
     "net.ipv4.ip_forward" = 1;
   };
+  boot.kernelModules = [ "kvm-amd" "kvm-intel" ];  
   virtualisation.libvirtd.enable = true;
   users.extraUsers."$[config.vital.mainUser}".extraGroups = [ "libvi2rtd" ];
 }
