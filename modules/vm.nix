@@ -7,5 +7,5 @@
   };
   boot.kernelModules = [ "kvm-amd" "kvm-intel" ];  
   virtualisation.libvirtd.enable = true;
-  users.extraUsers."$[config.vital.mainUser}".extraGroups = [ "libvi2rtd" ];
+  users.extraUsers."$[config.vital.mainUser}".extraGroups = [ "libvirtd" ];
 }
