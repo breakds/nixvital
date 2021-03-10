@@ -50,6 +50,9 @@ in {
 
       # Entertainment
       strawberry
+
+      # Cloud
+      awscli2
     ] ++ (if isWeride then [] else [ pkgs.bazel ]);
   };
 }
