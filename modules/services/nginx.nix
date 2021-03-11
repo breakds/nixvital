@@ -25,7 +25,7 @@ in {
       recommendedProxySettings = true;
 
       # TODO(breakds): Make this per virtual host.
-      clientMaxBodySize = "100m";
+      clientMaxBodySize = "1000m";
 
       virtualHosts = let template = {
         enableACME = true;
