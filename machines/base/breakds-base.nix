@@ -54,5 +54,14 @@ in {
       # Cloud
       awscli2
     ] ++ (if isWeride then [] else [ pkgs.bazel ]);
+
+
+    # Enable nix flakes
+    nix = {
+      package = pkgs.nixFlakes;
+      extraOptions = ''
+        experimental-features = nix-command flakes
+      '';
+    };
   };
 }
