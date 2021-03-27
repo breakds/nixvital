@@ -51,6 +51,9 @@ in {
       # Entertainment
       strawberry
 
+      # For quant project
+      mysql-client
+
       # Cloud
       awscli2
     ] ++ (if isWeride then [] else [ pkgs.bazel ]);
