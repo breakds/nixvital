@@ -49,11 +49,6 @@ in {
       collection-bibtexextra newlfm;
   };
 
-  # Web-based Visual Studio Code
-  code-server = self.callPackage ../pkgs/code-server {
-    nodejs = super.nodejs-12_x;
-  };
-
   ethminer = super.ethminer.override {
     stdenv = self.clangStdenv;
   };
