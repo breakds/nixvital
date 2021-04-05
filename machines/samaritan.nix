@@ -11,7 +11,7 @@
     ../modules/vm.nix
     ../modules/dev/python-environment.nix
     ../modules/dev/java.nix
-    ../modules/binary-caches/gilgamesh.nix
+    # ../modules/binary-caches/gilgamesh.nix
   ];
 
   # Temporarily build customized ethminer for 3060 Ti and Cuda 11,
