@@ -45,10 +45,6 @@ in {
       # Set your time zone.
       time.timeZone = "America/Los_Angeles";
 
-      environment.systemPackages = with pkgs; [
-        (callPackage ../../pkgs/public-web {})
-      ];
-
       fonts.fonts = with pkgs; [
         font-awesome-ttf
       ];
