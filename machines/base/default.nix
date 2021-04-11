@@ -22,7 +22,6 @@
   # Specifies the overlay for all the packages.
   nixpkgs.overlays = [
     (import ../../overlays)
-    (import ../../overlays/ros)
   ];
 
   # +------------------------------------------------------------+
@@ -60,7 +59,6 @@
     gcc silver-searcher sbcl
     web-dev-tools
     py-dev-tools
-    ros2nix
     nodejs-14_x
   ];
 

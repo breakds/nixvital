@@ -1,4 +1,0 @@
-69c69
-<   safe_execute_process(COMMAND ${cmd})
----
->   safe_execute_process(COMMAND sh ${cmd})

@@ -28,8 +28,6 @@ in {
     };
   };
 
-  ros2nix = self.callPackage ../pkgs/ros/tools/ros2nix {};
-
   cudatoolkit = super.cudatoolkit_10;
 
   web-dev-tools = self.callPackage ../pkgs/web-dev-tools {};
