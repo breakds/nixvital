@@ -58,7 +58,6 @@
     git tig cmake gnumake clang clang-tools binutils
     gcc silver-searcher sbcl
     web-dev-tools
-    py-dev-tools
     nodejs-14_x
   ];
 
