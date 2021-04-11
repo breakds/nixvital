@@ -31,7 +31,6 @@ in {
   cudatoolkit = super.cudatoolkit_10;
 
   web-dev-tools = self.callPackage ../pkgs/web-dev-tools {};
-  py-dev-tools = self.callPackage ../pkgs/py-dev-tools {};
 
   # www.breakds.org, the personal website
   www-breakds-org = self.callPackage ../pkgs/www-breakds-org {};
